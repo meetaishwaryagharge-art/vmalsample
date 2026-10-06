@@ -1,0 +1,299 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mellona Foods | Global Food Experts</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
+    
+    <style>
+        :root {
+            --brand-blue: #2a58ad;
+            --brand-gold: #d4ac2b;
+            --text-dark: #1a1a1a;
+            --text-gray: #666;
+            --bg-light: #f9fbfd;
+            --white: #ffffff;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Poppins', sans-serif; }
+        body { background-color: var(--white); color: var(--text-dark); line-height: 1.6; }
+        .container { max-width: 1200px; margin: 0 auto; padding: 0 20px; }
+
+        /* --- Updated Header --- */
+        .main-header {
+            background: var(--white);
+            padding: 15px 0;
+            border-bottom: 1px solid #f0f0f0;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .nav-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo-area { display: flex; align-items: center; gap: 10px; text-decoration: none; }
+        .logo-box { 
+            width: 45px; height: 45px; background: var(--brand-blue); 
+            border-radius: 8px; display: flex; align-items: center; 
+            justify-content: center; color: white; font-weight: 800; font-size: 22px; 
+        }
+        .logo-text h1 { font-size: 1.2rem; font-weight: 800; color: var(--text-dark); margin: 0; line-height: 1; }
+        .logo-text span { font-size: 0.7rem; color: var(--text-gray); text-transform: uppercase; letter-spacing: 0.5px; }
+
+        .nav-links { display: flex; list-style: none; gap: 25px; align-items: center; }
+        .nav-links a { text-decoration: none; color: var(--text-dark); font-size: 0.95rem; font-weight: 500; transition: 0.3s; }
+        .nav-links a:hover, .nav-links a.active { color: var(--brand-blue); }
+
+        /* Dropdown Logic */
+        .dropdown { position: relative; }
+        .dropdown-content {
+            display: none; position: absolute; background: var(--white);
+            min-width: 180px; box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+            border-radius: 6px; top: 100%; padding: 10px 0; z-index: 10;
+        }
+        .dropdown-content a { padding: 10px 20px; display: block; font-size: 0.9rem; }
+        .dropdown:hover .dropdown-content { display: block; }
+
+        .nav-right { display: flex; align-items: center; gap: 20px; }
+        .btn-contact { 
+            background: var(--brand-blue); color: white !important; 
+            padding: 10px 22px; border-radius: 25px; font-size: 0.85rem; 
+            text-decoration: none; transition: 0.3s;
+        }
+        .nav-icons { display: flex; gap: 15px; font-size: 1.1rem; color: var(--text-dark); }
+        .nav-icons i { cursor: pointer; transition: 0.2s; }
+        .nav-icons i:hover { color: var(--brand-blue); }
+
+
+
+
+        /* Torn-Paper Hero (image_06d7cf, image_06051b) */
+        .hero-torn {
+            background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('https://images.unsplash.com/photo-1542838132-92c53300491e?auto=format&fit=crop&w=1600&q=80');
+            background-size: cover;
+            background-position: center;
+            height: 450px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            text-align: center;
+            position: relative;
+        }
+
+        .hero-torn::after {
+            content: "";
+            position: absolute;
+            bottom: -2px;
+            left: 0;
+            width: 100%;
+            height: 60px;
+            background: url('data:image/svg+xml;utf8,<svg viewBox="0 0 1200 120" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none"><path d="M0 0l30 15 30-15 30 15 30-15 30 15 30-15 30 15 30-15 30 15 30-15 30 15 30-15 30 15 30-15 30 15 30-15 30 15 30-15 30 15 30-15 30 15 30-15 30 15 30-15 30 15 30-15 30 15 30-15 30 15 30-15 30 15 30-15 30 15 30-15 30 15 30-15 30 15 30-15 30 15 30-15 30 15 30-15V120H0V0z" fill="white"/></svg>');
+            background-size: 100% 60px;
+        }
+
+        /* Feature Sections (image_06eddc) */
+        .feature-section { padding: 80px 0; }
+        .feature-img { border-radius: 20px; width: 100%; box-shadow: 0 10px 30px rgba(0,0,0,0.1); }
+        .feature-title { font-family: 'Playfair Display', serif; color: var(--brand-gold); font-size: 2.2rem; }
+        .btn-feature { background-color: var(--brand-blue); color: white; border-radius: 4px; padding: 10px 25px; font-size: 13px; margin-top: 15px; }
+
+        /* Checklist Styles (image_06d7cf) */
+        .checklist li { margin-bottom: 12px; font-size: 14px; display: flex; align-items: start; }
+        .checklist i { color: var(--brand-blue); margin-right: 12px; font-size: 18px; }
+
+        /* Footer (Unified across all images) */
+        
+      .footer{
+background:#222;
+color:#fff;
+padding:80px 8% 30px;
+}
+
+.footer-container{
+display:grid;
+grid-template-columns:repeat(4,1fr);
+gap:40px;
+max-width:1200px;
+margin:auto;
+}
+
+.footer-col h3{
+font-size:20px;
+margin-bottom:20px;
+position:relative;
+}
+
+.footer-col h3::after{
+content:"";
+width:40px;
+height:2px;
+background: #fff;
+position:absolute;
+left:0;
+bottom:-8px;
+}
+
+.footer-col ul{
+list-style:none;
+}
+
+.footer-col ul li{
+margin:10px 0;
+}
+
+.footer-col ul li a{
+text-decoration:none;
+color:#ccc;
+font-size:14px;
+}
+
+.footer-col ul li a:hover{
+color:#fff;
+}
+
+.contact p{
+color:#ccc;
+font-size:14px;
+margin:6px 0;
+}
+    </style>
+</head>
+<body>
+
+   <header class="main-header">
+        <div class="container nav-container">
+            <a href="#" class="logo-area">
+                <div class="logo-box">M</div>
+                <div class="logo-text">
+                    <h1>MELLONA FOODS</h1>
+                    <span>Organic Origins. Honest Flavors.</span>
+                </div>
+            </a>
+
+            <nav>
+                <ul class="nav-links">
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="about.html">About Us</a></li>
+                    <li class="dropdown">
+                        <a href="#">Our Products <i class="fa-solid fa-chevron-down" style="font-size: 10px;"></i></a>
+                        <div class="dropdown-content">
+                            <a href="organic food.html">Organic Food</a>
+                            <a href="millets.html">Millets</a>
+                            <a href="snack.html">Snacks</a>
+                            <a href="oil.html">Edible oil</a>
+                            <a href="spice.html">Spices</a>
+                        </div>
+						
+                    </li>
+					 <li class="dropdown">
+                        <a href="#">Our Services <i class="fa-solid fa-chevron-down" style="font-size: 10px;"></i></a>
+                        <div class="dropdown-content">
+                            <a href="service.html">Logistics</a>
+                            <a href="certificate.html">certification</a>
+                            <a href="source.html">Sourcing</a>
+                           
+                        </div>
+						
+                    </li>
+                    <li><a href="blog.html">Blogs</a></li>
+                    <li><a href="news.html" >News</a></li>
+                </ul>
+            </nav>
+
+            <div class="nav-right">
+                <a href="contactus.html" class="btn-contact">Contact us</a>
+                <div class="nav-icons">
+                    <i class="fa-solid fa-magnifying-glass"></i>
+                    <i class="fa-regular fa-user"></i>
+                    <i class="fa-solid fa-basket-shopping"></i>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <div class="hero-torn">
+        <div class="container">
+            <h1 class="display-4 fw-bold mb-3">Industry News</h1>
+            <p class="w-75 mx-auto">At Mellona Foods, we believe continuous learning and deep industry insight are essential to staying ahead in today’s evolving food export landscape. From category trends to supply chain dynamics and global market challenges, we stay informed to serve better. We’re committed to educating both our team and our customers—ensuring every product is delivered responsibly, efficiently, and with uncompromised quality.</p>
+        </div>
+    </div>
+
+    <section class="feature-section">
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-md-6 mb-4">
+                    <img src="https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?w=800" class="feature-img" alt="Logistics">
+                </div>
+                <div class="col-md-6 ps-md-5">
+                    <h2 class="feature-title">Logistics</h2>
+                    <p>Efficient logistics are at the heart of every successful export. We ensure your products reach their destination safely and on time.</p>
+                    <button class="btn btn-feature">Explore Logistics Services</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer class="footer">
+
+<div class="footer-container">
+
+    <div class="footer-col">
+        <h3>Information</h3>
+        <ul>
+            <li><a href="#">Home</a></li>
+            <li><a href="#">About us</a></li>
+            <li><a href="#">Our Products</a></li>
+            <li><a href="#">Our Services</a></li>
+            <li><a href="#">Blogs</a></li>
+            <li><a href="#">News</a></li>
+            <li><a href="#">Contact Us</a></li>
+            <li><a href="#">Login</a></li>
+        </ul>
+    </div>
+
+    <div class="footer-col">
+        <h3>Products</h3>
+        <ul>
+            <li><a href="#">Millets</a></li>
+            <li><a href="#">Organic foods</a></li>
+            <li><a href="#">Snacks</a></li>
+        </ul>
+    </div>
+
+    <div class="footer-col">
+        <h3>Branches</h3>
+        <ul>
+            <li><a href="#">Mumbai</a></li>
+        </ul>
+    </div>
+
+    <div class="footer-col contact">
+        <h3>Stay Connected</h3>
+
+        <p><strong>Registered address:</strong></p>
+        <p>Andheri , 9th Floor, Office 909</p>
+
+        <p><strong>Phone Number:</strong></p>
+        <p>+91 915 200 1234</p>
+
+        <p><strong>Email-Id</strong></p>
+        <p>sales@athena-logistics.com</p>
+
+        <p>Mon - Fri / 09:00 AM - 8:00 PM</p>
+    </div>
+
+</div>
+
+</footer>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

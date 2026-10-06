@@ -1,0 +1,775 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Mellona Foods | Global Food Trade</title>
+  <meta name="description" content="Mellona Foods connects farms, producers and global markets with fresh, responsibly sourced food products.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css">
+
+  <style>
+    :root{
+      --ink:#10251f;
+      --green:#0c6b49;
+      --green-2:#124f3c;
+      --lime:#c8e46a;
+      --orange:#f3a52d;
+      --cream:#f8f4e9;
+      --soft:#f2f6ef;
+      --white:#fff;
+      --muted:#6f7d76;
+      --line:rgba(16,37,31,.10);
+      --shadow:0 24px 70px rgba(15,45,34,.12);
+    }
+    *{box-sizing:border-box}
+    html{scroll-behavior:smooth}
+    body{margin:0;color:var(--ink);font-family:"DM Sans",sans-serif;background:#fff;overflow-x:hidden}
+    h1,h2,h3,h4,h5,.brand{font-family:"Manrope",sans-serif}
+    a{text-decoration:none}
+    .container{max-width:1220px}
+
+    /* PRELOADER */
+    #preloader{position:fixed;inset:0;background:var(--ink);z-index:9999;display:grid;place-items:center;transition:.7s}
+    .loader-logo{color:#fff;font:800 28px Manrope;letter-spacing:-1px}
+    .loader-logo span{color:var(--lime)}
+    .loader-bar{width:180px;height:3px;background:rgba(255,255,255,.15);margin:20px auto 0;overflow:hidden}
+    .loader-bar i{display:block;height:100%;width:45%;background:var(--lime);animation:load 1s infinite}
+    @keyframes load{to{transform:translateX(400%)}}
+
+    /* NAV */
+    .site-nav{position:fixed;top:0;left:0;right:0;z-index:1000;padding:20px 0;transition:.35s}
+    .site-nav.scrolled{background:rgba(255,255,255,.92);backdrop-filter:blur(18px);padding:11px 0;box-shadow:0 5px 30px rgba(0,0,0,.06)}
+    .nav-wrap{background:rgba(255,255,255,.9);backdrop-filter:blur(16px);border:1px solid rgba(255,255,255,.7);border-radius:100px;padding:7px 9px 7px 22px}
+    .brand{font-size:20px;font-weight:800;letter-spacing:-1px;color:var(--ink)}
+    .brand .dot{color:var(--orange)}
+    .brand small{display:block;font:600 7px "DM Sans";letter-spacing:2px;color:var(--muted);margin-top:-2px}
+    .nav-link{font-weight:600;color:#31433d!important;font-size:14px;padding:10px 15px!important}
+    .nav-link:hover{color:var(--green)!important}
+    .btn-main{background:var(--green);color:#fff;border:0;border-radius:100px;padding:13px 22px;font-weight:700;transition:.3s}
+    .btn-main:hover{background:var(--ink);color:#fff;transform:translateY(-2px)}
+    .menu-btn{border:0;background:var(--green);color:#fff;width:43px;height:43px;border-radius:50%}
+
+    /* HERO */
+    .hero{min-height:820px;padding:150px 0 90px;background:
+      radial-gradient(circle at 10% 15%,rgba(200,228,106,.35),transparent 25%),
+      radial-gradient(circle at 92% 70%,rgba(243,165,45,.16),transparent 24%),
+      linear-gradient(135deg,#f6f5e9 0%,#fff 47%,#edf6e9 100%);position:relative;overflow:hidden}
+    .hero:before{content:"";position:absolute;width:650px;height:650px;border:1px solid rgba(12,107,73,.12);border-radius:50%;right:-180px;top:40px}
+    .hero:after{content:"";position:absolute;width:500px;height:500px;border:1px dashed rgba(12,107,73,.1);border-radius:50%;right:-100px;top:115px}
+    .eyebrow{display:inline-flex;align-items:center;gap:9px;text-transform:uppercase;letter-spacing:2.5px;font-size:11px;font-weight:800;color:var(--green);margin-bottom:20px}
+    .eyebrow:before{content:"";width:34px;height:2px;background:var(--orange)}
+    .hero h1{font-size:clamp(48px,6.5vw,88px);line-height:.98;letter-spacing:-4px;font-weight:800;max-width:760px}
+    .hero h1 span{color:var(--green)}
+    .hero-copy{font-size:18px;color:#68756f;line-height:1.7;max-width:570px;margin:25px 0 32px}
+    .hero-actions{display:flex;gap:12px;flex-wrap:wrap}
+    .btn-outline{border:1px solid var(--line);color:var(--ink);background:#fff;border-radius:100px;padding:13px 22px;font-weight:700}
+    .btn-outline:hover{border-color:var(--green);color:var(--green)}
+    .hero-media{position:relative;height:550px}
+    .hero-card{position:absolute;inset:20px 10px 0 30px;border-radius:42px;overflow:hidden;box-shadow:var(--shadow);transform:rotate(2deg)}
+    .hero-card img{width:100%;height:100%;object-fit:cover}
+    .hero-card:after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,transparent 55%,rgba(10,40,28,.48))}
+    .float-card{position:absolute;z-index:3;background:#fff;border-radius:20px;padding:18px 20px;box-shadow:0 20px 50px rgba(0,0,0,.13)}
+    .float-card.top{top:70px;left:-10px}
+    .float-card.bottom{bottom:28px;right:-18px}
+    .float-icon{width:42px;height:42px;border-radius:14px;background:#edf6df;color:var(--green);display:grid;place-items:center;font-size:20px}
+    .stat-row{display:flex;gap:22px;margin-top:34px}
+    .mini-stat strong{display:block;font:800 24px Manrope}
+    .mini-stat span{font-size:11px;color:var(--muted);text-transform:uppercase;letter-spacing:1px}
+
+    /* TRUST STRIP */
+    .trust{padding:23px 0;border-bottom:1px solid var(--line);border-top:1px solid var(--line);background:#fff}
+    .trust-item{display:flex;align-items:center;gap:12px;justify-content:center;color:#52615a;font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:.8px}
+    .trust-item i{color:var(--green);font-size:21px}
+
+    /* SECTION */
+    section{padding:110px 0}
+    .section-tag{color:var(--green);font-size:11px;font-weight:800;letter-spacing:2.2px;text-transform:uppercase;margin-bottom:13px}
+    .section-title{font-size:clamp(36px,4vw,58px);line-height:1.05;letter-spacing:-2.5px;font-weight:800}
+    .section-lead{color:var(--muted);line-height:1.8;max-width:610px}
+
+    /* CATEGORIES */
+    .category-section{background:var(--soft)}
+    .category-card{height:420px;border-radius:28px;overflow:hidden;position:relative;color:#fff;box-shadow:0 14px 35px rgba(0,0,0,.08);transition:.45s}
+    .category-card:hover{transform:translateY(-10px)}
+    .category-card img{width:100%;height:100%;object-fit:cover;transition:.6s}
+    .category-card:hover img{transform:scale(1.07)}
+    .category-card:after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,transparent 38%,rgba(4,20,14,.84))}
+    .cat-content{position:absolute;z-index:2;bottom:0;left:0;right:0;padding:28px}
+    .cat-no{font-size:11px;opacity:.7;letter-spacing:2px}
+    .cat-content h3{font-size:29px;margin:6px 0}
+    .cat-content p{font-size:13px;opacity:.82;margin:0;max-width:280px}
+    .cat-arrow{position:absolute;right:25px;bottom:28px;width:44px;height:44px;border-radius:50%;background:#fff;color:var(--ink);display:grid;place-items:center;z-index:3}
+
+    /* STORY */
+    .story{background:var(--green);color:#fff;position:relative;overflow:hidden}
+    .story:before{content:"GLOBAL FOOD • FRESHNESS • TRUST • GLOBAL FOOD • FRESHNESS • TRUST";position:absolute;white-space:nowrap;font:800 95px Manrope;color:rgba(255,255,255,.035);top:30px;left:-30px}
+    .story-image{height:570px;border-radius:35px;overflow:hidden;position:relative}
+    .story-image img{width:100%;height:100%;object-fit:cover}
+    .story-badge{position:absolute;left:25px;bottom:25px;background:var(--lime);color:var(--ink);border-radius:20px;padding:18px 20px;font-weight:800}
+    .story .section-tag{color:var(--lime)}
+    .story .section-lead{color:rgba(255,255,255,.7)}
+    .story .section-title{max-width:620px}
+    .check-list{list-style:none;padding:0;margin:30px 0}
+    .check-list li{display:flex;gap:12px;margin:15px 0;color:rgba(255,255,255,.86)}
+    .check-list i{color:var(--lime)}
+
+    /* NUMBERS */
+    .numbers{background:var(--cream)}
+    .number-box{padding:35px 15px;border-right:1px solid var(--line)}
+    .number-box:last-child{border:0}
+    .number-box strong{font:800 clamp(40px,5vw,68px) Manrope;letter-spacing:-3px;color:var(--green)}
+    .number-box span{display:block;font-weight:700;color:#5f6c66;margin-top:5px}
+
+    /* PROCESS */
+    .process-card{border:1px solid var(--line);border-radius:25px;padding:28px;height:100%;background:#fff;transition:.3s}
+    .process-card:hover{box-shadow:var(--shadow);transform:translateY(-5px)}
+    .process-icon{width:58px;height:58px;border-radius:18px;background:#edf6df;color:var(--green);display:grid;place-items:center;font-size:25px;margin-bottom:24px}
+    .process-card h4{font-size:20px}
+    .process-card p{font-size:14px;color:var(--muted);line-height:1.7;margin:0}
+
+    /* GLOBAL */
+    .global{background:#f6f8f2;overflow:hidden}
+    .world-map{position:relative;min-height:480px;margin-top:45px;background:
+      radial-gradient(ellipse at center,rgba(200,228,106,.3),transparent 55%)}
+    .map-svg{width:100%;height:480px;opacity:.78}
+    .route{stroke:var(--orange);stroke-width:2;stroke-dasharray:7 9;fill:none;animation:dash 8s linear infinite}
+    @keyframes dash{to{stroke-dashoffset:-150}}
+    .pin{position:absolute;width:13px;height:13px;border-radius:50%;background:var(--orange);box-shadow:0 0 0 8px rgba(243,165,45,.18);animation:pulse 2s infinite}
+    .pin.one{left:36%;top:42%}.pin.two{left:50%;top:57%}.pin.three{left:69%;top:39%}.pin.four{left:78%;top:60%}
+    @keyframes pulse{50%{box-shadow:0 0 0 14px rgba(243,165,45,0)}}
+    .global-note{position:absolute;right:4%;top:30px;background:#fff;padding:18px 22px;border-radius:18px;box-shadow:0 14px 35px rgba(0,0,0,.08);font-size:12px}
+    .global-note strong{display:block;font:800 25px Manrope;color:var(--green)}
+
+    /* PRODUCT */
+    .product-card{border:1px solid var(--line);border-radius:26px;overflow:hidden;background:#fff;height:100%;transition:.35s}
+    .product-card:hover{transform:translateY(-7px);box-shadow:var(--shadow)}
+    .product-img{height:250px;overflow:hidden;background:#eee}
+    .product-img img{width:100%;height:100%;object-fit:cover;transition:.5s}
+    .product-card:hover .product-img img{transform:scale(1.06)}
+    .product-body{padding:22px}
+    .product-body small{color:var(--green);font-weight:800;text-transform:uppercase;letter-spacing:1.5px}
+    .product-body h4{font-size:21px;margin:8px 0}
+    .product-body p{color:var(--muted);font-size:13px;line-height:1.65}
+    .product-link{color:var(--ink);font-weight:800;font-size:13px}
+
+    /* CTA */
+    .cta{padding:75px 0}
+    .cta-box{background:var(--ink);color:#fff;border-radius:36px;padding:70px;position:relative;overflow:hidden}
+    .cta-box:after{content:"";position:absolute;width:360px;height:360px;border:70px solid rgba(200,228,106,.07);border-radius:50%;right:-100px;top:-100px}
+    .cta-box .section-title{max-width:720px}
+    .btn-lime{background:var(--lime);color:var(--ink);border:0;border-radius:100px;padding:14px 24px;font-weight:800}
+    .btn-lime:hover{background:#fff;color:var(--ink)}
+
+    /* FOOTER */
+    footer{background:#0b1713;color:#fff;padding:75px 0 25px}
+    footer .brand{color:#fff}
+    .footer-text{color:rgba(255,255,255,.55);line-height:1.7;font-size:13px;max-width:340px}
+    footer h6{font-size:12px;letter-spacing:1.4px;text-transform:uppercase;color:var(--lime);margin-bottom:20px}
+    footer ul{list-style:none;padding:0;margin:0}
+    footer li{margin:10px 0}
+    footer a{color:rgba(255,255,255,.6);font-size:13px}
+    footer a:hover{color:#fff}
+    .social{width:39px;height:39px;border:1px solid rgba(255,255,255,.14);border-radius:50%;display:grid;place-items:center;color:#fff;margin-right:7px}
+    .copyright{border-top:1px solid rgba(255,255,255,.09);margin-top:55px;padding-top:20px;color:rgba(255,255,255,.38);font-size:11px}
+
+    /* REVEAL */
+    .reveal{opacity:0;transform:translateY(35px);transition:opacity .8s ease,transform .8s ease}
+    .reveal.show{opacity:1;transform:none}
+
+    @media(max-width:991px){
+      .site-nav{padding:10px}
+      .nav-wrap{border-radius:22px;padding:9px 15px}
+      .hero{padding-top:135px;min-height:auto}
+      .hero-media{height:470px;margin-top:40px}
+      .hero-card{inset:10px 15px 0 15px}
+      .float-card.top{left:0}
+      .float-card.bottom{right:0}
+      .story-image{height:430px;margin-bottom:40px}
+      .number-box{border-right:0;border-bottom:1px solid var(--line)}
+      .cta-box{padding:45px 28px}
+    }
+    @media(max-width:575px){
+      section{padding:75px 0}
+      .hero h1{letter-spacing:-2.5px}
+      .hero-media{height:390px}
+      .hero-card{border-radius:25px}
+      .float-card{padding:13px 14px}
+      .stat-row{gap:13px}
+      .stat-row .mini-stat strong{font-size:19px}
+      .category-card{height:350px}
+      .world-map,.map-svg{height:340px;min-height:340px}
+      .global-note{right:0;top:10px}
+      .cta-box{padding:36px 22px;border-radius:26px}
+      .fab-stack{right:16px;bottom:16px}
+    }
+    @media(max-width:420px){
+      .stat-row{flex-wrap:wrap}
+      .float-card.bottom{position:static;margin-top:14px;display:inline-flex}
+      .hero-media{height:auto;padding-bottom:20px}
+    }
+
+    /* ===== SCROLL PROGRESS ===== */
+    #scrollProgress{position:fixed;top:0;left:0;height:3px;width:0%;background:linear-gradient(90deg,var(--orange),var(--lime));z-index:1200;transition:width .12s linear}
+
+    /* ===== HERO LOAD SEQUENCE ===== */
+    .hero h1 .word{display:inline-block;opacity:0;transform:translateY(28px);animation:wordIn .75s cubic-bezier(.16,1,.3,1) forwards}
+    @keyframes wordIn{to{opacity:1;transform:translateY(0)}}
+    .hero-fade{opacity:0;transform:translateY(18px);animation:heroFade .7s cubic-bezier(.16,1,.3,1) forwards}
+    @keyframes heroFade{to{opacity:1;transform:translateY(0)}}
+    .hero-media{animation:mediaIn 1s cubic-bezier(.16,1,.3,1) .35s both}
+    @keyframes mediaIn{from{opacity:0;transform:translateY(24px) scale(.97)}to{opacity:1;transform:none}}
+    .hero:before,.hero:after{animation:ringSpin 60s linear infinite}
+    @keyframes ringSpin{to{transform:rotate(360deg)}}
+
+    /* ===== MAGNETIC BUTTONS / TILT ===== */
+    .btn-main,.btn-lime,.btn-outline{will-change:transform}
+    .tilt{will-change:transform;transform-style:preserve-3d}
+
+    /* ===== STAGGERED REVEAL ===== */
+    .reveal{transition-delay:var(--d,0s)}
+
+    /* ===== CERTIFICATIONS / MARQUEE ===== */
+    .cert-section{background:var(--ink);padding:64px 0;overflow:hidden;position:relative}
+    .cert-heading{color:rgba(255,255,255,.55);font:700 12px "DM Sans";letter-spacing:1.5px;text-transform:uppercase;text-align:center;margin-bottom:34px}
+    .cert-strip{overflow:hidden;-webkit-mask-image:linear-gradient(90deg,transparent,#000 6%,#000 94%,transparent);mask-image:linear-gradient(90deg,transparent,#000 6%,#000 94%,transparent)}
+    .cert-track{display:flex;gap:64px;width:max-content;animation:marquee 26s linear infinite}
+    .cert-strip:hover .cert-track{animation-play-state:paused}
+    @keyframes marquee{to{transform:translateX(-50%)}}
+    .cert-item{display:flex;align-items:center;gap:14px;flex-shrink:0}
+    .cert-item i{font-size:28px;color:var(--lime)}
+    .cert-item span{font:700 15px Manrope;color:rgba(255,255,255,.88);white-space:nowrap}
+
+    /* ===== TESTIMONIALS ===== */
+    .testimonial-section{background:var(--soft)}
+    .quote-card{background:#fff;border:1px solid var(--line);border-radius:28px;padding:44px;height:100%}
+    .quote-mark{font:800 60px Manrope;color:var(--lime);line-height:.4;display:block;margin-bottom:18px}
+    .quote-text{font-size:18px;line-height:1.75;color:var(--ink);min-height:150px}
+    .quote-person{display:flex;align-items:center;gap:14px;margin-top:26px}
+    .quote-avatar{width:48px;height:48px;border-radius:50%;background:var(--green);color:#fff;display:grid;place-items:center;font:800 15px Manrope;flex-shrink:0}
+    .quote-name{font-weight:800;font-size:14px}
+    .quote-role{font-size:12px;color:var(--muted)}
+
+    /* ===== FAQ ===== */
+    .faq-section .accordion-item{border:1px solid var(--line);border-radius:20px!important;margin-bottom:14px;overflow:hidden}
+    .faq-section .accordion-button{font-family:Manrope;font-weight:700;font-size:17px;padding:24px 26px;color:var(--ink);background:#fff}
+    .faq-section .accordion-button:not(.collapsed){color:var(--green);background:var(--soft);box-shadow:none}
+    .faq-section .accordion-button:focus{box-shadow:none}
+    .faq-section .accordion-button::after{width:34px;height:34px;background-color:var(--soft);border-radius:50%;background-size:16px;transition:.35s}
+    .faq-section .accordion-button:not(.collapsed)::after{background-color:var(--lime);transform:rotate(180deg)}
+    .faq-section .accordion-body{padding:0 26px 26px;color:var(--muted);line-height:1.75;font-size:14.5px}
+
+    /* ===== FLOATING ACTIONS ===== */
+    .fab-stack{position:fixed;right:26px;bottom:26px;z-index:900;display:flex;flex-direction:column;align-items:center;gap:14px}
+    .fab-wa{width:56px;height:56px;border-radius:50%;background:#25D366;color:#fff;display:grid;place-items:center;font-size:26px;box-shadow:0 12px 30px rgba(37,211,102,.4);animation:fabPulse 2.6s infinite}
+    @keyframes fabPulse{0%,100%{box-shadow:0 12px 30px rgba(37,211,102,.4)}50%{box-shadow:0 12px 30px rgba(37,211,102,.65),0 0 0 8px rgba(37,211,102,.12)}}
+    .fab-top{width:46px;height:46px;border-radius:50%;background:#fff;display:grid;place-items:center;position:relative;box-shadow:0 10px 25px rgba(0,0,0,.12);opacity:0;pointer-events:none;transition:.35s;color:var(--ink)}
+    .fab-top.show{opacity:1;pointer-events:auto}
+    .fab-top svg{position:absolute;inset:0;transform:rotate(-90deg)}
+    .fab-top circle{fill:none;stroke:var(--line);stroke-width:3}
+    .fab-top circle.prog{stroke:var(--green);stroke-linecap:round;transition:stroke-dashoffset .1s linear}
+    .fab-top i{position:relative;z-index:2;font-size:16px}
+
+    @media(prefers-reduced-motion:reduce){
+      *{animation-duration:.001s!important;animation-iteration-count:1!important;transition-duration:.001s!important;scroll-behavior:auto!important}
+    }
+  </style>
+</head>
+
+<body>
+<div id="scrollProgress"></div>
+<div id="preloader">
+  <div class="text-center">
+    <div class="loader-logo">MELLONA<span>•</span>FOODS</div>
+    <div class="loader-bar"><i></i></div>
+  </div>
+</div>
+
+<nav class="site-nav" id="siteNav">
+  <div class="container">
+    <div class="nav-wrap d-flex align-items-center justify-content-between">
+      <a href="#home" class="brand">MELLONA<span class="dot">.</span>FOODS<small>GLOBAL FOOD TRADE</small></a>
+      <div class="d-none d-lg-flex align-items-center">
+        <a class="nav-link" href="#home">Home</a>
+        <a class="nav-link" href="#products">Products</a>
+        <a class="nav-link" href="#story">Our Story</a>
+        <a class="nav-link" href="#certifications">Certifications</a>
+        <a class="nav-link" href="#global">Global Reach</a>
+        <a class="nav-link" href="#contact">Contact</a>
+        <a href="#contact" class="btn-main ms-2 magnet">Let's Talk <i class="bi bi-arrow-up-right ms-1"></i></a>
+      </div>
+      <button class="menu-btn d-lg-none" data-bs-toggle="offcanvas" data-bs-target="#mobileMenu"><i class="bi bi-list"></i></button>
+    </div>
+  </div>
+</nav>
+
+<div class="offcanvas offcanvas-end" tabindex="-1" id="mobileMenu">
+  <div class="offcanvas-header">
+    <div class="brand">MELLONA<span class="dot">.</span>FOODS</div>
+    <button class="btn-close" data-bs-dismiss="offcanvas"></button>
+  </div>
+  <div class="offcanvas-body">
+    <div class="d-flex flex-column gap-2">
+      <a class="nav-link" href="#home" data-bs-dismiss="offcanvas">Home</a>
+      <a class="nav-link" href="#products" data-bs-dismiss="offcanvas">Products</a>
+      <a class="nav-link" href="#story" data-bs-dismiss="offcanvas">Our Story</a>
+      <a class="nav-link" href="#certifications" data-bs-dismiss="offcanvas">Certifications</a>
+      <a class="nav-link" href="#global" data-bs-dismiss="offcanvas">Global Reach</a>
+      <a class="nav-link" href="#contact" data-bs-dismiss="offcanvas">Contact</a>
+    </div>
+  </div>
+</div>
+
+<main>
+<section class="hero" id="home">
+  <div class="container">
+    <div class="row align-items-center g-5">
+      <div class="col-lg-6">
+        <div class="eyebrow hero-fade" style="animation-delay:.05s">Global food trade</div>
+        <h1><span class="word" style="animation-delay:.08s">Better,</span> <span class="word" style="animation-delay:.16s"><span>Fresher</span></span><br><span class="word" style="animation-delay:.24s">Produce</span> <span class="word" style="animation-delay:.32s">Delivered.</span></h1>
+        <p class="hero-copy hero-fade" style="animation-delay:.42s">We connect trusted producers with global markets, moving fresh food with care, precision and a commitment to quality — from origin to destination.</p>
+        <div class="hero-actions hero-fade" style="animation-delay:.5s">
+          <a href="#products" class="btn-main magnet">Explore Products <i class="bi bi-arrow-right ms-1"></i></a>
+          <a href="#story" class="btn-outline magnet">Discover Our Story</a>
+        </div>
+        <div class="stat-row hero-fade" style="animation-delay:.58s">
+          <div class="mini-stat"><strong>20+</strong><span>Markets</span></div>
+          <div class="mini-stat"><strong>100+</strong><span>Products</span></div>
+          <div class="mini-stat"><strong>24/7</strong><span>Global support</span></div>
+        </div>
+      </div>
+      <div class="col-lg-6">
+        <div class="hero-media">
+          <div class="float-card top d-flex align-items-center gap-12" id="heroParallax" data-speed="0.06">
+            <div class="float-icon"><i class="bi bi-globe2"></i></div>
+            <div><strong class="d-block">From farm</strong><small class="text-muted">to the world</small></div>
+          </div>
+          <div class="hero-card" id="heroCard" data-speed="-0.05">
+            <img src="https://images.unsplash.com/photo-1610832958506-aa56368176cf?auto=format&fit=crop&w=1200&q=85" alt="Fresh fruits and vegetables">
+          </div>
+          <div class="float-card bottom" data-speed="0.1">
+            <small class="text-muted d-block mb-1">Quality first</small>
+            <strong><i class="bi bi-shield-check text-success me-1"></i> Trusted sourcing</strong>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="trust">
+  <div class="container">
+    <div class="row g-4">
+      <div class="col-6 col-lg-3"><div class="trust-item"><i class="bi bi-patch-check"></i> Quality checked</div></div>
+      <div class="col-6 col-lg-3"><div class="trust-item"><i class="bi bi-truck"></i> Reliable logistics</div></div>
+      <div class="col-6 col-lg-3"><div class="trust-item"><i class="bi bi-leaf"></i> Responsible sourcing</div></div>
+      <div class="col-6 col-lg-3"><div class="trust-item"><i class="bi bi-globe2"></i> Global network</div></div>
+    </div>
+  </div>
+</div>
+
+<section class="category-section" id="products">
+  <div class="container">
+    <div class="row align-items-end mb-5 reveal">
+      <div class="col-lg-7">
+        <div class="section-tag">What we trade</div>
+        <h2 class="section-title">Food that travels.<br>Quality that stays.</h2>
+      </div>
+      <div class="col-lg-5">
+        <p class="section-lead mb-0">A curated portfolio built around freshness, consistency and the changing needs of international buyers.</p>
+      </div>
+    </div>
+    <div class="row g-4">
+      <div class="col-md-6 col-lg-3 reveal">
+        <div class="category-card tilt">
+          <img src="https://images.unsplash.com/photo-1560806887-1e4cd0b6cbd6?auto=format&fit=crop&w=800&q=80" alt="Fresh fruits">
+          <div class="cat-content"><span class="cat-no">01 / CATEGORY</span><h3>Fresh Fruits</h3><p>Seasonal, vibrant and sourced for dependable quality.</p></div>
+          <div class="cat-arrow"><i class="bi bi-arrow-up-right"></i></div>
+        </div>
+      </div>
+      <div class="col-md-6 col-lg-3 reveal">
+        <div class="category-card tilt">
+          <img src="https://images.unsplash.com/photo-1540420773420-3366772f4999?auto=format&fit=crop&w=800&q=80" alt="Fresh vegetables">
+          <div class="cat-content"><span class="cat-no">02 / CATEGORY</span><h3>Vegetables</h3><p>Farm-fresh produce prepared for global distribution.</p></div>
+          <div class="cat-arrow"><i class="bi bi-arrow-up-right"></i></div>
+        </div>
+      </div>
+      <div class="col-md-6 col-lg-3 reveal">
+        <div class="category-card tilt">
+          <img src="https://images.unsplash.com/photo-1601050690597-df0568f70950?auto=format&fit=crop&w=800&q=80" alt="Indian food products">
+          <div class="cat-content"><span class="cat-no">03 / CATEGORY</span><h3>Specialty Foods</h3><p>Authentic products with character, heritage and flavour.</p></div>
+          <div class="cat-arrow"><i class="bi bi-arrow-up-right"></i></div>
+        </div>
+      </div>
+      <div class="col-md-6 col-lg-3 reveal">
+        <div class="category-card tilt">
+          <img src="https://images.unsplash.com/photo-1592924357228-91a4daadcfea?auto=format&fit=crop&w=800&q=80" alt="Premium food ingredients">
+          <div class="cat-content"><span class="cat-no">04 / CATEGORY</span><h3>Ingredients</h3><p>Reliable ingredients for retailers, brands and food businesses.</p></div>
+          <div class="cat-arrow"><i class="bi bi-arrow-up-right"></i></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="story" id="story">
+  <div class="container position-relative">
+    <div class="row align-items-center g-5">
+      <div class="col-lg-6 reveal">
+        <div class="story-image">
+          <img src="https://images.unsplash.com/photo-1464226184884-fa280b87c399?auto=format&fit=crop&w=1100&q=85" alt="Agriculture and food sourcing">
+          <div class="story-badge"><i class="bi bi-heart-fill me-2"></i>Good food. Better connections.</div>
+        </div>
+      </div>
+      <div class="col-lg-6 reveal">
+        <div class="section-tag">Our story</div>
+        <h2 class="section-title">From trusted origins to tables around the world.</h2>
+        <p class="section-lead mt-4">Mellona Foods brings together producers, buyers and logistics partners through a transparent global food-trade network. We believe great food starts with great relationships.</p>
+        <ul class="check-list">
+          <li><i class="bi bi-check-circle-fill"></i><span>Carefully selected producers and supply partners</span></li>
+          <li><i class="bi bi-check-circle-fill"></i><span>Market-focused sourcing and product development</span></li>
+          <li><i class="bi bi-check-circle-fill"></i><span>End-to-end coordination from origin to destination</span></li>
+        </ul>
+        <a href="#contact" class="btn-lime magnet">Work With Us <i class="bi bi-arrow-up-right ms-1"></i></a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="numbers">
+  <div class="container">
+    <div class="row text-center g-0 reveal">
+      <div class="col-6 col-lg-3 number-box"><strong data-count="20">0</strong><span>Global markets</span></div>
+      <div class="col-6 col-lg-3 number-box"><strong data-count="100">0</strong><span>Product lines</span></div>
+      <div class="col-6 col-lg-3 number-box"><strong data-count="50">0</strong><span>Supply partners</span></div>
+      <div class="col-6 col-lg-3 number-box"><strong data-count="24">0</strong><span>Hour support</span></div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="container">
+    <div class="row align-items-end mb-5 reveal">
+      <div class="col-lg-7">
+        <div class="section-tag">How we work</div>
+        <h2 class="section-title">A smarter route from source to shelf.</h2>
+      </div>
+      <div class="col-lg-5"><p class="section-lead mb-0">Our process is designed around visibility, consistency and dependable execution at every step.</p></div>
+    </div>
+    <div class="row g-4">
+      <div class="col-md-6 col-lg-3 reveal"><div class="process-card tilt"><div class="process-icon"><i class="bi bi-search"></i></div><h4>01. Source</h4><p>Identify quality producers and products aligned with market requirements.</p></div></div>
+      <div class="col-md-6 col-lg-3 reveal"><div class="process-card tilt"><div class="process-icon"><i class="bi bi-clipboard2-check"></i></div><h4>02. Verify</h4><p>Coordinate specifications, quality checks, documentation and packing.</p></div></div>
+      <div class="col-md-6 col-lg-3 reveal"><div class="process-card tilt"><div class="process-icon"><i class="bi bi-box-seam"></i></div><h4>03. Move</h4><p>Plan efficient logistics and shipment coordination from origin to destination.</p></div></div>
+      <div class="col-md-6 col-lg-3 reveal"><div class="process-card tilt"><div class="process-icon"><i class="bi bi-shop"></i></div><h4>04. Deliver</h4><p>Keep buyers informed and supported until products reach the market.</p></div></div>
+    </div>
+  </div>
+</section>
+
+<section class="cert-section" id="certifications">
+  <div class="container">
+    <div class="cert-heading reveal">Compliant with the standards global buyers expect</div>
+  </div>
+  <div class="cert-strip reveal">
+    <div class="cert-track">
+      <div class="cert-item"><i class="bi bi-patch-check-fill"></i><span>ISO 22000:2018 Food Safety</span></div>
+      <div class="cert-item"><i class="bi bi-clipboard2-pulse-fill"></i><span>HACCP Certified</span></div>
+      <div class="cert-item"><i class="bi bi-award-fill"></i><span>FSSAI Licensed</span></div>
+      <div class="cert-item"><i class="bi bi-globe-asia-australia"></i><span>APEDA Registered Exporter</span></div>
+      <div class="cert-item"><i class="bi bi-tree-fill"></i><span>NPOP Organic Certified</span></div>
+      <div class="cert-item"><i class="bi bi-shield-fill-check"></i><span>Global G.A.P. Compliant</span></div>
+      <!-- duplicated for seamless loop -->
+      <div class="cert-item"><i class="bi bi-patch-check-fill"></i><span>ISO 22000:2018 Food Safety</span></div>
+      <div class="cert-item"><i class="bi bi-clipboard2-pulse-fill"></i><span>HACCP Certified</span></div>
+      <div class="cert-item"><i class="bi bi-award-fill"></i><span>FSSAI Licensed</span></div>
+      <div class="cert-item"><i class="bi bi-globe-asia-australia"></i><span>APEDA Registered Exporter</span></div>
+      <div class="cert-item"><i class="bi bi-tree-fill"></i><span>NPOP Organic Certified</span></div>
+      <div class="cert-item"><i class="bi bi-shield-fill-check"></i><span>Global G.A.P. Compliant</span></div>
+    </div>
+  </div>
+</section>
+
+<section class="global" id="global">
+  <div class="container">
+    <div class="row align-items-end reveal">
+      <div class="col-lg-7">
+        <div class="section-tag">Our world</div>
+        <h2 class="section-title">We are on the globe.</h2>
+      </div>
+      <div class="col-lg-5"><p class="section-lead mb-0">Connecting origin markets and destinations with a food-trade network designed to move with confidence.</p></div>
+    </div>
+    <div class="world-map reveal">
+      <svg class="map-svg" viewBox="0 0 1200 480" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M92 165L155 130L225 148L254 205L214 246L150 238L110 286L60 250L77 208Z" fill="#dce7d4"/>
+        <path d="M260 105L320 75L380 91L425 132L407 180L360 176L337 217L290 202L274 157Z" fill="#dce7d4"/>
+        <path d="M405 230L448 215L490 248L486 300L452 345L418 316L430 273Z" fill="#dce7d4"/>
+        <path d="M520 125L588 102L640 123L671 161L645 194L590 182L553 205L512 178Z" fill="#dce7d4"/>
+        <path d="M635 225L700 207L760 230L794 273L758 303L709 292L675 328L628 291Z" fill="#dce7d4"/>
+        <path d="M785 125L855 104L920 130L960 177L926 214L865 196L822 226L785 192Z" fill="#dce7d4"/>
+        <path d="M920 275L1000 255L1080 280L1115 325L1060 351L1000 335L955 360Z" fill="#dce7d4"/>
+        <path d="M265 160 Q 470 30 700 260 T 1020 300" class="route"/>
+        <path d="M365 215 Q 570 330 870 160" class="route"/>
+      </svg>
+      <div class="pin one"></div><div class="pin two"></div><div class="pin three"></div><div class="pin four"></div>
+      <div class="global-note"><strong>20+</strong>markets connected</div>
+    </div>
+  </div>
+</section>
+
+<section class="testimonial-section">
+  <div class="container">
+    <div class="row align-items-end mb-5 reveal">
+      <div class="col-lg-7"><div class="section-tag">Buyer feedback</div><h2 class="section-title">Trusted by importers<br>across the world.</h2></div>
+      <div class="col-lg-5"><p class="section-lead mb-0">A few words from the buyers and partners we've shipped to this year.</p></div>
+    </div>
+    <div class="swiper testimonialSwiper reveal">
+      <div class="swiper-wrapper">
+        <div class="swiper-slide h-auto">
+          <div class="quote-card"><span class="quote-mark">&ldquo;</span>
+            <p class="quote-text">Consistent quality and on-time shipments every cycle. Mellona's documentation is always in order, which makes customs clearance in Dubai painless.</p>
+            <div class="quote-person"><div class="quote-avatar">RA</div><div><div class="quote-name">Rashid Al-Fahim</div><div class="quote-role">Procurement Lead, Dubai, UAE</div></div></div>
+          </div>
+        </div>
+        <div class="swiper-slide h-auto">
+          <div class="quote-card"><span class="quote-mark">&ldquo;</span>
+            <p class="quote-text">We switched our specialty foods supplier to Mellona two years ago. Communication is fast and the private-label packaging always matches spec.</p>
+            <div class="quote-person"><div class="quote-avatar">LS</div><div><div class="quote-name">Lena Schröder</div><div class="quote-role">Category Buyer, Hamburg, Germany</div></div></div>
+          </div>
+        </div>
+        <div class="swiper-slide h-auto">
+          <div class="quote-card"><span class="quote-mark">&ldquo;</span>
+            <p class="quote-text">Their sourcing team understood our organic certification requirements immediately. Fewer rejections at port, and better margins for us in return.</p>
+            <div class="quote-person"><div class="quote-avatar">JT</div><div><div class="quote-name">Jia Tan</div><div class="quote-role">Import Director, Singapore</div></div></div>
+          </div>
+        </div>
+        <div class="swiper-slide h-auto">
+          <div class="quote-card"><span class="quote-mark">&ldquo;</span>
+            <p class="quote-text">Reliable cold-chain handling and clear tracking updates. For a growing retail chain like ours, that predictability matters more than price alone.</p>
+            <div class="quote-person"><div class="quote-avatar">EW</div><div><div class="quote-name">Emma Wren</div><div class="quote-role">Supply Chain Manager, Manchester, UK</div></div></div>
+          </div>
+        </div>
+      </div>
+      <div class="swiper-pagination mt-4 position-static"></div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="container" id="seasonal">
+    <div class="row align-items-end mb-5 reveal">
+      <div class="col-lg-7"><div class="section-tag">Featured range</div><h2 class="section-title">Seasonal boxes.<br>Curated with purpose.</h2></div>
+      <div class="col-lg-5"><p class="section-lead mb-0">Explore a selection of products designed for retail, wholesale and food-service opportunities.</p></div>
+    </div>
+    <div class="swiper productSwiper reveal">
+      <div class="swiper-wrapper">
+        <div class="swiper-slide h-auto"><div class="product-card"><div class="product-img"><img src="https://images.unsplash.com/photo-1542838132-92c53300491e?auto=format&fit=crop&w=900&q=80" alt="Organic fresh food"></div><div class="product-body"><small>Organic range</small><h4>Organic Food Box</h4><p>A fresh selection of naturally grown produce for modern markets.</p><a href="#contact" class="product-link">Enquire now <i class="bi bi-arrow-right"></i></a></div></div></div>
+        <div class="swiper-slide h-auto"><div class="product-card"><div class="product-img"><img src="https://images.unsplash.com/photo-1601050690117-94f5f6fa8bd7?auto=format&fit=crop&w=900&q=80" alt="Indian snacks and foods"></div><div class="product-body"><small>Specialty</small><h4>Heritage Foods</h4><p>Authentic regional flavours prepared for international distribution.</p><a href="#contact" class="product-link">Enquire now <i class="bi bi-arrow-right"></i></a></div></div></div>
+        <div class="swiper-slide h-auto"><div class="product-card"><div class="product-img"><img src="https://images.unsplash.com/photo-1597362925123-77861d3fbac7?auto=format&fit=crop&w=900&q=80" alt="Fresh vegetables box"></div><div class="product-body"><small>Fresh produce</small><h4>Market Fresh Box</h4><p>High-quality vegetables selected around seasonality and demand.</p><a href="#contact" class="product-link">Enquire now <i class="bi bi-arrow-right"></i></a></div></div></div>
+        <div class="swiper-slide h-auto"><div class="product-card"><div class="product-img"><img src="https://images.unsplash.com/photo-1518843875459-f738682238a6?auto=format&fit=crop&w=900&q=80" alt="Premium produce"></div><div class="product-body"><small>Premium</small><h4>Signature Selection</h4><p>Premium products curated for discerning buyers and private labels.</p><a href="#contact" class="product-link">Enquire now <i class="bi bi-arrow-right"></i></a></div></div></div>
+      </div>
+      <div class="swiper-pagination mt-4 position-static"></div>
+    </div>
+  </div>
+</section>
+
+<section class="faq-section" id="faq">
+  <div class="container">
+    <div class="row align-items-end mb-5 reveal">
+      <div class="col-lg-7"><div class="section-tag">Good to know</div><h2 class="section-title">Questions buyers<br>usually ask.</h2></div>
+      <div class="col-lg-5"><p class="section-lead mb-0">Can't find what you're looking for? Reach out and our team will get back within one business day.</p></div>
+    </div>
+    <div class="row reveal">
+      <div class="col-lg-9">
+        <div class="accordion" id="faqAccordion">
+          <div class="accordion-item">
+            <h3 class="accordion-header"><button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#faq1">What is the minimum order quantity?</button></h3>
+            <div id="faq1" class="accordion-collapse collapse show" data-bs-parent="#faqAccordion"><div class="accordion-body">MOQs vary by product line, typically starting from a single 20ft container for bulk fresh produce and smaller pallet quantities for specialty and packaged foods. Share your target volume and we'll confirm exact figures.</div></div>
+          </div>
+          <div class="accordion-item">
+            <h3 class="accordion-header"><button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq2">Can you supply private-label packaging?</button></h3>
+            <div id="faq2" class="accordion-collapse collapse" data-bs-parent="#faqAccordion"><div class="accordion-body">Yes. We handle private-label design coordination, artwork approval and compliant labeling for the destination market, so products arrive shelf-ready under your own brand.</div></div>
+          </div>
+          <div class="accordion-item">
+            <h3 class="accordion-header"><button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq3">Which certifications do your shipments carry?</button></h3>
+            <div id="faq3" class="accordion-collapse collapse" data-bs-parent="#faqAccordion"><div class="accordion-body">Depending on the product, shipments are backed by ISO 22000, HACCP, FSSAI, APEDA and NPOP organic documentation, with Global G.A.P. compliance available on request for produce lines.</div></div>
+          </div>
+          <div class="accordion-item">
+            <h3 class="accordion-header"><button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq4">What shipping terms do you work under?</button></h3>
+            <div id="faq4" class="accordion-collapse collapse" data-bs-parent="#faqAccordion"><div class="accordion-body">We commonly quote FOB and CIF, with EXW and DDP available for select markets. Lead times and Incoterms are confirmed together during quotation based on your destination port.</div></div>
+          </div>
+          <div class="accordion-item">
+            <h3 class="accordion-header"><button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq5">Can we request product samples first?</button></h3>
+            <div id="faq5" class="accordion-collapse collapse" data-bs-parent="#faqAccordion"><div class="accordion-body">Yes, samples can be arranged for most product lines ahead of a first order, so your team can verify quality and specification before committing to volume.</div></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="cta" id="contact">
+  <div class="container">
+    <div class="cta-box reveal">
+      <div class="section-tag">Start a conversation</div>
+      <h2 class="section-title">Let's take great food<br>to more places.</h2>
+      <p class="section-lead text-white-50 mt-3 mb-4">Tell us what you are looking for — products, markets, sourcing or distribution — and our team will connect with you.</p>
+      <div class="d-flex flex-wrap gap-3">
+        <a href="mailto:hello@mellonafoods.com" class="btn-lime">hello@mellonafoods.com <i class="bi bi-arrow-up-right ms-1"></i></a>
+        <a href="#home" class="btn-outline">Back to top <i class="bi bi-arrow-up ms-1"></i></a>
+      </div>
+    </div>
+  </div>
+</section>
+</main>
+
+<footer>
+  <div class="container">
+    <div class="row g-5">
+      <div class="col-lg-5">
+        <div class="brand mb-3">MELLONA<span class="dot">.</span>FOODS</div>
+        <p class="footer-text">A modern global food-trade partner connecting quality producers and international markets through responsible sourcing, dependable logistics and long-term relationships.</p>
+        <div class="mt-4">
+          <a class="social" href="#"><i class="bi bi-linkedin"></i></a>
+          <a class="social" href="#"><i class="bi bi-instagram"></i></a>
+          <a class="social" href="#"><i class="bi bi-facebook"></i></a>
+          <a class="social" href="#"><i class="bi bi-whatsapp"></i></a>
+        </div>
+      </div>
+      <div class="col-6 col-lg-2"><h6>Company</h6><ul><li><a href="#story">Our Story</a></li><li><a href="#certifications">Certifications</a></li><li><a href="#global">Global Reach</a></li><li><a href="#faq">FAQ</a></li><li><a href="#contact">Contact</a></li></ul></div>
+      <div class="col-6 col-lg-2"><h6>Products</h6><ul><li><a href="#products">Fresh Fruits</a></li><li><a href="#products">Vegetables</a></li><li><a href="#products">Specialty Foods</a></li><li><a href="#products">Ingredients</a></li></ul></div>
+      <div class="col-lg-3"><h6>Stay connected</h6><p class="footer-text mb-2">Get product news and global food-trade updates.</p><div class="input-group"><input class="form-control rounded-start-pill border-0" placeholder="Your email"><button class="btn btn-light rounded-end-pill"><i class="bi bi-arrow-right"></i></button></div></div>
+    </div>
+    <div class="copyright d-flex flex-wrap justify-content-between gap-2"><span>© 2026 Mellona Foods. All rights reserved.</span><span>Global Food Trade • Quality • Freshness • Trust</span></div>
+  </div>
+</footer>
+
+<div class="fab-stack">
+  <button class="fab-top" id="backToTop" aria-label="Back to top">
+    <svg viewBox="0 0 46 46"><circle cx="23" cy="23" r="20"></circle><circle class="prog" id="topProg" cx="23" cy="23" r="20" stroke-dasharray="125.6" stroke-dashoffset="125.6"></circle></svg>
+    <i class="bi bi-arrow-up"></i>
+  </button>
+  <a class="fab-wa" href="https://wa.me/910000000000" target="_blank" rel="noopener" aria-label="Chat on WhatsApp"><i class="bi bi-whatsapp"></i></a>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+<script>
+  const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  // Preloader
+  window.addEventListener('load',()=>setTimeout(()=>document.getElementById('preloader').style.opacity='0',400));
+  window.addEventListener('load',()=>setTimeout(()=>document.getElementById('preloader').style.display='none',1050));
+
+  // Sticky navigation + scroll progress + back-to-top ring, in one scroll handler
+  const nav=document.getElementById('siteNav');
+  const progressBar=document.getElementById('scrollProgress');
+  const topBtn=document.getElementById('backToTop');
+  const topProg=document.getElementById('topProg');
+  const RING=125.6;
+  function onScroll(){
+    const doc=document.documentElement;
+    const max=doc.scrollHeight-doc.clientHeight;
+    const pct=max>0?(window.scrollY/max)*100:0;
+    progressBar.style.width=pct+'%';
+    topProg.style.strokeDashoffset=RING-(RING*pct/100);
+    nav.classList.toggle('scrolled',window.scrollY>50);
+    topBtn.classList.toggle('show',window.scrollY>500);
+  }
+  window.addEventListener('scroll',onScroll,{passive:true});
+  onScroll();
+  topBtn.addEventListener('click',()=>window.scrollTo({top:0,behavior:reduceMotion?'auto':'smooth'}));
+
+  // Reveal on scroll, staggered by position within each row/parent
+  document.querySelectorAll('.row').forEach(row=>{
+    const items=row.querySelectorAll(':scope > [class*="col-"] > .reveal, :scope > [class*="col-"].reveal');
+    items.forEach((el,i)=>el.style.setProperty('--d',Math.min(i*0.08,.32)+'s'));
+  });
+  const observer=new IntersectionObserver(entries=>{
+    entries.forEach(e=>{if(e.isIntersecting){e.target.classList.add('show');observer.unobserve(e.target)}})
+  },{threshold:.12});
+  document.querySelectorAll('.reveal').forEach(el=>observer.observe(el));
+
+  // Animated counters
+  const counters=document.querySelectorAll('[data-count]');
+  let counted=false;
+  const countObserver=new IntersectionObserver(entries=>{
+    if(entries[0].isIntersecting&&!counted){
+      counted=true;
+      counters.forEach(el=>{
+        const target=+el.dataset.count; let current=0;
+        const step=Math.max(1,Math.ceil(target/40));
+        const timer=setInterval(()=>{
+          current+=step;if(current>=target){current=target;clearInterval(timer)}
+          el.textContent=current+(target===24?'/7':'+');
+        },35);
+      });
+    }
+  },{threshold:.4});
+  countObserver.observe(document.querySelector('.numbers'));
+
+  // Product & testimonial sliders
+  new Swiper('.productSwiper',{
+    slidesPerView:1.15,spaceBetween:18,loop:true,
+    autoplay:{delay:3200,disableOnInteraction:false},
+    pagination:{el:'.productSwiper .swiper-pagination',clickable:true},
+    breakpoints:{576:{slidesPerView:2},992:{slidesPerView:3},1200:{slidesPerView:4}}
+  });
+  new Swiper('.testimonialSwiper',{
+    slidesPerView:1,spaceBetween:22,loop:true,
+    autoplay:{delay:4200,disableOnInteraction:false},
+    pagination:{el:'.testimonialSwiper .swiper-pagination',clickable:true},
+    breakpoints:{768:{slidesPerView:2},1200:{slidesPerView:3}}
+  });
+
+  // Close mobile menu after anchor click
+  document.querySelectorAll('#mobileMenu a').forEach(a=>a.addEventListener('click',()=>{
+    const el=document.getElementById('mobileMenu');
+    bootstrap.Offcanvas.getInstance(el)?.hide();
+  }));
+
+  // Magnetic buttons — nudge toward the cursor, snap back on leave
+  if(!reduceMotion && window.matchMedia('(hover:hover)').matches){
+    document.querySelectorAll('.magnet').forEach(btn=>{
+      btn.addEventListener('mousemove',e=>{
+        const r=btn.getBoundingClientRect();
+        const x=(e.clientX-r.left-r.width/2)*.35;
+        const y=(e.clientY-r.top-r.height/2)*.45;
+        btn.style.transform=`translate(${x}px,${y}px)`;
+      });
+      btn.addEventListener('mouseleave',()=>btn.style.transform='translate(0,0)');
+    });
+
+    // Subtle 3D tilt on cards
+    document.querySelectorAll('.tilt').forEach(card=>{
+      card.addEventListener('mousemove',e=>{
+        const r=card.getBoundingClientRect();
+        const px=(e.clientX-r.left)/r.width-.5;
+        const py=(e.clientY-r.top)/r.height-.5;
+        card.style.transform=`perspective(900px) rotateY(${px*7}deg) rotateX(${-py*7}deg) translateY(-4px)`;
+      });
+      card.addEventListener('mouseleave',()=>card.style.transform='');
+    });
+
+    // Hero parallax — mouse-driven micro movement on the hero media
+    const heroMedia=document.querySelector('.hero-media');
+    if(heroMedia){
+      heroMedia.addEventListener('mousemove',e=>{
+        const r=heroMedia.getBoundingClientRect();
+        const px=(e.clientX-r.left)/r.width-.5;
+        const py=(e.clientY-r.top)/r.height-.5;
+        heroMedia.querySelectorAll('[data-speed]').forEach(el=>{
+          const s=+el.dataset.speed*40;
+          el.style.transform=`translate(${px*s}px,${py*s}px)`;
+        });
+      });
+      heroMedia.addEventListener('mouseleave',()=>{
+        heroMedia.querySelectorAll('[data-speed]').forEach(el=>el.style.transform='');
+      });
+    }
+  }
+</script>
+</body>
+</html>

@@ -1,0 +1,570 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>SAB Global Corp | Parent Company</title>
+
+<!-- Fonts -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500;600;700;800;900&family=Open+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+<!-- Tailwind CSS CDN -->
+<script src="https://cdn.tailwindcss.com"></script>
+<script>
+  tailwind.config = {
+    theme: {
+      extend: {
+        colors: {
+          brand: {
+            paper: '#F8F6F1',    /* warm off-white base */
+            card:  '#FFFFFF',    /* card surface */
+            ink:   '#1B2230',    /* body text */
+            navy:  '#0B2545',    /* headings / dark surfaces */
+            navy2: '#123363',
+            gold:  '#C9A227',    /* primary accent */
+            gold2: '#E4C567',
+            maroon:'#7A1636',    /* secondary accent */
+            line:  '#E7E1D4',    /* hairline borders */
+          }
+        },
+        fontFamily: {
+          heading: ['Montserrat','sans-serif'],
+          sans: ['Open Sans','sans-serif'],
+        },
+        keyframes: {
+          fadeUp:   { '0%':{opacity:0, transform:'translateY(26px)'}, '100%':{opacity:1, transform:'translateY(0)'} },
+          floatSlow:{ '0%,100%':{transform:'translateY(0)'}, '50%':{transform:'translateY(-12px)'} },
+          pulseSoft:{ '0%,100%':{opacity:.55}, '50%':{opacity:1} },
+        },
+        animation: {
+          floatSlow: 'floatSlow 7s ease-in-out infinite',
+          pulseSoft: 'pulseSoft 2.4s ease-in-out infinite',
+        }
+      }
+    }
+  }
+</script>
+
+<style>
+  html{ scroll-behavior:smooth; }
+  body{ font-family:'Open Sans', sans-serif; }
+  h1,h2,h3,h4,.font-heading{ font-family:'Montserrat', sans-serif; }
+  ::selection{ background:#C9A227; color:#0B2545; }
+  a:focus-visible, button:focus-visible, input:focus-visible, textarea:focus-visible{
+    outline:2px solid #C9A227; outline-offset:3px;
+  }
+  @media (prefers-reduced-motion: reduce){
+    *{ animation-duration:.001ms !important; animation-iteration-count:1 !important; transition-duration:.001ms !important; scroll-behavior:auto !important; }
+  }
+
+  .reveal{ opacity:0; transform:translateY(28px); transition:opacity .7s ease, transform .7s ease; }
+  .reveal.in{ opacity:1; transform:translateY(0); }
+
+  #progressBar{ position:fixed; top:0; left:0; height:3px; width:0%; background:linear-gradient(90deg,#7A1636,#C9A227); z-index:2000; transition:width .08s linear; }
+
+  .header-shell{ transition: box-shadow .3s ease, background-color .3s ease; }
+  .header-shell.scrolled{ box-shadow: 0 8px 24px rgba(11,37,69,0.08); }
+
+  .grain{
+    background-image: radial-gradient(rgba(11,37,69,0.04) 1px, transparent 1px);
+    background-size: 16px 16px;
+  }
+
+  .card-hover{ transition: transform .35s ease, box-shadow .35s ease, border-color .35s ease; }
+  .card-hover:hover{ transform: translateY(-6px); box-shadow: 0 24px 48px rgba(11,37,69,0.10); }
+
+  #mobileMenu{ max-height:0; overflow:hidden; transition:max-height .4s ease; }
+  #mobileMenu.open{ max-height:400px; }
+</style>
+</head>
+<body class="bg-brand-paper text-brand-ink font-sans antialiased min-h-screen">
+
+<div id="progressBar"></div>
+
+<!-- Header / Navigation -->
+<header class="header-shell sticky top-0 z-50 bg-brand-paper/90 backdrop-blur-md border-b border-brand-line" id="mainHeader">
+  <div class="max-w-7xl mx-auto px-6 h-20 flex items-center justify-between">
+    <a href="#" class="flex items-center gap-2 focus:outline-none">
+      <span class="w-8 h-8 rounded-full border-2 border-brand-gold flex items-center justify-center relative">
+        <span class="absolute inset-1.5 rounded-full bg-brand-gold animate-pulseSoft"></span>
+      </span>
+      <span class="font-heading font-extrabold tracking-wide text-brand-navy text-lg">
+        SAB GLOBAL <span class="text-brand-maroon">CORP</span>
+      </span>
+    </a>
+
+    <nav class="hidden lg:flex items-center gap-8 text-sm font-heading font-semibold text-brand-ink/70">
+      <a href="#about" class="hover:text-brand-navy transition-colors">About Us</a>
+      <a href="#portfolio" class="hover:text-brand-navy transition-colors">Our Portfolio</a>
+      <a href="#charity" class="hover:text-brand-navy transition-colors">Sabkaa Mangal</a>
+      <a href="#leadership" class="hover:text-brand-navy transition-colors">Leadership</a>
+      <a href="#news" class="hover:text-brand-navy transition-colors">News</a>
+      <a href="#contact" class="hover:text-brand-navy transition-colors">Contact</a>
+    </nav>
+
+    <div class="hidden lg:block">
+      <a href="#contact" class="inline-flex items-center justify-center px-6 py-2.5 text-sm font-heading font-bold text-white bg-brand-navy hover:bg-brand-navy2 rounded-full transition-all shadow-lg shadow-brand-navy/10">
+        Partner With Us
+      </a>
+    </div>
+
+    <button id="menuBtn" class="lg:hidden w-10 h-10 flex items-center justify-center border border-brand-line rounded-lg text-brand-navy" aria-label="Toggle menu">
+      <svg class="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 6h16M4 12h16M4 18h16"/></svg>
+    </button>
+  </div>
+
+  <!-- Mobile menu -->
+  <div id="mobileMenu" class="lg:hidden border-t border-brand-line bg-brand-paper">
+    <div class="px-6 py-5 flex flex-col gap-4 font-heading font-semibold text-brand-navy">
+      <a href="#about">About Us</a>
+      <a href="#portfolio">Our Portfolio</a>
+      <a href="#charity">Sabkaa Mangal</a>
+      <a href="#leadership">Leadership</a>
+      <a href="#news">News</a>
+      <a href="#contact">Contact</a>
+      <a href="#contact" class="bg-brand-navy text-white text-center rounded-full py-3 mt-1">Partner With Us</a>
+    </div>
+  </div>
+</header>
+
+<main>
+
+  <!-- Hero Section -->
+  <section class="relative min-h-[85vh] flex items-center justify-center px-6 overflow-hidden grain">
+    <div class="absolute top-1/4 left-1/4 -translate-x-1/2 -translate-y-1/2 w-96 h-96 bg-brand-gold/10 rounded-full blur-3xl pointer-events-none animate-floatSlow"></div>
+    <div class="absolute bottom-1/4 right-1/4 translate-x-1/2 translate-y-1/2 w-96 h-96 bg-brand-maroon/10 rounded-full blur-3xl pointer-events-none animate-floatSlow" style="animation-delay:1.5s"></div>
+
+    <div class="max-w-4xl mx-auto text-center relative z-10">
+      <span class="reveal in inline-flex items-center gap-1.5 px-4 py-1.5 rounded-full text-xs font-heading font-bold uppercase tracking-widest bg-white text-brand-maroon border border-brand-line mb-6 shadow-sm">
+        Global Parent Entity
+      </span>
+      <h1 class="reveal in font-heading font-extrabold tracking-tight text-brand-navy mb-6 leading-[1.08] text-[clamp(2.2rem,5.4vw,3.8rem)]" style="transition-delay:.08s">
+        Innovating Across Industries. <br class="hidden sm:inline">
+        <span class="text-brand-maroon">Anchored in Impact.</span>
+      </h1>
+      <p class="reveal in text-lg sm:text-xl text-brand-ink/60 max-w-2xl mx-auto mb-10 leading-relaxed" style="transition-delay:.16s">
+        SAB Global Corp is a diversified parent entity driving growth, creativity, and excellence across our highly specialized subsidiaries.
+      </p>
+      <div class="reveal in flex flex-col sm:flex-row items-center justify-center gap-4" style="transition-delay:.24s">
+        <a href="#portfolio" class="w-full sm:w-auto inline-flex items-center justify-center px-8 py-4 text-base font-heading font-bold text-white bg-brand-navy hover:bg-brand-navy2 rounded-xl transition-all shadow-xl shadow-brand-navy/15">
+          Explore Our Portfolio
+        </a>
+        <a href="#charity" class="w-full sm:w-auto inline-flex items-center justify-center px-8 py-4 text-base font-heading font-semibold text-brand-navy bg-white hover:bg-brand-line/40 border border-brand-line rounded-xl transition-all">
+          Social Impact
+        </a>
+      </div>
+
+      <div class="reveal in flex flex-wrap justify-center gap-10 mt-16" style="transition-delay:.32s">
+        <div>
+          <span class="block font-heading font-extrabold text-3xl text-brand-navy"><span data-count="2">0</span></span>
+          <span class="text-brand-ink/50 text-xs font-heading uppercase tracking-widest">Active Verticals</span>
+        </div>
+        <div>
+          <span class="block font-heading font-extrabold text-3xl text-brand-navy"><span data-count="3">0</span></span>
+          <span class="text-brand-ink/50 text-xs font-heading uppercase tracking-widest">Ventures Launched</span>
+        </div>
+        <div>
+          <span class="block font-heading font-extrabold text-3xl text-brand-navy"><span data-count="2019">0</span></span>
+          <span class="text-brand-ink/50 text-xs font-heading uppercase tracking-widest">Group Founded</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Flagship Vertical: Sab Ka Entertainment -->
+  <section id="portfolio" class="py-24 px-6 border-t border-brand-line bg-white">
+    <div class="max-w-7xl mx-auto">
+      <div class="reveal text-center max-w-3xl mx-auto mb-16">
+        <h2 class="text-xs font-heading font-bold uppercase tracking-widest text-brand-gold mb-3">Flagship Vertical</h2>
+        <h3 class="text-3xl sm:text-4xl font-heading font-extrabold text-brand-navy mb-6">Sab Ka Entertainment</h3>
+        <p class="text-brand-ink/60 text-lg leading-relaxed">
+          The pulse of our creative footprint. <span class="text-brand-navy font-semibold">Sab Ka Entertainment</span> is our premier media, events, and culture vertical, dedicated to crafting unforgettable experiences, supporting raw talent, and delivering world-class production value.
+        </p>
+      </div>
+
+      <!-- Sub-Subsidiaries Grid (1A & 1B) -->
+      <div class="grid md:grid-cols-2 gap-8 max-w-5xl mx-auto">
+        <!-- Card 1A: AK Events -->
+        <a href="ak-events.html" class="reveal group card-hover relative bg-brand-paper border border-brand-line rounded-2xl p-8 sm:p-10">
+          <div class="flex items-center justify-between mb-6">
+            <div class="p-3 bg-brand-navy/5 rounded-xl border border-brand-navy/10 text-brand-navy">
+              <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"></path></svg>
+            </div>
+            <span class="text-xs font-heading font-bold uppercase tracking-wider text-brand-ink/40 bg-white border border-brand-line px-3 py-1 rounded-full">Level 1A</span>
+          </div>
+          <h4 class="text-2xl font-heading font-bold text-brand-navy mb-2">AK Events</h4>
+          <p class="text-sm font-heading font-semibold text-brand-navy/70 mb-4 italic">Precision Planning. Unforgettable Experiences.</p>
+          <p class="text-brand-ink/60 text-sm leading-relaxed mb-8">
+            The corporate and large-scale live event execution arm. From high-profile corporate galas and experiential marketing campaigns to massive public gatherings, AK Events handles end-to-end management, production, and flawless execution.
+          </p>
+          <span class="inline-flex items-center text-sm font-heading font-bold text-brand-navy group-hover:text-brand-maroon transition-colors">
+            Visit AK Events <svg class="w-4 h-4 ml-1.5 transition-transform group-hover:translate-x-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path></svg>
+          </span>
+        </a>
+
+        <!-- Card 1B: SoorTaal Nation -->
+        <a href="soortaal-nation.html" class="reveal group card-hover relative bg-brand-paper border border-brand-line rounded-2xl p-8 sm:p-10" style="transition-delay:.1s">
+          <div class="flex items-center justify-between mb-6">
+            <div class="p-3 bg-brand-maroon/5 rounded-xl border border-brand-maroon/10 text-brand-maroon">
+              <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19V6l12-3v13M9 19c0 1.105-1.343 2-3 2s-3-.895-3-2 1.343-2 3-2 3 .895 3 2zm12-3c0 1.105-1.343 2-3 2s-3-.895-3-2 1.343-2 3-2 3 .895 3 2zM9 10l12-3"></path></svg>
+            </div>
+            <span class="text-xs font-heading font-bold uppercase tracking-wider text-brand-ink/40 bg-white border border-brand-line px-3 py-1 rounded-full">Level 1B</span>
+          </div>
+          <h4 class="text-2xl font-heading font-bold text-brand-navy mb-2">SoorTaal Nation</h4>
+          <p class="text-sm font-heading font-semibold text-brand-maroon mb-4 italic">Celebrating the Rhythm and Voice of a Culture.</p>
+          <p class="text-brand-ink/60 text-sm leading-relaxed mb-8">
+            Our dedicated music, art, and cultural property. SoorTaal Nation focuses on talent discovery, music festivals, concert curation, and providing a powerful stage for breakout and established artists to connect intimately with audiences worldwide.
+          </p>
+          <span class="inline-flex items-center text-sm font-heading font-bold text-brand-navy group-hover:text-brand-maroon transition-colors">
+            Visit SoorTaal Nation <svg class="w-4 h-4 ml-1.5 transition-transform group-hover:translate-x-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path></svg>
+          </span>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Charity Vertical Section: Sabkaa Mangal -->
+  <section id="charity" class="py-24 px-6 border-t border-brand-line bg-brand-paper/50">
+    <div class="max-w-7xl mx-auto">
+      <div class="reveal text-center max-w-3xl mx-auto mb-16">
+        <h2 class="text-xs font-heading font-bold uppercase tracking-widest text-brand-maroon mb-3">Charity Arm</h2>
+        <h3 class="text-3xl sm:text-4xl font-heading font-extrabold text-brand-navy mb-4">Sabkaa Mangal</h3>
+        <p class="text-sm font-heading font-semibold text-brand-gold uppercase tracking-widest mb-6">Serving Humanity. Spreading Hope. Creating Blessings.</p>
+        <blockquote class="text-brand-navy font-heading italic text-lg sm:text-xl border-l-4 border-brand-gold pl-4 text-left max-w-2xl mx-auto mb-6">
+          "When We Give, Life Blesses Us All. A Call to Compassion. A Mission for Humanity."
+        </blockquote>
+        <p class="text-brand-ink/75 text-sm leading-relaxed max-w-2xl mx-auto">
+          All religions, all scriptures, all saints have one message – <span class="font-semibold">Serve the less privileged</span>. Kindness is worship. Service is the highest duty. Donate your time, effort, skills, energy, or money. Today, you can be the reason someone smiles, heals, and lives.
+        </p>
+      </div>
+
+      <!-- Main Charity Content Grid -->
+      <div class="grid lg:grid-cols-12 gap-8 items-stretch max-w-6xl mx-auto">
+        
+        <!-- Left Column: Seva Drive & Distributions -->
+        <div class="reveal lg:col-span-8 bg-white border border-brand-line rounded-2xl p-6 sm:p-8 flex flex-col justify-between">
+          <div>
+            <div class="border-b border-brand-line pb-4 mb-6">
+              <span class="text-xs font-heading font-bold uppercase tracking-wider text-brand-maroon bg-brand-paper border border-brand-line px-3 py-1 rounded-full">Weekly Seva Drive</span>
+              <h4 class="text-xl font-heading font-bold text-brand-navy mt-3">Tata Memorial Hospital Distribution</h4>
+              <p class="text-sm text-brand-ink/60 mt-1">Bringing comfort, care, and hope to registered cancer patients.</p>
+            </div>
+            
+            <div class="grid sm:grid-cols-2 gap-4 mb-8">
+              <div class="bg-brand-paper border border-brand-line rounded-xl p-4 flex items-center gap-4">
+                <div class="text-brand-gold font-bold text-2xl">📅</div>
+                <div>
+                  <div class="font-heading font-bold text-sm text-brand-navy">EVERY TUESDAY</div>
+                  <div class="text-xs text-brand-ink/60">Distribution Drive</div>
+                </div>
+              </div>
+              <div class="bg-brand-paper border border-brand-line rounded-xl p-4 flex items-center gap-4">
+                <div class="text-brand-gold font-bold text-2xl">📅</div>
+                <div>
+                  <div class="font-heading font-bold text-sm text-brand-navy">EVERY SATURDAY</div>
+                  <div class="text-xs text-brand-ink/60">Distribution Drive</div>
+                </div>
+              </div>
+            </div>
+
+            <h5 class="text-xs font-heading font-bold uppercase tracking-widest text-brand-navy/60 mb-4">We Distribute With Love:</h5>
+            <div class="grid grid-cols-3 sm:grid-cols-5 gap-3 text-center mb-6">
+              <div class="bg-brand-paper/40 p-3 rounded-xl border border-brand-line/60">
+                <div class="text-xl mb-1">🍲</div>
+                <span class="text-xs font-medium block text-brand-navy">Food</span>
+              </div>
+              <div class="bg-brand-paper/40 p-3 rounded-xl border border-brand-line/60">
+                <div class="text-xl mb-1">🥛</div>
+                <span class="text-xs font-medium block text-brand-navy">Haldi Milk</span>
+              </div>
+              <div class="bg-brand-paper/40 p-3 rounded-xl border border-brand-line/60">
+                <div class="text-xl mb-1">🍪</div>
+                <span class="text-xs font-medium block text-brand-navy">Biscuits</span>
+              </div>
+              <div class="bg-brand-paper/40 p-3 rounded-xl border border-brand-line/60">
+                <div class="text-xl mb-1">🍌</div>
+                <span class="text-xs font-medium block text-brand-navy">Banana</span>
+              </div>
+              <div class="bg-brand-paper/40 p-3 rounded-xl border border-brand-line/60">
+                <div class="text-xl mb-1">🥛</div>
+                <span class="text-xs font-medium block text-brand-navy">Chaas</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="bg-brand-navy text-white text-xs font-heading tracking-wide p-3 rounded-xl flex items-center justify-between">
+            <span>📞 Contact: +91 98204 13458</span>
+            <span>✉️ sabkamangal2026@gmail.com</span>
+          </div>
+        </div>
+
+        <!-- Right Column: Universal Truths & Support Appeals -->
+        <div class="reveal lg:col-span-4 flex flex-col gap-6" style="transition-delay:.1s">
+          
+          <!-- Contribution Card -->
+          <div class="bg-white border border-brand-line rounded-2xl p-6 flex-1 flex flex-col justify-between">
+            <div>
+              <h4 class="font-heading font-bold text-brand-navy text-base mb-3 border-b border-brand-line pb-2">How You Can Contribute</h4>
+              <ul class="text-xs space-y-2 text-brand-ink/80 font-medium">
+                <li class="flex items-center gap-2"><span class="text-brand-gold">❤️</span> Donate Money</li>
+                <li class="flex items-center gap-2"><span class="text-brand-gold">🕒</span> Donate Time</li>
+                <li class="flex items-center gap-2"><span class="text-brand-gold">👤</span> Donate Skills</li>
+                <li class="flex items-center gap-2"><span class="text-brand-gold">⚡</span> Donate Energy</li>
+                <li class="flex items-center gap-2"><span class="text-brand-gold">📦</span> Donate Essentials</li>
+              </ul>
+            </div>
+            <div class="text-[11px] font-heading font-bold uppercase text-brand-maroon tracking-wider mt-4">
+              Every Contribution Matters.
+            </div>
+          </div>
+
+          <!-- Appeal Card -->
+          <div class="bg-white border border-brand-line rounded-2xl p-6 flex-1 flex flex-col justify-between">
+            <div>
+              <h4 class="font-heading font-bold text-brand-navy text-base mb-2 border-b border-brand-line pb-2">An Appeal To All</h4>
+              <p class="text-xs text-brand-ink/60 leading-relaxed">
+                Let's build a society where no patient feels alone, where no fight is fought without support. Volunteer selflessly to bring auspiciosness (MANGAL) into someone's life.
+              </p>
+            </div>
+            <div class="text-[11px] text-brand-navy italic font-semibold mt-4">
+              Mumbai / Nagpur, Maharashtra, India
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- About / Corporate Advantage Section -->
+  <section id="about" class="py-24 px-6 border-t border-brand-line max-w-7xl mx-auto">
+    <div class="grid md:grid-cols-12 gap-12 items-center">
+      <div class="reveal md:col-span-5">
+        <h2 class="text-xs font-heading font-bold uppercase tracking-widest text-brand-maroon mb-3">Corporate Strategy</h2>
+        <h3 class="text-3xl sm:text-4xl font-heading font-extrabold text-brand-navy leading-tight">The SAB Global Advantage</h3>
+      </div>
+      <div class="reveal md:col-span-7" style="transition-delay:.1s">
+        <p class="text-brand-ink/60 text-lg leading-relaxed mb-6">
+          We believe in empowering our subsidiaries with the essential infrastructure, strategic financial backing, and long-term vision required to scale infinitely in a fast-evolving marketplace.
+        </p>
+        <p class="text-brand-ink/60 text-lg leading-relaxed">
+          By balancing dynamic creative freedom with rigorous operational governance, we seamlessly transform bold, entrepreneurial ideas into lasting industry benchmarks.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Leadership Section -->
+  <section id="leadership" class="py-24 px-6 border-t border-brand-line bg-white">
+    <div class="max-w-7xl mx-auto grid lg:grid-cols-12 gap-14 items-center">
+      <div class="reveal lg:col-span-5">
+        <div class="bg-brand-paper border border-brand-line rounded-2xl p-10">
+          <div class="w-20 h-20 rounded-full bg-gradient-to-br from-brand-maroon to-brand-gold flex items-center justify-center text-white font-heading font-extrabold text-2xl mb-6">KK</div>
+          <div class="font-heading font-extrabold text-brand-navy text-xl mb-1">Komal Ashok Khandge</div>
+          <div class="text-brand-maroon font-heading font-semibold text-sm mb-5">Founder, SAB Global Corp</div>
+          <p class="text-brand-ink/60 text-sm leading-relaxed">
+            Komal Khandge founded SAB Global Corp to build ventures that could each stand on their own — starting with Sab Ka Entertainment, its standalone verticals, and our trusted philanthropic arm, Sabkaa Mangal.
+          </p>
+        </div>
+      </div>
+      <div class="reveal lg:col-span-7" style="transition-delay:.1s">
+        <h2 class="text-xs font-heading font-bold uppercase tracking-widest text-brand-gold mb-3">Leadership</h2>
+        <h3 class="text-3xl sm:text-4xl font-heading font-extrabold text-brand-navy mb-6 leading-tight">Guided by one principle: build it properly, or don't build it.</h3>
+        <div class="grid sm:grid-cols-2 gap-6">
+          <div class="border-l-2 border-brand-gold pl-5">
+            <div class="font-heading font-bold text-brand-navy mb-1">Long-term thinking</div>
+            <p class="text-brand-ink/60 text-sm">Every venture is built to compound over years, not campaigns.</p>
+          </div>
+          <div class="border-l-2 border-brand-gold pl-5">
+            <div class="font-heading font-bold text-brand-navy mb-1">Independent brands</div>
+            <p class="text-brand-ink/60 text-sm">Each vertical earns its own identity and audience.</p>
+          </div>
+          <div class="border-l-2 border-brand-gold pl-5">
+            <div class="font-heading font-bold text-brand-navy mb-1">Shared standards</div>
+            <p class="text-brand-ink/60 text-sm">Governance, quality and accountability run group-wide.</p>
+          </div>
+          <div class="border-l-2 border-brand-gold pl-5">
+            <div class="font-heading font-bold text-brand-navy mb-1">Deliberate growth</div>
+            <p class="text-brand-ink/60 text-sm">New verticals are added when they're ready, not to fill a slide.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- News Section -->
+  <section id="news" class="py-24 px-6 border-t border-brand-line">
+    <div class="max-w-7xl mx-auto">
+      <div class="reveal flex flex-wrap justify-between items-end gap-6 mb-14">
+        <div>
+          <h2 class="text-xs font-heading font-bold uppercase tracking-widest text-brand-gold mb-3">Group News</h2>
+          <h3 class="text-3xl sm:text-4xl font-heading font-extrabold text-brand-navy">What's moving across the group.</h3>
+        </div>
+      </div>
+      <div class="grid md:grid-cols-3 gap-8">
+        <article class="reveal card-hover bg-white border border-brand-line rounded-2xl overflow-hidden">
+          <div class="h-40 bg-gradient-to-br from-brand-navy to-brand-maroon"></div>
+          <div class="p-6">
+            <span class="text-xs font-heading font-bold text-brand-gold uppercase tracking-widest">Sab Ka Entertainment</span>
+            <h4 class="font-heading font-bold text-brand-navy text-lg mt-2 mb-2">SoorTaal Nation announces its winter concert series</h4>
+            <p class="text-brand-ink/60 text-sm">A new season of classical and fusion evenings is set to open across three cities.</p>
+          </div>
+        </article>
+        <article class="reveal card-hover bg-white border border-brand-line rounded-2xl overflow-hidden" style="transition-delay:.1s">
+          <div class="h-40 bg-gradient-to-br from-brand-gold to-brand-maroon"></div>
+          <div class="p-6">
+            <span class="text-xs font-heading font-bold text-brand-gold uppercase tracking-widest">AK Events</span>
+            <h4 class="font-heading font-bold text-brand-navy text-lg mt-2 mb-2">AK Events expands into large-format corporate production</h4>
+            <p class="text-brand-ink/60 text-sm">The team adds full-scale corporate event management to its production capabilities.</p>
+          </div>
+        </article>
+        <article class="reveal card-hover bg-white border border-brand-line rounded-2xl overflow-hidden" style="transition-delay:.2s">
+          <div class="h-40 bg-gradient-to-br from-brand-navy to-brand-gold"></div>
+          <div class="p-6">
+            <span class="text-xs font-heading font-bold text-brand-gold uppercase tracking-widest">Sabkaa Mangal</span>
+            <h4 class="font-heading font-bold text-brand-navy text-lg mt-2 mb-2">Sabkaa Mangal expands Weekly Seva Drive footprint</h4>
+            <p class="text-brand-ink/60 text-sm">Bi-weekly support schedule grows at Tata Memorial Hospital to support additional patient families.</p>
+          </div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- Contact Section -->
+  <section id="contact" class="py-24 px-6 border-t border-brand-line bg-white">
+    <div class="reveal max-w-xl mx-auto">
+      <div class="text-center mb-10">
+        <h3 class="text-3xl font-heading font-extrabold text-brand-navy mb-2">Connect With Us</h3>
+        <p class="text-brand-ink/60 text-sm">Explore institutional partnerships or investment opportunities.</p>
+      </div>
+
+      <form class="space-y-5">
+        <div>
+          <label class="block text-xs font-heading font-bold text-brand-ink/50 uppercase tracking-widest mb-2" for="name">Full Name</label>
+          <input type="text" id="name" class="w-full bg-brand-paper border border-brand-line rounded-xl px-4 py-3 text-brand-ink focus:outline-none focus:border-brand-gold transition-colors text-sm" placeholder="John Doe">
+        </div>
+        <div>
+          <label class="block text-xs font-heading font-bold text-brand-ink/50 uppercase tracking-widest mb-2" for="email">Corporate Email</label>
+          <input type="email" id="email" class="w-full bg-brand-paper border border-brand-line rounded-xl px-4 py-3 text-brand-ink focus:outline-none focus:border-brand-gold transition-colors text-sm" placeholder="john@company.com">
+        </div>
+        <div>
+          <label class="block text-xs font-heading font-bold text-brand-ink/50 uppercase tracking-widest mb-2" for="message">Message</label>
+          <textarea id="message" rows="4" class="w-full bg-brand-paper border border-brand-line rounded-xl px-4 py-3 text-brand-ink focus:outline-none focus:border-brand-gold transition-colors text-sm resize-none" placeholder="Tell us about your project..."></textarea>
+        </div>
+        <button type="submit" class="w-full inline-flex items-center justify-center px-6 py-3.5 text-sm font-heading font-bold text-white bg-brand-navy hover:bg-brand-navy2 rounded-xl transition-all shadow-lg shadow-brand-navy/15">
+          Submit Inquiry
+        </button>
+      </form>
+    </div>
+  </section>
+</main>
+
+<!-- Footer -->
+<footer class="border-t border-brand-line bg-brand-navy text-white pt-20 pb-8 px-6">
+  <div class="max-w-7xl mx-auto">
+    <div class="grid md:grid-cols-4 gap-10 mb-14">
+      <div>
+        <div class="flex items-center gap-2 mb-4">
+          <span class="w-8 h-8 rounded-full border-2 border-brand-gold flex items-center justify-center relative">
+            <span class="absolute inset-1.5 rounded-full bg-brand-gold"></span>
+          </span>
+          <span class="font-heading font-extrabold text-lg">SAB GLOBAL <span class="text-brand-gold">CORP</span></span>
+        </div>
+        <p class="text-white/50 text-sm max-w-xs leading-relaxed">A diversified parent entity building independently branded ventures, starting with Sab Ka Entertainment.</p>
+        <div class="flex gap-3 mt-6">
+          <a href="#" aria-label="LinkedIn" class="w-9 h-9 rounded-full border border-white/15 flex items-center justify-center text-white/60 hover:text-brand-gold hover:border-brand-gold transition-colors text-xs font-heading font-bold">in</a>
+          <a href="#" aria-label="Instagram" class="w-9 h-9 rounded-full border border-white/15 flex items-center justify-center text-white/60 hover:text-brand-gold hover:border-brand-gold transition-colors text-xs font-heading font-bold">IG</a>
+          <a href="#" aria-label="YouTube" class="w-9 h-9 rounded-full border border-white/15 flex items-center justify-center text-white/60 hover:text-brand-gold hover:border-brand-gold transition-colors text-xs font-heading font-bold">YT</a>
+        </div>
+      </div>
+
+      <div>
+        <div class="text-brand-gold font-heading font-bold text-xs uppercase tracking-widest mb-4">Company</div>
+        <a href="#about" class="block text-white/60 hover:text-white text-sm mb-2.5 transition-colors">About Us</a>
+        <a href="#portfolio" class="block text-white/60 hover:text-white text-sm mb-2.5 transition-colors">Our Portfolio</a>
+        <a href="#charity" class="block text-white/60 hover:text-white text-sm mb-2.5 transition-colors">Sabkaa Mangal</a>
+        <a href="#leadership" class="block text-white/60 hover:text-white text-sm mb-2.5 transition-colors">Leadership</a>
+        <a href="#news" class="block text-white/60 hover:text-white text-sm transition-colors">News</a>
+      </div>
+
+      <div>
+        <div class="text-brand-gold font-heading font-bold text-xs uppercase tracking-widest mb-4">Portfolios</div>
+        <a href="ak-events.html" class="block text-white/60 hover:text-white text-sm mb-2.5 transition-colors">AK Events</a>
+        <a href="soortaal-nation.html" class="block text-white/60 hover:text-white text-sm mb-2.5 transition-colors">SoorTaal Nation</a>
+        <a href="#charity" class="block text-white/60 hover:text-white text-sm mb-2.5 transition-colors">Sabkaa Mangal (Charity)</a>
+        <a href="#contact" class="block text-white/60 hover:text-white text-sm transition-colors">Partner Inquiries</a>
+      </div>
+
+      <div>
+        <div class="text-brand-gold font-heading font-bold text-xs uppercase tracking-widest mb-4">Contact</div>
+        <a href="mailto:hello@sabglobalcorp.com" class="block text-white/60 hover:text-white text-sm mb-2.5 transition-colors">hello@sabglobalcorp.com</a>
+        <span class="block text-white/60 text-sm mb-2.5">Nagpur & Mumbai, Maharashtra, India</span>
+        <a href="#contact" class="inline-flex items-center text-brand-gold text-sm font-heading font-bold hover:gap-2 gap-1 transition-all">
+          Get in touch
+          <svg class="w-3.5 h-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+        </a>
+      </div>
+    </div>
+
+    <div class="border-t border-white/10 pt-6 flex flex-col sm:flex-row items-center justify-between gap-4 text-white/40 text-xs">
+      <p>&copy; <span id="year"></span> SAB Global Corp. All rights reserved.</p>
+      <div class="flex gap-6 font-heading font-semibold">
+        <a href="#" class="hover:text-white transition-colors">Privacy Policy</a>
+        <a href="#" class="hover:text-white transition-colors">Terms of Service</a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<script>
+  // year
+  document.getElementById('year').textContent = new Date().getFullYear();
+
+  // mobile menu toggle
+  const menuBtn = document.getElementById('menuBtn');
+  const mobileMenu = document.getElementById('mobileMenu');
+  menuBtn.addEventListener('click', () => mobileMenu.classList.toggle('open'));
+
+  // scroll progress + header shadow
+  const progressBar = document.getElementById('progressBar');
+  const header = document.getElementById('mainHeader');
+  window.addEventListener('scroll', () => {
+    const h = document.documentElement;
+    const pct = h.scrollTop / (h.scrollHeight - h.clientHeight) * 100;
+    progressBar.style.width = pct + '%';
+    header.classList.toggle('scrolled', window.scrollY > 20);
+  });
+
+  // reveal on scroll
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); }
+    });
+  }, { threshold: 0.15 });
+  document.querySelectorAll('.reveal').forEach(el => io.observe(el));
+
+  // animated counters
+  const counterIO = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        const el = entry.target;
+        const target = parseInt(el.getAttribute('data-count'), 10);
+        const duration = 1200;
+        const start = performance.now();
+        function tick(now){
+          const p = Math.min((now - start) / duration, 1);
+          const eased = 1 - Math.pow(1 - p, 3);
+          el.textContent = Math.floor(eased * target);
+          if (p < 1) requestAnimationFrame(tick); else el.textContent = target;
+        }
+        requestAnimationFrame(tick);
+        counterIO.unobserve(el);
+      }
+    });
+  }, { threshold: 0.6 });
+  document.querySelectorAll('[data-count]').forEach(el => counterIO.observe(el));
+</script>
+</body>
+</html>

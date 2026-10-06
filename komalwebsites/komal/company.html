@@ -1,0 +1,558 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Group Companies | Sabka Global Corp Holding Ecosystem</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght=300;400;500;600;700;800;900&family=Syne:wght=700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+
+  <style>
+    /* ===== ROOT & VARIABLES ===== */
+    :root {
+      --bg: #04060d;
+      --bg-alt: #070a15;
+      --cyan: #00f2fe;
+      --blue: #4facfe;
+      --gradient: linear-gradient(135deg, #00f2fe 0%, #4facfe 100%);
+      --glass-bg: rgba(255,255,255,0.025);
+      --glass-border: rgba(255,255,255,0.07);
+      --muted: #7a8fa8;
+      --text: #e2e8f0;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      overflow-x: hidden;
+    }
+
+    /* ===== SCROLLBAR ===== */
+    ::-webkit-scrollbar { width: 4px; }
+    ::-webkit-scrollbar-track { background: var(--bg); }
+    ::-webkit-scrollbar-thumb { background: var(--cyan); border-radius: 2px; }
+
+    /* ===== UTILITY ===== */
+    .py-section { padding: 100px 0; }
+    .bg-alt { background: var(--bg-alt); }
+    .text-gradient {
+      background: var(--gradient);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+    .label-tag {
+      display: inline-block;
+      font-size: 0.72rem;
+      font-weight: 700;
+      letter-spacing: 2.5px;
+      text-transform: uppercase;
+      color: var(--cyan);
+      background: rgba(0,242,254,0.07);
+      border: 1px solid rgba(0,242,254,0.18);
+      padding: 6px 16px;
+      border-radius: 50px;
+      margin-bottom: 16px;
+    }
+
+    /* ===== PRELOADER ===== */
+    #preloader {
+      position: fixed; inset: 0; z-index: 9999;
+      background: var(--bg);
+      display: flex; align-items: center; justify-content: center;
+      transition: opacity 0.6s ease, visibility 0.6s ease;
+    }
+    #preloader.hidden { opacity: 0; visibility: hidden; pointer-events: none; }
+    .pre-ring {
+      width: 60px; height: 60px;
+      border: 2px solid rgba(0,242,254,0.15);
+      border-top-color: var(--cyan);
+      border-radius: 50%;
+      animation: spin 0.9s linear infinite;
+    }
+    @keyframes spin { to { transform: rotate(360deg); } }
+
+    /* ===== CURSOR ===== */
+    .cursor {
+      position: fixed; width: 10px; height: 10px;
+      background: var(--cyan); border-radius: 50%;
+      pointer-events: none; z-index: 9998;
+      transform: translate(-50%,-50%);
+      transition: transform 0.1s ease;
+      mix-blend-mode: difference;
+    }
+    .cursor-ring {
+      position: fixed; width: 36px; height: 36px;
+      border: 1px solid rgba(0,242,254,0.4); border-radius: 50%;
+      pointer-events: none; z-index: 9997;
+      transform: translate(-50%,-50%);
+      transition: all 0.18s ease;
+    }
+
+    /* ===== NAVBAR ===== */
+    .custom-navbar {
+      background: rgba(4,6,13,0.6) !important;
+      backdrop-filter: blur(24px);
+      -webkit-backdrop-filter: blur(24px);
+      border-bottom: 1px solid var(--glass-border);
+      padding: 18px 0;
+      transition: all 0.4s cubic-bezier(0.16,1,0.3,1);
+    }
+    .custom-navbar.scrolled { padding: 10px 0; background: rgba(4,6,13,0.97) !important; }
+    .navbar-brand { font-family: 'Syne', sans-serif; font-size: 1.05rem; letter-spacing: 2px; color: #fff !important; }
+    .brand-dot { color: var(--cyan); }
+    .nav-link {
+      color: var(--muted) !important; font-weight: 500; font-size: 0.88rem;
+      padding: 8px 14px !important; transition: color 0.3s ease; position: relative;
+    }
+    .nav-link::after {
+      content: ''; position: absolute; bottom: 4px; left: 14px; right: 14px; height: 1px;
+      background: var(--gradient); transform: scaleX(0); transform-origin: right; transition: transform 0.3s ease;
+    }
+    .nav-link:hover::after, .nav-link.active::after { transform: scaleX(1); transform-origin: left; }
+    .nav-link:hover, .nav-link.active { color: #fff !important; }
+    .nav-cta {
+      background: var(--gradient) !important; border: none !important; color: #030508 !important;
+      font-weight: 700 !important; font-size: 0.85rem !important; padding: 9px 22px !important;
+      border-radius: 8px !important; transition: all 0.3s ease !important;
+    }
+    .nav-cta:hover { transform: translateY(-2px); box-shadow: 0 8px 24px rgba(0,242,254,0.3) !important; }
+
+    /* ===== HERO BACKGROUNDS ===== */
+    #particles { position: absolute; inset: 0; z-index: 0; }
+    .hero-section {
+      min-height: 50vh;
+      background: radial-gradient(ellipse at 70% 30%, #0b1628 0%, var(--bg) 70%);
+      position: relative; overflow: hidden;
+      display: flex; align-items: center;
+    }
+    .grid-lines {
+      position: absolute; inset: 0; z-index: 0;
+      background-image:
+        linear-gradient(rgba(0,242,254,0.025) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(0,242,254,0.025) 1px, transparent 1px);
+      background-size: 60px 60px;
+      mask-image: radial-gradient(ellipse at center, black 20%, transparent 80%);
+    }
+    .hero-content { position: relative; z-index: 2; padding-top: 120px; }
+    .section-title { font-family: 'Syne', sans-serif; font-size: clamp(2rem, 4vw, 3.2rem); font-weight: 800; color: #fff; line-height: 1.1; }
+
+    /* ===== DEEP CYBER METRIC CARD DESIGN ===== */
+    .company-card {
+      background: linear-gradient(135deg, rgba(255,255,255,0.03) 0%, rgba(255,255,255,0.005) 100%);
+      border: 1px solid var(--glass-border); border-radius: 24px; padding: 45px 40px;
+      backdrop-filter: blur(25px); height: 100%; transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+      position: relative; overflow: hidden;
+    }
+    .company-card::before {
+      content: ''; position: absolute; top: 0; left: 0; width: 100%; height: 100%;
+      background: radial-gradient(circle at top left, rgba(0,242,254,0.04), transparent 60%);
+      pointer-events: none;
+    }
+    .company-card::after {
+      content: ''; position: absolute; bottom: 0; left: 0; right: 0; height: 3px;
+      background: var(--gradient); transform: scaleX(0); transform-origin: left;
+      transition: transform 0.4s ease;
+    }
+    .company-card:hover {
+      transform: translateY(-8px); border-color: rgba(0,242,254,0.22);
+      box-shadow: 0 30px 60px rgba(0,0,0,0.4), 0 0 40px rgba(0,242,254,0.02);
+    }
+    .company-card:hover::after { transform: scaleX(1); }
+
+    .comp-header { display: flex; align-items: flex-start; justify-content: space-between; margin-bottom: 28px; }
+    
+    .comp-icon {
+      width: 58px; height: 58px; border-radius: 16px;
+      background: rgba(0,242,254,0.05); border: 1px solid rgba(0,242,254,0.15);
+      display: flex; align-items: center; justify-content: center;
+      color: var(--cyan); font-size: 1.5rem; transition: all 0.4s ease;
+    }
+    .company-card:hover .comp-icon {
+      background: rgba(0,242,254,0.12); transform: scale(1.08) rotate(3deg);
+      box-shadow: 0 0 20px rgba(0,242,254,0.15);
+    }
+
+    .comp-sector {
+      font-size: 0.68rem; font-weight: 800; letter-spacing: 2px;
+      text-transform: uppercase; color: var(--muted);
+      border: 1px solid var(--glass-border); padding: 5px 14px; border-radius: 50px;
+    }
+    .company-card:hover .comp-sector { color: #fff; border-color: rgba(0,242,254,0.3); }
+
+    .company-card h3 { font-family: 'Syne', sans-serif; font-size: 1.45rem; font-weight: 700; color: #fff; margin-bottom: 12px; }
+    .company-card .comp-tagline { color: var(--cyan); font-size: 0.88rem; font-weight: 600; margin-bottom: 24px; letter-spacing: 0.5px; }
+    
+    /* Capability Taxonomy Pill Grid */
+    .taxonomy-grid { display: flex; flex-wrap: wrap; gap: 10px; margin-bottom: 32px; }
+    .tax-badge {
+      font-size: 0.78rem; font-weight: 600; color: #cbd5e1;
+      background: rgba(255,255,255,0.02); border: 1px solid var(--glass-border);
+      padding: 6px 14px; border-radius: 8px; transition: all 0.3s ease;
+    }
+    .company-card:hover .tax-badge { background: rgba(0,242,254,0.02); border-color: rgba(0,242,254,0.12); color: #fff; }
+    .company-card:hover .tax-badge:hover { border-color: var(--cyan); background: rgba(0,242,254,0.06); }
+
+    /* Segment Content Lists */
+    .comp-spec-list { padding-left: 0; list-style: none; margin: 0; border-top: 1px solid var(--glass-border); padding-top: 24px; }
+    .comp-spec-list li {
+      font-size: 0.88rem; color: var(--muted); line-height: 1.7;
+      margin-bottom: 10px; position: relative; padding-left: 20px;
+    }
+    .comp-spec-list li::before {
+      content: ''; font-family: 'Font Awesome 6 Free'; font-weight: 900;
+      position: absolute; left: 0; color: var(--cyan); font-size: 0.8rem; top: 1px;
+    }
+    .comp-spec-list li strong { color: #e2e8f0; font-weight: 600; }
+
+    /* ===== INTERACTIVE LINK LINKING ===== */
+    .text-link {
+      color: var(--cyan); font-size: 0.85rem; font-weight: 600; text-decoration: none;
+      transition: gap 0.3s ease; display: inline-flex; align-items: center; gap: 6px; margin-top: 24px;
+    }
+    .text-link:hover { gap: 10px; color: var(--blue); }
+
+    /* ===== FOOTER ===== */
+    .footer-wrap { background: #030508; border-top: 1px solid var(--glass-border); padding: 70px 0 30px; }
+    .footer-brand { font-family: 'Syne', sans-serif; font-size: 1.1rem; letter-spacing: 2px; color: #fff; }
+    .footer-link { color: var(--muted); font-size: 0.88rem; text-decoration: none; display: block; margin-bottom: 8px; transition: color 0.3s ease; }
+    .footer-link:hover { color: var(--cyan); }
+    .social-icon {
+      width: 40px; height: 40px; border-radius: 10px; background: var(--glass-bg); border: 1px solid var(--glass-border);
+      display: inline-flex; align-items: center; justify-content: center; color: var(--muted); font-size: 1rem;
+      text-decoration: none; transition: all 0.3s ease;
+    }
+    .social-icon:hover { background: rgba(0,242,254,0.1); border-color: rgba(0,242,254,0.3); color: var(--cyan); transform: translateY(-3px); }
+    .footer-copy { color: var(--muted); font-size: 0.8rem; text-align: center; padding-top: 30px; border-top: 1px solid var(--glass-border); margin-top: 40px; }
+
+    /* ===== WHATSAPP FLOAT ===== */
+    .wa-float {
+      position: fixed; bottom: 28px; right: 28px; z-index: 999; width: 54px; height: 54px; border-radius: 50%;
+      background: #25d366; color: #fff; font-size: 1.5rem; display: flex; align-items: center; justify-content: center;
+      text-decoration: none; box-shadow: 0 4px 20px rgba(37,211,102,0.4); transition: all 0.3s ease;
+    }
+    .wa-float:hover { transform: scale(1.1); color: #fff; box-shadow: 0 6px 30px rgba(37,211,102,0.6); }
+
+    /* ===== SCROLL REVEAL ===== */
+    .reveal { opacity: 0; transform: translateY(32px); transition: opacity 0.7s cubic-bezier(0.16,1,0.3,1), transform 0.7s cubic-bezier(0.16,1,0.3,1); }
+    .reveal.visible { opacity: 1; transform: translateY(0); }
+    .delay-1 { transition-delay: 0.1s !important; }
+    .delay-2 { transition-delay: 0.2s !important; }
+    .delay-3 { transition-delay: 0.3s !important; }
+
+    @media (max-width: 991.98px) { .cursor, .cursor-ring { display: none; } }
+  </style>
+</head>
+<body>
+
+<!-- PRELOADER -->
+<div id="preloader"><div class="pre-ring"></div></div>
+
+<!-- CURSOR -->
+<div class="cursor" id="cursor"></div>
+<div class="cursor-ring" id="cursorRing"></div>
+
+<!-- WHATSAPP FLOAT -->
+<a href="https://wa.me/919876543210" target="_blank" class="wa-float" title="WhatsApp">
+  <i class="fa-brands fa-whatsapp"></i>
+</a>
+
+<!-- ===== NAVBAR ===== -->
+<nav class="navbar navbar-expand-xl fixed-top custom-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="index.html">SABKA GLOBAL CORP<span class="brand-dot">.</span></a>
+    <button class="navbar-toggler border-0" type="button" data-bs-toggle="collapse" data-bs-target="#mainNav">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="mainNav">
+      <ul class="navbar-nav ms-auto align-items-center gap-1">
+        <li class="nav-item"><a class="nav-link" href="index.html#home">Home</a></li>
+        <li class="nav-item"><a class="nav-link" href="about.html">About</a></li>
+        <li class="nav-item"><a class="nav-link active" href="company.html">Group Companies</a></li>
+        <li class="nav-item"><a class="nav-link" href="service.html">Services</a></li>
+       
+        <li class="nav-item"><a class="nav-link" href="contact.html">Contact</a></li>
+        <li class="nav-item ms-2">
+          <a href="contact.html" class="btn nav-cta">Book Consultation</a>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>
+
+<!-- ===== HERO ===== -->
+<section class="hero-section">
+  <canvas id="particles"></canvas>
+  <div class="grid-lines"></div>
+  <div class="container hero-content text-center py-5">
+    <div class="reveal">
+      <span class="label-tag">Holding Architecture</span>
+      <h1 class="section-title mb-3">The <span class="text-gradient">Group Companies</span></h1>
+      <p class="text-muted mx-auto" style="max-width: 650px; font-size: 1.05rem; line-height: 1.7;">
+        An overview of the market-disrupting specialized entities operating synchronously under the parent global framework managed by Komal Khandge.
+      </p>
+    </div>
+  </div>
+</section>
+
+<!-- ===== GROUP COMPANIES GRID MATRICES ===== -->
+<section id="ecosystem" class="py-section bg-alt">
+  <div class="container">
+    <div class="row g-4">
+      
+      <!-- Company 1: SK Universal Consultants -->
+      <div class="col-lg-6 reveal">
+        <div class="company-card">
+          <div class="comp-header">
+            <div class="comp-icon"><i class="fa-solid fa-scale-balanced"></i></div>
+            <div class="comp-sector">Industrial Strategy</div>
+          </div>
+          <h3>SK Universal Consultants</h3>
+          <div class="comp-tagline">Corporate Advisory &amp; MSME Scalability Models</div>
+          
+          <!-- Taxonomy Badges -->
+          <div class="taxonomy-grid">
+            <span class="tax-badge">Business Consulting</span>
+            <span class="tax-badge">MSME Consultancy</span>
+            <span class="tax-badge">Startup Advisory</span>
+            <span class="tax-badge">Government Schemes</span>
+            <span class="tax-badge">Funding Support</span>
+            <span class="tax-badge">Business Growth</span>
+          </div>
+
+          <!-- Extended Descriptive Narrative Content -->
+          <ul class="comp-spec-list">
+            <li><strong>MSME Structural Advisory:</strong> Navigating complex regulatory pathways, state compliance filing, industrial registrations, and governance setups.</li>
+            <li><strong>Government Subsidy Capture:</strong> Guiding small-to-mid-scale manufacturing entities through the process of securing national capital incentives and state-level grants smoothly.</li>
+            <li><strong>Capital &amp; Funding Schemes:</strong> Developing detailed debt structuring prototypes and venture pathways to facilitate sustainable, long-term operational growth.</li>
+          </ul>
+          
+          <a href="index (36).html#contact" class="text-link">Inquire Corporate Advisory <i class="fa-solid fa-arrow-right"></i></a>
+        </div>
+      </div>
+
+      <!-- Company 2: Golden SENrise -->
+      <div class="col-lg-6 reveal delay-1">
+        <div class="company-card">
+          <div class="comp-header">
+            <div class="comp-icon"><i class="fa-solid fa-kit-medical"></i></div>
+            <div class="comp-sector">Public Infrastructure</div>
+          </div>
+          <h3>Golden SENrise</h3>
+          <div class="comp-tagline">Comprehensive Senior Citizen Wellness Networks</div>
+          
+          <!-- Taxonomy Badges -->
+          <div class="taxonomy-grid">
+            <span class="tax-badge">Senior Citizen Engagement</span>
+            <span class="tax-badge">Lifestyle Programs</span>
+            <span class="tax-badge">Community Building</span>
+            <span class="tax-badge">Health</span>
+            <span class="tax-badge">Nutrition</span>
+            <span class="tax-badge">Workshops</span>
+          </div>
+
+          <!-- Extended Descriptive Narrative Content -->
+          <ul class="comp-spec-list">
+            <li><strong>Senior Living Ecosystems:</strong> Building physical and digital community environments designed to maximize mental stimulation, physical safety, and continuous lifestyle innovation.</li>
+            <li><strong>Nutrition &amp; Preventative Care:</strong> Implementing target-specific nutritional matrices, structured dietary outlines, and proactive physiological care schemes.</li>
+            <li><strong>Cognitive Engagement Workshops:</strong> Curating custom educational and physical modules that foster community connections and support life transitions.</li>
+          </ul>
+          
+          <a href="index (36).html#contact" class="text-link">Access Welfare Portfolios <i class="fa-solid fa-arrow-right"></i></a>
+        </div>
+      </div>
+
+      <!-- Company 3: AK Events -->
+      <div class="col-lg-6 reveal delay-2">
+        <div class="company-card">
+          <div class="comp-header">
+            <div class="comp-icon"><i class="fa-solid fa-masks-theater"></i></div>
+            <div class="comp-sector">Commercial Production</div>
+          </div>
+          <h3>AK Events</h3>
+          <div class="comp-tagline">Premium Corporate &amp; Live Gala Production Properties</div>
+          
+          <!-- Taxonomy Badges -->
+          <div class="taxonomy-grid">
+            <span class="tax-badge">Entertainment</span>
+            <span class="tax-badge">Musical Shows</span>
+            <span class="tax-badge">Corporate Events</span>
+            <span class="tax-badge">Live Performances</span>
+            <span class="tax-badge">Brand Promotions</span>
+          </div>
+
+          <!-- Extended Descriptive Narrative Content -->
+          <ul class="comp-spec-list">
+            <li><strong>Corporate Activation Curation:</strong> Engineering end-to-end multi-city brand alignments, live gala experiences, and sponsor deck architectures.</li>
+            <li><strong>Premium Musical Productions:</strong> Directing stadium-scale musical installations, live entertainment, and verified audience engagement programs.</li>
+            <li><strong>Media Integration Systems:</strong> Synchronizing sponsor placements across high-value target networks to ensure robust enterprise returns.</li>
+          </ul>
+          
+          <a href="index (36).html#contact" class="text-link">Request Sponsor Decks <i class="fa-solid fa-arrow-right"></i></a>
+        </div>
+      </div>
+
+      <!-- Company 4: Sab Ka Entertainment -->
+      <div class="col-lg-6 reveal delay-3">
+        <div class="company-card">
+          <div class="comp-header">
+            <div class="comp-icon"><i class="fa-solid fa-icons"></i></div>
+            <div class="comp-sector">Cultural Capital</div>
+          </div>
+          <h3>Sab Ka Entertainment</h3>
+          <div class="comp-tagline">Grassroots Talent Engineering &amp; Cultural Preservation</div>
+          
+          <!-- Taxonomy Badges -->
+          <div class="taxonomy-grid">
+            <span class="tax-badge">Cultural Events</span>
+            <span class="tax-badge">Musical Productions</span>
+            <span class="tax-badge">Community Engagement</span>
+            <span class="tax-badge">Talent Promotion</span>
+          </div>
+
+          <!-- Extended Descriptive Narrative Content -->
+          <ul class="comp-spec-list">
+            <li><strong>Cultural Preservation:</strong> Showcasing traditional and regional performing arts programs to protect heritage across geographical borders.</li>
+            <li><strong>Grassroots Talent Support:</strong> Providing local and emerging creative professionals with accessible technical tools, media avenues, and platform reach.</li>
+            <li><strong>Community Welfare Festivals:</strong> Organizing inclusive live mass-media events where cultural performance aligns with social impact objectives.</li>
+          </ul>
+          
+          <a href="index (36).html#contact" class="text-link">Explore Media Portals <i class="fa-solid fa-arrow-right"></i></a>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ===== HOLDING LOGIC BLUEPRINT STATEMENT ===== -->
+<section class="py-section">
+  <div class="container text-center reveal" style="max-width: 750px;">
+    <div class="label-tag">Ecosystem Strategy</div>
+    <h2 class="mb-4" style="font-family:'Syne',sans-serif; font-weight:800; color:#fff;">Unified Systemic Execution</h2>
+    <p style="color:var(--muted); line-height:1.8; font-size:1.02rem;">
+      None of our entities operate as isolated profit silos. Under the leadership of Komal Khandge, every industrial initiative managed by *SK Universal Consultants* directly funds and shapes the care infrastructures of *Golden SENrise* and the regional community platforms built by our entertainment and production companies. This creates a reliable network that turns corporate success into long-term community value.
+    </p>
+  </div>
+</section>
+
+<!-- ===== FOOTER ===== -->
+<footer class="footer-wrap">
+  <div class="container">
+    <div class="row g-5 mb-5">
+      <div class="col-lg-4">
+        <div class="footer-brand mb-3">SABKA GLOBAL CORP<span style="color:var(--cyan)">.</span></div>
+        <p style="color:var(--muted);font-size:0.88rem;line-height:1.8">Building high-impact corporate infrastructure, running clinical health programs, and driving intentional community empowerment systems across markets.</p>
+      </div>
+      <div class="col-lg-4">
+        <h6 style="color:#fff;font-weight:700;margin-bottom:20px;letter-spacing:1px;text-transform:uppercase;font-size:0.8rem">Ecosystem Links</h6>
+        <div class="row">
+          <div class="col-6">
+            <a href="index (36).html#founder" class="footer-link">The Founder</a>
+            <a href="#ecosystem" class="footer-link">Group Entities</a>
+            <a href="index (36).html#impact" class="footer-link">CSR &amp; Impact</a>
+          </div>
+          <div class="col-6">
+            <a href="index (36).html#partnerships" class="footer-link">Investor Desk</a>
+            <a href="index (36).html#knowledge" class="footer-link">Knowledge Hub</a>
+            <a href="index (36).html#contact" class="footer-link">Contact</a>
+          </div>
+        </div>
+      </div>
+      <div class="col-lg-4">
+        <h6 style="color:#fff;font-weight:700;margin-bottom:20px;letter-spacing:1px;text-transform:uppercase;font-size:0.8rem">Connect</h6>
+        <div class="d-flex gap-2 mb-4">
+          <a href="#" class="social-icon"><i class="fa-brands fa-linkedin-in"></i></a>
+          <a href="#" class="social-icon"><i class="fa-brands fa-instagram"></i></a>
+          <a href="#" class="social-icon"><i class="fa-brands fa-facebook-f"></i></a>
+          <a href="#" class="social-icon"><i class="fa-brands fa-youtube"></i></a>
+        </div>
+        <p style="color:var(--muted);font-size:0.84rem;line-height:1.7">Managed under the Global Vision of Komal Khandge.<br>India-headquartered | Global Reach.</p>
+      </div>
+    </div>
+    <div class="footer-copy">
+      &copy; 2026 Sabka Global Corp. All Rights Reserved. Founder &amp; Group CEO: Komal Khandge.
+    </div>
+  </div>
+</footer>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+<script>
+  // ===== PRELOADER =====
+  window.addEventListener('load', () => {
+    setTimeout(() => document.getElementById('preloader').classList.add('hidden'), 400);
+  });
+
+  // ===== CUSTOM CURSOR =====
+  const cursor = document.getElementById('cursor');
+  const ring = document.getElementById('cursorRing');
+  let mx = 0, my = 0, rx = 0, ry = 0;
+  document.addEventListener('mousemove', e => { mx = e.clientX; my = e.clientY; });
+  function animCursor() {
+    rx += (mx - rx) * 0.15; ry += (my - ry) * 0.15;
+    if (cursor) { cursor.style.left = mx + 'px'; cursor.style.top = my + 'px'; }
+    if (ring) { ring.style.left = rx + 'px'; ring.style.top = ry + 'px'; }
+    requestAnimationFrame(animCursor);
+  }
+  animCursor();
+  document.querySelectorAll('a,button,.company-card,.tax-badge').forEach(el => {
+    el.addEventListener('mouseenter', () => { if(ring) ring.style.transform = 'translate(-50%,-50%) scale(2)'; });
+    el.addEventListener('mouseleave', () => { if(ring) ring.style.transform = 'translate(-50%,-50%) scale(1)'; });
+  });
+
+  // ===== NAVBAR SCROLL =====
+  const navbar = document.querySelector('.custom-navbar');
+  window.addEventListener('scroll', () => {
+    navbar.classList.toggle('scrolled', window.scrollY > 60);
+  });
+
+  // ===== PARTICLES CANVAS =====
+  const canvas = document.getElementById('particles');
+  const ctx = canvas.getContext('2d');
+  let W, H, pts = [];
+  function resizeCanvas() {
+    W = canvas.width = canvas.offsetWidth;
+    H = canvas.height = canvas.offsetHeight;
+  }
+  resizeCanvas();
+  window.addEventListener('resize', resizeCanvas);
+  for (let i = 0; i < 50; i++) pts.push({
+    x: Math.random() * 2000, y: Math.random() * 1000,
+    vx: (Math.random() - 0.5) * 0.3, vy: (Math.random() - 0.5) * 0.3,
+    r: Math.random() * 1.5 + 0.4, a: Math.random()
+  });
+  function drawParticles() {
+    ctx.clearRect(0, 0, W, H);
+    pts.forEach(p => {
+      p.x += p.vx; p.y += p.vy;
+      if (p.x < 0) p.x = W; if (p.x > W) p.x = 0;
+      if (p.y < 0) p.y = H; if (p.y > H) p.y = 0;
+      ctx.beginPath(); ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
+      ctx.fillStyle = `rgba(0,242,254,${p.a * 0.4})`; ctx.fill();
+    });
+    pts.forEach((p, i) => {
+      for (let j = i + 1; j < pts.length; j++) {
+        const d = Math.hypot(p.x - pts[j].x, p.y - pts[j].y);
+        if (d < 120) {
+          ctx.beginPath(); ctx.moveTo(p.x, p.y); ctx.lineTo(pts[j].x, pts[j].y);
+          ctx.strokeStyle = `rgba(0,242,254,${0.06 * (1 - d/120)})`; ctx.lineWidth = 0.5; ctx.stroke();
+        }
+      }
+    });
+    requestAnimationFrame(drawParticles);
+  }
+  drawParticles();
+
+  // ===== SCROLL REVEAL =====
+  const obs = new IntersectionObserver((entries) => {
+    entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); } });
+  }, { threshold: 0.08 });
+  document.querySelectorAll('.reveal').forEach(el => obs.observe(el));
+</script>
+</body>
+</html>

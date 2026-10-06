@@ -1,0 +1,538 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AK Events | Premium Experiential Architecture</title>
+<meta name="description" content="AK Events — premium event engineering under Sab Ka Entertainment. Corporate galas, bespoke celebrations, and large-scale live experiences.">
+
+<!-- Bootstrap 5 CSS -->
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+<!-- FontAwesome Icons -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+<!-- AOS Animation Library -->
+<link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+<!-- Fonts: Montserrat + Open Sans -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500;600;700;800;900&family=Open+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+<style>
+  :root {
+    --gold: #C9A227;
+    --gold-deep: #A8871F;
+    --maroon: #7A1636;
+    --navy: #0B2545;
+    --navy2: #123363;
+    --paper: #F8F6F1;
+    --card: #FFFFFF;
+    --card-alt: #F1ECDD;
+    --text-muted: #667085;
+    --line: #E7E1D4;
+  }
+
+  *{ box-sizing:border-box; }
+  html{ scroll-behavior:smooth; }
+  body {
+    font-family: 'Open Sans', sans-serif;
+    background-color: var(--paper);
+    color: var(--navy);
+    overflow-x: hidden;
+  }
+  h1,h2,h3,h4,h5,h6,.font-display { font-family:'Montserrat', sans-serif; }
+  ::selection{ background:var(--gold); color:var(--navy); }
+  a{ color:inherit; }
+  a:focus-visible, button:focus-visible, input:focus-visible, textarea:focus-visible, select:focus-visible{
+    outline:2px solid var(--gold); outline-offset:3px;
+  }
+  @media (prefers-reduced-motion: reduce){
+    *{ animation-duration:.001ms !important; transition-duration:.001ms !important; scroll-behavior:auto !important; }
+  }
+
+  ::-webkit-scrollbar{ width:8px; }
+  ::-webkit-scrollbar-track{ background:var(--paper); }
+  ::-webkit-scrollbar-thumb{ background:var(--gold); border-radius:4px; }
+
+  #progressBar{ position:fixed; top:0; left:0; height:3px; width:0%; background:linear-gradient(90deg,var(--maroon),var(--gold)); z-index:2000; transition:width .08s linear; }
+
+  /* Navbar */
+  .navbar{
+    background-color: rgba(248,246,241,0.9) !important;
+    backdrop-filter: blur(15px);
+    border-bottom: 1px solid var(--line);
+    padding: 18px 0;
+    transition: all .4s ease;
+  }
+  .navbar.scrolled{ padding:12px 0; background-color:rgba(248,246,241,0.98) !important; box-shadow:0 8px 24px rgba(11,37,69,0.06); }
+  .navbar-brand{
+    font-family:'Montserrat',sans-serif; font-weight:800; font-size:1.4rem; letter-spacing:3px; color:var(--navy) !important;
+    display:flex; align-items:center; gap:10px;
+  }
+  .navbar-brand .ring{ width:28px; height:28px; border-radius:50%; border:2px solid var(--gold); position:relative; flex:none; }
+  .navbar-brand .ring::before{ content:""; position:absolute; inset:5px; border-radius:50%; background:var(--gold); animation:pulseSoft 2.4s ease-in-out infinite; }
+  @keyframes pulseSoft{ 0%,100%{opacity:.55;} 50%{opacity:1;} }
+  .navbar-brand span{ color:var(--maroon); }
+  .nav-link{
+    color:#6B7280 !important; font-family:'Montserrat',sans-serif; font-size:.82rem; text-transform:uppercase;
+    letter-spacing:1.6px; font-weight:600; transition:color .3s ease; padding:0 15px !important; position:relative;
+  }
+  .nav-link:hover, .nav-link.active{ color:var(--maroon) !important; }
+  .navbar-toggler{ border-color:var(--line) !important; }
+  .navbar-toggler-icon{ filter: invert(15%) sepia(20%) saturate(1000%) hue-rotate(180deg); }
+
+  /* Buttons */
+  .btn-luxury{
+    background:transparent; color:var(--navy); border:1px solid var(--navy); padding:14px 36px;
+    font-family:'Montserrat',sans-serif; font-size:.8rem; text-transform:uppercase; letter-spacing:2px;
+    font-weight:700; border-radius:0; position:relative; z-index:1; transition:all .4s ease; display:inline-block;
+  }
+  .btn-luxury::before{
+    content:''; position:absolute; top:0; left:0; width:0; height:100%; background-color:var(--navy);
+    z-index:-1; transition:all .4s ease;
+  }
+  .btn-luxury:hover{ color:#fff; }
+  .btn-luxury:hover::before{ width:100%; }
+  .btn-luxury-sm{ padding:11px 26px; font-size:.72rem; }
+
+  .btn-maroon{
+    background:var(--maroon); color:#fff; border:1px solid var(--maroon); padding:14px 36px;
+    font-family:'Montserrat',sans-serif; font-size:.8rem; text-transform:uppercase; letter-spacing:2px;
+    font-weight:700; transition:all .3s ease; display:inline-block;
+  }
+  .btn-maroon:hover{ background:transparent; color:var(--maroon); }
+
+  /* Hero */
+  .hero{
+    height:100vh; min-height:640px;
+    background: linear-gradient(rgba(248,246,241,0.35), rgba(248,246,241,0.97)),
+                url('https://images.unsplash.com/photo-1478812954026-9c750f0e89fc?auto=format&fit=crop&q=80&w=1920') no-repeat center center/cover;
+    display:flex; align-items:center; position:relative;
+  }
+  .hero-title{ font-size:4rem; font-weight:800; line-height:1.15; letter-spacing:1px; color:var(--navy); }
+  @media(max-width:768px){ .hero-title{ font-size:2.4rem; } }
+  .hero-eyebrow{ color:var(--maroon) !important; }
+  .hero-scroll-cue{
+    position:absolute; bottom:36px; left:50%; transform:translateX(-50%);
+    color:var(--text-muted); font-size:.7rem; letter-spacing:3px; text-transform:uppercase;
+    display:flex; flex-direction:column; align-items:center; gap:10px;
+  }
+  .hero-scroll-cue .line{ width:1px; height:34px; background:var(--gold); animation:scrollLine 2s ease-in-out infinite; }
+  @keyframes scrollLine{ 0%{ transform:scaleY(0); transform-origin:top;} 50%{ transform:scaleY(1); transform-origin:top;} 51%{transform-origin:bottom;} 100%{transform:scaleY(0); transform-origin:bottom;} }
+
+  /* Stats */
+  .stats-band{ background:var(--card-alt); border-bottom:1px solid var(--line); }
+  .stat-box{ border-right:1px solid rgba(201,162,39,0.35); }
+  @media(max-width:768px){ .stat-box{ border-right:none; border-bottom:1px solid rgba(201,162,39,0.35); padding-bottom:20px; } }
+  .stat-box:last-child{ border:none; }
+  .stat-num{ color:var(--maroon); font-weight:800; }
+
+  /* Portfolio cards */
+  .portfolio-card{
+    background:var(--card); border:1px solid var(--line); overflow:hidden; position:relative;
+    transition:all .4s cubic-bezier(.25,1,.5,1); box-shadow:0 4px 18px rgba(11,37,69,0.04);
+  }
+  .portfolio-card img{ transition:transform .6s ease; filter:grayscale(15%); }
+  .portfolio-card:hover img{ transform:scale(1.06); filter:grayscale(0%); }
+  .portfolio-card:hover{ border-color:rgba(201,162,39,0.5); box-shadow:0 20px 40px rgba(11,37,69,0.1); }
+  .portfolio-overlay{ position:absolute; bottom:0; left:0; right:0; background:linear-gradient(transparent, rgba(11,37,69,0.92)); padding:30px; }
+
+  /* Gallery tiles */
+  .gallery-tile{ position:relative; overflow:hidden; aspect-ratio:1/1; border:1px solid var(--line); }
+  .gallery-tile .tile-bg{ position:absolute; inset:0; transition:transform .5s ease; }
+  .gallery-tile:hover .tile-bg{ transform:scale(1.08); }
+  .gallery-tile .tile-overlay{
+    position:absolute; inset:0; display:flex; align-items:flex-end; padding:16px;
+    background:linear-gradient(180deg, transparent 45%, rgba(11,37,69,0.9) 100%); opacity:0; transition:opacity .35s ease;
+  }
+  .gallery-tile:hover .tile-overlay{ opacity:1; }
+  .gt-1 .tile-bg{ background:linear-gradient(135deg,#7A1636,#C9A227); }
+  .gt-2 .tile-bg{ background:linear-gradient(135deg,#0B2545,#C9A227); }
+  .gt-3 .tile-bg{ background:linear-gradient(135deg,#C9A227,#7A1636); }
+  .gt-4 .tile-bg{ background:linear-gradient(135deg,#0B2545,#7A1636); }
+
+  /* Testimonials */
+  .testi-card{ background:var(--card); border:1px solid var(--line); padding:36px; height:100%; box-shadow:0 4px 18px rgba(11,37,69,0.04); }
+  .testi-card .quote-mark{ font-family:'Montserrat',sans-serif; font-size:2.4rem; color:var(--gold); line-height:1; margin-bottom:8px; }
+  .testi-card .who-name{ font-family:'Montserrat',sans-serif; font-weight:700; font-size:.9rem; color:var(--navy); }
+
+  /* Forms */
+  .form-luxury-input{
+    background:transparent !important; border:none; border-bottom:1px solid rgba(11,37,69,0.2) !important;
+    border-radius:0 !important; color:var(--navy) !important; padding:15px 5px; transition:border-color .4s;
+    font-family:'Open Sans',sans-serif;
+  }
+  .form-luxury-input::placeholder{ color:rgba(11,37,69,0.4); letter-spacing:1px; font-size:.85rem; }
+  .form-luxury-input:focus{ box-shadow:none; border-bottom-color:var(--maroon) !important; }
+
+  .tracking-widest{ letter-spacing:2.5px; }
+
+  /* Footer (kept dark navy for contrast, matches group footers) */
+  footer.site-footer{ background:var(--navy); border-top:1px solid rgba(255,255,255,0.08); color:rgba(255,255,255,0.6); }
+  .footer-brand{ font-family:'Montserrat',sans-serif; font-weight:800; letter-spacing:2px; color:#fff; }
+  .footer-col-title{ color:var(--gold); font-family:'Montserrat',sans-serif; font-weight:700; font-size:.7rem; text-transform:uppercase; letter-spacing:2px; }
+  .footer-link{ color:rgba(255,255,255,0.6); font-size:.9rem; text-decoration:none; display:block; margin-bottom:10px; transition:color .25s ease; }
+  .footer-link:hover{ color:var(--gold); }
+  .social-circle{
+    width:38px; height:38px; border-radius:50%; border:1px solid rgba(255,255,255,0.15); display:flex; align-items:center; justify-content:center;
+    color:rgba(255,255,255,0.6); transition:all .25s ease;
+  }
+  .social-circle:hover{ border-color:var(--gold); color:var(--gold); transform:translateY(-3px); }
+  .footer-bottom{ border-color:rgba(255,255,255,0.1) !important; }
+</style>
+</head>
+<body>
+
+<div id="progressBar"></div>
+
+<!-- ================= NAVBAR ================= -->
+<nav class="navbar navbar-expand-lg fixed-top" id="mainNav">
+  <div class="container">
+    <a class="navbar-brand" href="#home">
+      <span class="ring"></span>
+      AK <span>EVENTS</span>
+    </a>
+    <button class="navbar-toggler border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navLuxury" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse justify-content-end" id="navLuxury">
+      <ul class="navbar-nav align-items-lg-center gap-lg-1">
+        <li class="nav-item"><a class="nav-link active" href="#home">Home</a></li>
+        <li class="nav-item"><a class="nav-link" href="#curation">Services</a></li>
+        <li class="nav-item"><a class="nav-link" href="#vision">Process</a></li>
+        <li class="nav-item"><a class="nav-link" href="#gallery">Gallery</a></li>
+        <li class="nav-item"><a class="nav-link" href="#reserve">Contact</a></li>
+        <li class="nav-item ms-lg-4 mt-3 mt-lg-0"><a class="btn-luxury btn-luxury-sm" href="#reserve">Book Consultation</a></li>
+      </ul>
+    </div>
+  </div>
+</nav>
+
+<!-- ================= HERO ================= -->
+<section id="home" class="hero">
+  <div class="container">
+    <div class="row">
+      <div class="col-xl-8 col-lg-10">
+        <h6 class="text-uppercase tracking-widest hero-eyebrow mb-3" data-aos="fade-right" data-aos-duration="1000" style="letter-spacing:5px; font-family:'Montserrat',sans-serif; font-size:.75rem; font-weight:700;">
+          Under Sab Ka Entertainment
+        </h6>
+        <h1 class="hero-title mb-4" data-aos="fade-up" data-aos-duration="1200" data-aos-delay="200">
+          We Formulate <br><span style="color:var(--maroon);">Immersive Realities</span>
+        </h1>
+        <p class="lead mb-5" style="max-width:640px; font-weight:400; color:var(--text-muted);" data-aos="fade-up" data-aos-duration="1200" data-aos-delay="400">
+          AK Events designs, structurally curates, and flawlessly executes premium luxury celebrations, large-scale assemblies, and dynamic corporate transformations.
+        </p>
+        <div class="d-flex flex-wrap gap-3" data-aos="fade-up" data-aos-duration="1200" data-aos-delay="600">
+          <a href="#curation" class="btn-luxury">Initiate Discovery</a>
+          <a href="#reserve" class="btn-maroon">Book Consultation</a>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="hero-scroll-cue"><span>Scroll</span><span class="line"></span></div>
+</section>
+
+<!-- ================= STATS ================= -->
+<section class="py-5 stats-band">
+  <div class="container py-3">
+    <div class="row text-center text-md-start g-4">
+      <div class="col-md-4 stat-box text-center" data-aos="zoom-in" data-aos-duration="800">
+        <h2 class="font-display display-5 stat-num mb-1"><span data-count="450">0</span>+</h2>
+        <p class="text-uppercase small tracking-widest mb-0" style="color:var(--text-muted);">Productions Rendered</p>
+      </div>
+      <div class="col-md-4 stat-box text-center" data-aos="zoom-in" data-aos-duration="800" data-aos-delay="200">
+        <h2 class="font-display display-5 stat-num mb-1"><span data-count="100">0</span>%</h2>
+        <p class="text-uppercase small tracking-widest mb-0" style="color:var(--text-muted);">Logistical Precision</p>
+      </div>
+      <div class="col-md-4 text-center" data-aos="zoom-in" data-aos-duration="800" data-aos-delay="400">
+        <h2 class="font-display display-5 stat-num mb-1"><span data-count="15">0</span> Yrs</h2>
+        <p class="text-uppercase small tracking-widest mb-0" style="color:var(--text-muted);">Industry Leadership</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= SERVICES / CURATION ================= -->
+<section id="curation" class="py-5 my-5">
+  <div class="container">
+    <div class="row justify-content-between align-items-end mb-5" data-aos="fade-up">
+      <div class="col-md-6">
+        <h6 class="text-uppercase tracking-widest mb-2" style="color:var(--maroon); font-family:'Montserrat',sans-serif; font-size:.75rem; font-weight:700;">Expertise Sectors</h6>
+        <h2 class="font-display display-5 fw-bold mb-0">The Pillars of AK</h2>
+      </div>
+      <div class="col-md-4 text-md-end mt-3 mt-md-0">
+        <p class="small" style="color:var(--text-muted);">Meticulously adapting visual scale, sound metrics, and experiential flows for distinct operations.</p>
+      </div>
+    </div>
+
+    <div class="row g-4">
+      <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="100">
+        <div class="portfolio-card h-100">
+          <img src="https://images.unsplash.com/photo-1511578314322-379afb476865?auto=format&fit=crop&q=80&w=600" alt="Corporate Galas" class="w-100 object-fit-cover" style="height:400px;">
+          <div class="portfolio-overlay">
+            <h4 class="font-display text-white mb-2 fw-bold fs-5">Corporate Galas</h4>
+            <p class="text-white-50 small mb-0">High-stakes AGMs, interactive launches, and precise thematic networking systems.</p>
+          </div>
+        </div>
+      </div>
+      <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="300">
+        <div class="portfolio-card h-100">
+          <img src="https://images.unsplash.com/photo-1469371670807-013ccf25f16a?auto=format&fit=crop&q=80&w=600" alt="Bespoke Celebrations" class="w-100 object-fit-cover" style="height:400px;">
+          <div class="portfolio-overlay">
+            <h4 class="font-display text-white mb-2 fw-bold fs-5">Bespoke Galas</h4>
+            <p class="text-white-50 small mb-0">Immersive luxury milestones engineered down to the finest aesthetic accents.</p>
+          </div>
+        </div>
+      </div>
+      <div class="col-lg-4 col-md-10 mx-auto" data-aos="fade-up" data-aos-delay="500">
+        <div class="portfolio-card h-100">
+          <img src="https://images.unsplash.com/photo-1516450360452-9312f5e86fc7?auto=format&fit=crop&q=80&w=600" alt="Artist Curations" class="w-100 object-fit-cover" style="height:400px;">
+          <div class="portfolio-overlay">
+            <h4 class="font-display text-white mb-2 fw-bold fs-5">Artist Curations</h4>
+            <p class="text-white-50 small mb-0">Integrating top-tier industry talent booking, staging, and dynamic live performance.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= PROCESS / VISION ================= -->
+<section id="vision" class="py-5" style="background:var(--card-alt); border-top:1px solid var(--line); border-bottom:1px solid var(--line);">
+  <div class="container my-5">
+    <div class="row align-items-center g-5">
+      <div class="col-lg-6" data-aos="fade-right" data-aos-duration="1000">
+        <div class="position-relative p-3">
+          <div class="position-absolute top-0 start-0 w-100 h-100 border translate-middle-x ms-4 mt-4" style="border-color:rgba(201,162,39,0.4) !important;"></div>
+          <img src="https://images.unsplash.com/photo-1540575467063-178a50c2df87?auto=format&fit=crop&q=80&w=800" alt="Creative Execution" class="img-fluid position-relative z-1" style="box-shadow:0 20px 50px rgba(11,37,69,0.12);">
+        </div>
+      </div>
+      <div class="col-lg-6" data-aos="fade-left" data-aos-duration="1000">
+        <h6 class="text-uppercase tracking-widest mb-3" style="color:var(--maroon); font-family:'Montserrat',sans-serif; font-size:.75rem; font-weight:700;">The Strategy</h6>
+        <h2 class="font-display display-6 mb-4 fw-bold">Flawless Fluid Execution.</h2>
+        <p class="mb-4" style="color:var(--text-muted);">We do not adapt off-the-shelf concepts. Every space we occupy undergoes architectural evaluation, bespoke lighting engineering, and meticulous temporal orchestration.</p>
+        <div class="d-flex align-items-start mb-3">
+          <i class="fa-solid fa-compass-drafting mt-1 me-3 fs-5" style="color:var(--gold);"></i>
+          <div>
+            <h5 class="font-display mb-1 fw-bold fs-6">Tailored Pre-Visualization</h5>
+            <p class="small mb-0" style="color:var(--text-muted);">We present full contextual design matrices prior to venue integration.</p>
+          </div>
+        </div>
+        <div class="d-flex align-items-start mb-3">
+          <i class="fa-solid fa-sliders mt-1 me-3 fs-5" style="color:var(--gold);"></i>
+          <div>
+            <h5 class="font-display mb-1 fw-bold fs-6">Dynamic Execution Matrix</h5>
+            <p class="small mb-0" style="color:var(--text-muted);">Live technical adjustments managed directly by expert producers.</p>
+          </div>
+        </div>
+        <div class="d-flex align-items-start">
+          <i class="fa-solid fa-people-group mt-1 me-3 fs-5" style="color:var(--gold);"></i>
+          <div>
+            <h5 class="font-display mb-1 fw-bold fs-6">Dedicated Production Desk</h5>
+            <p class="small mb-0" style="color:var(--text-muted);">A single point of contact from first brief through final teardown.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= GALLERY ================= -->
+<section id="gallery" class="py-5 my-5">
+  <div class="container">
+    <div class="row mb-5" data-aos="fade-up">
+      <div class="col-md-7">
+        <h6 class="text-uppercase tracking-widest mb-2" style="color:var(--maroon); font-family:'Montserrat',sans-serif; font-size:.75rem; font-weight:700;">On Site</h6>
+        <h2 class="font-display display-5 fw-bold mb-0">Recent Productions</h2>
+      </div>
+    </div>
+    <div class="row g-3">
+      <div class="col-6 col-lg-3" data-aos="zoom-in" data-aos-delay="0">
+        <div class="gallery-tile gt-1"><div class="tile-bg"></div><div class="tile-overlay"><span class="font-display fw-bold small text-white">Annual Investor Summit</span></div></div>
+      </div>
+      <div class="col-6 col-lg-3" data-aos="zoom-in" data-aos-delay="100">
+        <div class="gallery-tile gt-2"><div class="tile-bg"></div><div class="tile-overlay"><span class="font-display fw-bold small text-white">Product Launch Night</span></div></div>
+      </div>
+      <div class="col-6 col-lg-3" data-aos="zoom-in" data-aos-delay="200">
+        <div class="gallery-tile gt-3"><div class="tile-bg"></div><div class="tile-overlay"><span class="font-display fw-bold small text-white">Destination Wedding</span></div></div>
+      </div>
+      <div class="col-6 col-lg-3" data-aos="zoom-in" data-aos-delay="300">
+        <div class="gallery-tile gt-4"><div class="tile-bg"></div><div class="tile-overlay"><span class="font-display fw-bold small text-white">Artist Showcase Gala</span></div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= TESTIMONIALS ================= -->
+<section class="py-5 my-5" style="background:var(--card-alt); border-top:1px solid var(--line); border-bottom:1px solid var(--line);">
+  <div class="container py-3">
+    <div class="row mb-5" data-aos="fade-up">
+      <div class="col-md-7">
+        <h6 class="text-uppercase tracking-widest mb-2" style="color:var(--maroon); font-family:'Montserrat',sans-serif; font-size:.75rem; font-weight:700;">Client Voices</h6>
+        <h2 class="font-display display-5 fw-bold mb-0">Trusted for the moments that can't be redone.</h2>
+      </div>
+    </div>
+    <div class="row g-4">
+      <div class="col-lg-4" data-aos="fade-up" data-aos-delay="0">
+        <div class="testi-card">
+          <div class="quote-mark">&#8220;</div>
+          <p class="small" style="color:var(--text-muted);">AK Events ran our AGM like clockwork — every technical cue landed exactly on time.</p>
+          <div class="who-name mt-4">Nikhil R.</div>
+          <div class="small" style="color:var(--text-muted);">CFO, Manufacturing Group</div>
+        </div>
+      </div>
+      <div class="col-lg-4" data-aos="fade-up" data-aos-delay="150">
+        <div class="testi-card">
+          <div class="quote-mark">&#8220;</div>
+          <p class="small" style="color:var(--text-muted);">Our wedding felt architected, not assembled. Every detail was intentional.</p>
+          <div class="who-name mt-4">Priya &amp; Arjun</div>
+          <div class="small" style="color:var(--text-muted);">Private Client</div>
+        </div>
+      </div>
+      <div class="col-lg-4" data-aos="fade-up" data-aos-delay="300">
+        <div class="testi-card">
+          <div class="quote-mark">&#8220;</div>
+          <p class="small" style="color:var(--text-muted);">The pre-visualization deck alone sold us — we knew exactly what we were getting.</p>
+          <div class="who-name mt-4">Sana K.</div>
+          <div class="small" style="color:var(--text-muted);">Brand Director</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= CONTACT / RESERVE ================= -->
+<section id="reserve" class="py-5 my-5">
+  <div class="container py-4">
+    <div class="row justify-content-center">
+      <div class="col-xl-8 col-lg-10 p-5 border shadow-lg" style="background:var(--card); border-color:var(--line) !important;" data-aos="fade-up">
+        <div class="text-center mb-5">
+          <h2 class="font-display display-6 mb-2 fw-bold">Initiate Blueprinting</h2>
+          <p class="small text-uppercase tracking-widest" style="color:var(--text-muted);">Connect with our administrative production desk</p>
+        </div>
+        <form onsubmit="event.preventDefault(); alert('Consultation Logged.');" class="row g-4">
+          <div class="col-md-6">
+            <input type="text" class="form-control form-luxury-input" placeholder="FULL NAME" required>
+          </div>
+          <div class="col-md-6">
+            <input type="email" class="form-control form-luxury-input" placeholder="EMAIL ADDRESS" required>
+          </div>
+          <div class="col-12">
+            <select class="form-select form-luxury-input" style="color:var(--text-muted);">
+              <option selected disabled>DESIRED EXECUTION FRAMEWORK...</option>
+              <option>Corporate Summit / Launch</option>
+              <option>Luxury Thematic Showcase</option>
+              <option>Live Entertainment Blueprinting</option>
+              <option>Private Celebration</option>
+            </select>
+          </div>
+          <div class="col-12">
+            <textarea class="form-control form-luxury-input" rows="4" placeholder="BRIEF CONCEPT PARAMETERS..."></textarea>
+          </div>
+          <div class="col-12 text-center mt-5">
+            <button type="submit" class="btn-luxury px-5">Submit Manifest</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= FOOTER ================= -->
+<footer class="site-footer pt-5 pb-4">
+  <div class="container">
+    <div class="row g-4 pb-4">
+      <div class="col-md-4">
+        <a href="#home" class="footer-brand text-decoration-none fs-5 d-inline-flex align-items-center gap-2 mb-3">
+          <span class="ring" style="width:26px;height:26px;border-radius:50%;border:2px solid var(--gold);display:inline-block;position:relative;"><span style="content:'';position:absolute;inset:5px;border-radius:50%;background:var(--gold);"></span></span>
+          AK <span style="color:var(--gold);">EVENTS</span>
+        </a>
+        <p class="small" style="max-width:280px; color:rgba(255,255,255,0.55);">Premium event engineering under Sab Ka Entertainment — corporate galas, bespoke celebrations, and large-scale live productions.</p>
+        <div class="d-flex gap-2 mt-4">
+          <a href="#" class="social-circle" aria-label="Instagram"><i class="fa-brands fa-instagram"></i></a>
+          <a href="#" class="social-circle" aria-label="LinkedIn"><i class="fa-brands fa-linkedin-in"></i></a>
+          <a href="#" class="social-circle" aria-label="Vimeo"><i class="fa-brands fa-vimeo-v"></i></a>
+        </div>
+      </div>
+
+      <div class="col-6 col-md-2 offset-md-1">
+        <div class="footer-col-title mb-3">Explore</div>
+        <a href="#home" class="footer-link">Home</a>
+        <a href="#curation" class="footer-link">Services</a>
+        <a href="#vision" class="footer-link">Process</a>
+        <a href="#gallery" class="footer-link">Gallery</a>
+      </div>
+
+      <div class="col-6 col-md-2">
+        <div class="footer-col-title mb-3">The Group</div>
+        <a href="sab-global-corp.html" class="footer-link">SAB Global Corp</a>
+        <a href="#" class="footer-link">Sab Ka Entertainment</a>
+        <a href="soortaal-nation.html" class="footer-link">SoorTaal Nation</a>
+      </div>
+
+      <div class="col-md-3">
+        <div class="footer-col-title mb-3">Contact</div>
+        <a href="mailto:hello@akevents.com" class="footer-link">hello@akevents.com</a>
+        <span class="footer-link mb-0">Nagpur, Maharashtra, India</span>
+        <a href="#reserve" class="btn-luxury btn-luxury-sm mt-2" style="border-color:var(--gold); color:var(--gold);">Book Consultation</a>
+      </div>
+    </div>
+
+    <div class="border-top pt-4 d-flex flex-wrap justify-content-between gap-3 footer-bottom">
+      <p class="small mb-0" style="color:rgba(255,255,255,0.45);">&copy; <span id="year"></span> AK Events. Engineered for Premium Spatial Impact.</p>
+      <p class="small mb-0" style="color:rgba(255,255,255,0.45);">A Sab Ka Entertainment Venture · SAB Global Corp</p>
+    </div>
+  </div>
+</footer>
+
+<!-- Bootstrap 5 Bundle JS -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+<!-- AOS Library -->
+<script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+<script>
+  AOS.init({ once:true, mirror:false, duration:800 });
+
+  document.getElementById('year').textContent = new Date().getFullYear();
+
+  // navbar scroll state
+  const nav = document.getElementById('mainNav');
+  const progressBar = document.getElementById('progressBar');
+  window.addEventListener('scroll', () => {
+    nav.classList.toggle('scrolled', window.scrollY > 30);
+    const h = document.documentElement;
+    const pct = h.scrollTop / (h.scrollHeight - h.clientHeight) * 100;
+    progressBar.style.width = pct + '%';
+  });
+
+  // animated stat counters
+  const counterIO = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        const el = entry.target;
+        const target = parseInt(el.getAttribute('data-count'), 10);
+        const duration = 1400;
+        const start = performance.now();
+        function tick(now){
+          const p = Math.min((now - start) / duration, 1);
+          const eased = 1 - Math.pow(1 - p, 3);
+          el.textContent = Math.floor(eased * target);
+          if (p < 1) requestAnimationFrame(tick); else el.textContent = target;
+        }
+        requestAnimationFrame(tick);
+        counterIO.unobserve(el);
+      }
+    });
+  }, { threshold: 0.6 });
+  document.querySelectorAll('[data-count]').forEach(el => counterIO.observe(el));
+
+  // close mobile navbar on link click
+  document.querySelectorAll('#navLuxury .nav-link, #navLuxury .btn-luxury').forEach(link => {
+    link.addEventListener('click', () => {
+      const collapse = document.getElementById('navLuxury');
+      if (collapse.classList.contains('show')) {
+        bootstrap.Collapse.getOrCreateInstance(collapse).hide();
+      }
+    });
+  });
+</script>
+</body>
+</html>

@@ -1,0 +1,351 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Snacks Landing Page</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+       :root {
+            --brand-blue: #2a58ad;
+            --brand-gold: #d4ac2b;
+            --text-dark: #1a1a1a;
+            --text-gray: #666;
+            --bg-light: #f9fbfd;
+            --white: #ffffff;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Poppins', sans-serif; }
+        body { background-color: var(--white); color: var(--text-dark); line-height: 1.6; }
+        .container { max-width: 1200px; margin: 0 auto; padding: 0 20px; }
+
+       /* --- Updated Header --- */
+        .main-header {
+            background: var(--white);
+            padding: 15px 0;
+            border-bottom: 1px solid #f0f0f0;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .nav-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo-area { display: flex; align-items: center; gap: 10px; text-decoration: none; }
+        .logo-box { 
+            width: 45px; height: 45px; background: var(--brand-blue); 
+            border-radius: 8px; display: flex; align-items: center; 
+            justify-content: center; color: white; font-weight: 800; font-size: 22px; 
+        }
+        .logo-text h1 { font-size: 1.2rem; font-weight: 800; color: var(--text-dark); margin: 0; line-height: 1; }
+        .logo-text span { font-size: 0.7rem; color: var(--text-gray); text-transform: uppercase; letter-spacing: 0.5px; }
+
+        .nav-links { display: flex; list-style: none; gap: 25px; align-items: center; }
+        .nav-links a { text-decoration: none; color: var(--text-dark); font-size: 0.95rem; font-weight: 500; transition: 0.3s; }
+        .nav-links a:hover, .nav-links a.active { color: var(--brand-blue); }
+
+        /* Dropdown Logic */
+        .dropdown { position: relative; }
+        .dropdown-content {
+            display: none; position: absolute; background: var(--white);
+            min-width: 180px; box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+            border-radius: 6px; top: 100%; padding: 10px 0; z-index: 10;
+        }
+        .dropdown-content a { padding: 10px 20px; display: block; font-size: 0.9rem; }
+        .dropdown:hover .dropdown-content { display: block; }
+
+        .nav-right { display: flex; align-items: center; gap: 20px; }
+        .btn-contact { 
+            background: var(--brand-blue); color: white !important; 
+            padding: 10px 22px; border-radius: 25px; font-size: 0.85rem; 
+            text-decoration: none; transition: 0.3s;
+        }
+        .nav-icons { display: flex; gap: 15px; font-size: 1.1rem; color: var(--text-dark); }
+        .nav-icons i { cursor: pointer; transition: 0.2s; }
+        .nav-icons i:hover { color: var(--brand-blue); }
+
+        /* Hero Section */
+        .hero-title { font-size: 2.5rem; font-weight: 700; margin-top: 50px; }
+        .hero-box { border: 4px solid #00aaff; padding: 10px; border-radius: 4px; margin: 40px 0; }
+        .hero-box img { width: 100%; height: 100%; display: block; }
+        
+        /* Product Grid */
+        .product-card { border: none; text-align: center; transition: transform 0.3s; margin-bottom: 30px; }
+        .product-card:hover { transform: translateY(-5px); }
+        .product-image-wrapper { background: #f9f9f9; border-radius: 8px; padding: 20px; margin-bottom: 15px; }
+        .product-image-wrapper img { max-width: 100%; height: 200px; object-fit: contain; }
+        .product-title { font-size: 1rem; font-weight: 600; margin-bottom: 5px; }
+        .product-price { color: #d4af37; font-weight: 700; }
+        .shop-btn { background-color: #d4af37; color: white; border: none; padding: 10px 30px; border-radius: 5px; font-weight: 600; }
+
+        /* Why Choose Us Section */
+        .features-section { padding: 80px 0; background-color: #fff; }
+        .feature-card { background: #fffcf9; border-radius: 12px; padding: 30px; height: 100%; border: 1px solid #fff5e6; }
+        .feature-icon { font-size: 2rem; margin-bottom: 15px; }
+
+        /* Footer */
+        
+     
+      .footer{
+background:#222;
+color:#fff;
+padding:80px 8% 30px;
+}
+
+.footer-container{
+display:grid;
+grid-template-columns:repeat(4,1fr);
+gap:40px;
+max-width:1200px;
+margin:auto;
+}
+
+.footer-col h3{
+font-size:20px;
+margin-bottom:20px;
+position:relative;
+}
+
+.footer-col h3::after{
+content:"";
+width:40px;
+height:2px;
+background: #fff;
+position:absolute;
+left:0;
+bottom:-8px;
+}
+
+.footer-col ul{
+list-style:none;
+}
+
+.footer-col ul li{
+margin:10px 0;
+}
+
+.footer-col ul li a{
+text-decoration:none;
+color:#ccc;
+font-size:14px;
+}
+
+.footer-col ul li a:hover{
+color:#fff;
+}
+
+.contact p{
+color:#ccc;
+font-size:14px;
+margin:6px 0;
+}
+    </style>
+</head>
+<body>
+
+     <header class="main-header">
+        <div class="container nav-container">
+            <a href="#" class="logo-area">
+                <div class="logo-box">M</div>
+                <div class="logo-text">
+                    <h1>MELLONA FOODS</h1>
+                    <span>Organic Origins. Honest Flavors.</span>
+                </div>
+            </a>
+
+            <nav>
+                <ul class="nav-links">
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="about.html">About Us</a></li>
+                    <li class="dropdown">
+                        <a href="#">Our Products <i class="fa-solid fa-chevron-down" style="font-size: 10px;"></i></a>
+                        <div class="dropdown-content">
+                            <a href="organic food.html">Organic Food</a>
+                            <a href="millets.html">Millets</a>
+                            <a href="snack.html">Snacks</a>
+                            <a href="oil.html">Edible oil</a>
+                            <a href="spice.html">Spices</a>
+                        </div>
+						
+                    </li>
+					 <li class="dropdown">
+                        <a href="#">Our Services <i class="fa-solid fa-chevron-down" style="font-size: 10px;"></i></a>
+                        <div class="dropdown-content">
+                            <a href="service.html">Logistics</a>
+                            <a href="certificate.html">certification</a>
+                            <a href="source.html">Sourcing</a>
+                           
+                        </div>
+						
+                    </li>
+                    <li><a href="blog.html">Blogs</a></li>
+                    <li><a href="news.html" >News</a></li>
+                </ul>
+            </nav>
+
+            <div class="nav-right">
+                <a href="contactus.html" class="btn-contact">Contact us</a>
+                <div class="nav-icons">
+                    <i class="fa-solid fa-magnifying-glass"></i>
+                    <i class="fa-regular fa-user"></i>
+                    <i class="fa-solid fa-basket-shopping"></i>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <section class="container text-center">
+        <h1 class="hero-title">Snacks</h1>
+        <p class="text-muted">Discover the perfect balance of taste and nutrition with every bite snacks that love you back!</p>
+        
+
+        
+        <div class="hero-box">
+            <img src="Snacks.jpg" alt="Hero Image">
+        </div>
+        
+        <h2 class="fw-bold mb-4">Smart Snacking Begins With Clean Ingredients<br>and real flavors.</h2>
+        <button class="shop-btn mb-5">Shop All</button>
+    </section>
+
+    <section class="container py-5">
+        <div class="row g-4" id="product-grid">
+            </div>
+    </section>
+
+    <section class="features-section">
+        <div class="container text-center">
+            <h2 class="fw-bold mb-5">Why Our Snacks Are The Smarter, Healthier Choice?</h2>
+            <div class="row g-4 justify-content-center">
+                <div class="col-md-4">
+                    <div class="feature-card">
+                        <div class="feature-icon">🥜</div>
+                        <h5>Balanced Nutrition in Every Bite</h5>
+                        <p class="small text-muted">Our snacks are designed to provide the perfect mix of protein, fiber, and healthy fats supporting sustained energy and overall wellness.</p>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="feature-card">
+                        <div class="feature-icon">🌱</div>
+                        <h5>Real Ingredients, Real Goodness</h5>
+                        <p class="small text-muted">We skip the preservatives, artificial flavors, and fillers only real, natural ingredients go into every pack.</p>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="feature-card">
+                        <div class="feature-icon">😋</div>
+                        <h5>Low on Guilt, Big on Flavor</h5>
+                        <p class="small text-muted">Enjoy bold, satisfying taste without the heaviness ideal for mindful eaters and flavor lovers alike.</p>
+                    </div>
+                </div>
+                 <div class="col-md-4">
+                    <div class="feature-card">
+                        <div class="feature-icon">🕒</div>
+                        <h5>Convenient for Busy Lifestyles</h5>
+                        <p class="small text-muted">Whether it’s a midday break, travel, or post workout, our snacks are grab and go ready for wherever life takes you.</p>
+                    </div>
+                </div>
+                 <div class="col-md-4">
+                    <div class="feature-card">
+                        <div class="feature-icon">♻️</div>
+                        <h5>Sustainable & Responsibly Sourced</h5>
+                        <p class="small text-muted">We care about what goes into your snack and how it gets to you sourcing responsibly to care for people and the planet.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+   <footer class="footer">
+
+<div class="footer-container">
+
+    <div class="footer-col">
+        <h3>Information</h3>
+        <ul>
+            <li><a href="#">Home</a></li>
+            <li><a href="#">About us</a></li>
+            <li><a href="#">Our Products</a></li>
+            <li><a href="#">Our Services</a></li>
+            <li><a href="#">Blogs</a></li>
+            <li><a href="#">News</a></li>
+            <li><a href="#">Contact Us</a></li>
+            <li><a href="#">Login</a></li>
+        </ul>
+    </div>
+
+    <div class="footer-col">
+        <h3>Products</h3>
+        <ul>
+            <li><a href="#">Millets</a></li>
+            <li><a href="#">Organic foods</a></li>
+            <li><a href="#">Snacks</a></li>
+        </ul>
+    </div>
+
+    <div class="footer-col">
+        <h3>Branches</h3>
+        <ul>
+            <li><a href="#">Mumbai</a></li>
+        </ul>
+    </div>
+
+    <div class="footer-col contact">
+        <h3>Stay Connected</h3>
+
+        <p><strong>Registered address:</strong></p>
+        <p>Andheri , 9th Floor, Office 909</p>
+
+        <p><strong>Phone Number:</strong></p>
+        <p>+91 915 200 1234</p>
+
+        <p><strong>Email-Id</strong></p>
+        <p>sales@athena-logistics.com</p>
+
+        <p>Mon - Fri / 09:00 AM - 8:00 PM</p>
+    </div>
+
+</div>
+
+</footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    
+    <script>
+        const products = [
+            { name: "Potato Chips", price: "$4.99", color: "#fdf2d0" },
+            { name: "Banana Chips", price: "$5.49", color: "#fdf2d0" },
+            { name: "Spicy Mix", price: "$6.99", color: "#ffd6d6" },
+            { name: "Classic Salted", price: "$3.99", color: "#ffd6d6" },
+            { name: "Tangy Tomato", price: "$4.99", color: "#e8f5e9" },
+            { name: "Sour Cream", price: "$5.99", color: "#e8f5e9" },
+            { name: "Peri Peri", price: "$6.49", color: "#fdf2d0" },
+            { name: "Corn Puffs", price: "$3.49", color: "#fdf2d0" }
+        ];
+
+        const grid = document.getElementById('product-grid');
+        
+        // Loop to create 12 items (replicating the image grid)
+        for (let i = 0; i < 12; i++) {
+            const p = products[i % products.length];
+            grid.innerHTML += `
+                <div class="col-6 col-md-4 col-lg-3">
+                    <div class="product-card">
+                        <div class="product-image-wrapper">
+                            <img src="https://via.placeholder.com/150x200?text=Product" alt="${p.name}">
+                        </div>
+                        <div class="product-title">${p.name}</div>
+                        <div class="product-price">${p.price}</div>
+                    </div>
+                </div>
+            `;
+        }
+    </script>
+</body>
+</html>

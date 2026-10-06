@@ -1,0 +1,447 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About Us | Mellona Foods</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --brand-blue: #2a58ad;
+            --brand-gold: #d4ac2b;
+            --text-dark: #1a1a1a;
+            --text-gray: #666;
+            --bg-light: #f9fbfd;
+            --white: #ffffff;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Poppins', sans-serif; }
+        body { background-color: var(--white); color: var(--text-dark); line-height: 1.6; }
+        .container { max-width: 1200px; margin: 0 auto; padding: 0 20px; }
+
+        /* --- Header --- */
+        .main-header {
+            background: var(--white);
+            padding: 15px 0;
+            border-bottom: 1px solid #f0f0f0;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .nav-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo-area { display: flex; align-items: center; gap: 10px; text-decoration: none; }
+        .logo-box { 
+            width: 45px; height: 45px; background: var(--brand-blue); 
+            border-radius: 8px; display: flex; align-items: center; 
+            justify-content: center; color: white; font-weight: 800; font-size: 22px; 
+        }
+        .logo-text h1 { font-size: 1.2rem; font-weight: 800; color: var(--text-dark); margin: 0; line-height: 1; }
+        .logo-text span { font-size: 0.7rem; color: var(--text-gray); text-transform: uppercase; letter-spacing: 0.5px; }
+
+        .nav-links { display: flex; list-style: none; gap: 25px; align-items: center; }
+        .nav-links a { text-decoration: none; color: var(--text-dark); font-size: 0.95rem; font-weight: 500; transition: 0.3s; }
+        .nav-links a:hover, .nav-links a.active { color: var(--brand-blue); }
+
+        .dropdown { position: relative; }
+        .dropdown-content {
+            display: none; position: absolute; background: var(--white);
+            min-width: 180px; box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+            border-radius: 6px; top: 100%; padding: 10px 0; z-index: 10;
+        }
+        .dropdown-content a { padding: 10px 20px; display: block; font-size: 0.9rem; }
+        .dropdown:hover .dropdown-content { display: block; }
+
+        .nav-right { display: flex; align-items: center; gap: 20px; }
+        .btn-contact { 
+            background: var(--brand-blue); color: white !important; 
+            padding: 10px 22px; border-radius: 25px; font-size: 0.85rem; 
+            text-decoration: none; transition: 0.3s;
+        }
+        .nav-icons { display: flex; gap: 15px; font-size: 1.1rem; color: var(--text-dark); }
+        .nav-icons i { cursor: pointer; transition: 0.2s; }
+        .nav-icons i:hover { color: var(--brand-blue); }
+
+        /* --- Hero --- */
+        .about-hero { position: relative; height: 350px; background: #eee; display: flex; align-items: center; overflow: hidden; }
+        .hero-img-bg { position: absolute; right: 0; width: 60%; height: 100%; background: url('https://images.unsplash.com/photo-1512621776951-a57141f2eefd?auto=format&fit=crop&q=80&w=2070') center/cover; clip-path: polygon(15% 0, 100% 0, 100% 100%, 0% 100%); }
+        .hero-overlay-content { position: relative; z-index: 5; background: rgba(230, 233, 240, 0.9); padding: 60px 100px 60px 40px; clip-path: polygon(0 0, 90% 0, 100% 100%, 0% 100%); }
+        .hero-overlay-content h1 { font-size: 40px; font-weight: 700; margin-bottom: 5px; }
+        .hero-overlay-content p { color: var(--text-gray); font-size: 14px; letter-spacing: 1px; }
+
+        /* --- Core Organic Content Section --- */
+        .mellona-section {
+            padding: 15px 0;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .mellona-section .container {
+            max-width: 1200px; /* Narrower for the specific layout in image */
+        }
+
+        .section-header h2 {
+            text-align: center;
+            font-size: 28px;
+            font-weight: 700;
+            margin-bottom: 40px;
+            color: var(--text-dark);
+            line-height: 1.3;
+        }
+
+        .hero-image-wrapper {
+            width: 100%;
+            margin-bottom: 40px;
+        }
+
+        .hero-image-wrapper img {
+             height: 350px;
+             width: 1100px;
+            border-radius: 4px;
+            display: flex;
+        }
+
+        .content-body p {
+            font-size: 15px;
+            color: #333;
+            margin-bottom: 22px;
+            text-align: justify;
+            line-height: 1.6;
+        }
+
+        .content-body .tagline {
+            font-size: 18px;
+            font-weight: 700;
+            margin: 35px 0 20px 0;
+            color: var(--text-dark);
+        }
+
+        .cta-button {
+            display: inline-block;
+            background-color: var(--brand-gold);
+            color: white !important;
+            padding: 12px 28px;
+            border-radius: 4px;
+            text-decoration: none;
+            font-size: 14px;
+            font-weight: 600;
+            transition: 0.3s;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+        }
+
+        .cta-button:hover {
+            opacity: 0.9;
+            transform: translateY(-2px);
+        }
+
+        /* Decorative branch in corner */
+        .decorative-branch {
+            position: absolute;
+            bottom: -50px;
+            right: -20px;
+            width: 300px;
+            height: 300px;
+            background-image: url('https://www.pngarts.com/files/3/Dill-PNG-High-Quality-Image.png');
+            background-size: contain;
+            background-repeat: no-repeat;
+            opacity: 0.4;
+            z-index: -1;
+            pointer-events: none;
+        }
+
+        /* --- Footer --- */
+       .footer { background: #3b3b3b; padding: 70px 8% 30px; color: #fff; }
+        .footer-container { display: grid; grid-template-columns: repeat(4, 1fr); gap: 60px; }
+        .footer-col h3 { font-size: 20px; margin-bottom: 25px; position: relative; }
+        .footer-col h3::after { content: ""; width: 40px; height: 2px; background: #aaa; position: absolute; left: 0; bottom: -8px; }
+        .footer-col ul { list-style: none; }
+        .footer-col ul li { margin: 12px 0; }
+        .footer-col ul li a { text-decoration: none; color: #ddd; font-size: 15px; transition: 0.3s; }
+        .footer-col ul li a:hover { color: #fff; padding-left: 5px; }
+        .contact p { margin: 10px 0; color: #ddd; font-size: 14px; }
+        
+        @media (max-width: 768px) {
+            .footer-container, .welcome-grid, .mv-grid, .values-staggered-grid { grid-template-columns: 1fr; display: block; }
+            .mv-item, .value-box { margin-bottom: 40px; }
+        }
+		:root {
+  --bg-color: #fffafb; /* Slight off-white/pinkish tint from image */
+  --text-main: #1a1a1a;
+  --text-muted: #555;
+  --card-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+}
+
+.features-section {
+  padding: 60px 20px;
+  background-color: #ffffff;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.section-title {
+  font-size: 2rem;
+  font-weight: 800;
+  margin-bottom: 40px;
+  color: var(--text-main);
+}
+
+.features-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 25px;
+  justify-content: center;
+}
+
+.feature-card {
+  background-color: var(--bg-color);
+  padding: 30px;
+  border-radius: 12px;
+  box-shadow: var(--card-shadow);
+  transition: transform 0.3s ease;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  border: 1px solid #f0f0f0;
+}
+
+.feature-card:hover {
+  transform: translateY(-5px);
+}
+
+.feature-card .icon {
+  font-size: 2.5rem;
+  margin-bottom: 20px;
+}
+
+.feature-card h3 {
+  font-size: 1.1rem;
+  font-weight: 700;
+  margin-bottom: 15px;
+  color: var(--text-main);
+  line-height: 1.3;
+}
+
+.feature-card p {
+  font-size: 0.95rem;
+  line-height: 1.6;
+  color: var(--text-muted);
+  margin: 0;
+}
+
+/* Adjustments for the bottom two cards to center them if desired */
+@media (min-width: 992px) {
+  .features-grid > :nth-last-child(-n+2) {
+    /* Optional: styles to specifically target the last two items */
+  }
+}
+    </style>
+</head>
+<body>
+
+   <header class="main-header">
+        <div class="container nav-container">
+            <a href="#" class="logo-area">
+                <div class="logo-box">M</div>
+                <div class="logo-text">
+                    <h1>MELLONA FOODS</h1>
+                    <span>Organic Origins. Honest Flavors.</span>
+                </div>
+            </a>
+
+            <nav>
+                <ul class="nav-links">
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="about.html">About Us</a></li>
+                    <li class="dropdown">
+                        <a href="#">Our Products <i class="fa-solid fa-chevron-down" style="font-size: 10px;"></i></a>
+                        <div class="dropdown-content">
+                            <a href="organic food.html">Organic Food</a>
+                            <a href="millets.html">Millets</a>
+                            <a href="snack.html">Snacks</a>
+                            <a href="oil.html">Edible oil</a>
+                            <a href="spice.html">Spices</a>
+                        </div>
+						
+                    </li>
+					 <li class="dropdown">
+                        <a href="#">Our Services <i class="fa-solid fa-chevron-down" style="font-size: 10px;"></i></a>
+                        <div class="dropdown-content">
+                            <a href="service.html">Logistics</a>
+                            <a href="certificate.html">certification</a>
+                            <a href="source.html">Sourcing</a>
+                           
+                        </div>
+						
+                    </li>
+                    <li><a href="blog.html">Blogs</a></li>
+                    <li><a href="news.html" >News</a></li>
+                </ul>
+            </nav>
+
+            <div class="nav-right">
+                <a href="contactus.html" class="btn-contact">Contact us</a>
+                <div class="nav-icons">
+                    <i class="fa-solid fa-magnifying-glass"></i>
+                    <i class="fa-regular fa-user"></i>
+                    <i class="fa-solid fa-basket-shopping"></i>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <section class="about-hero">
+        <div class="hero-img-bg"></div>
+        <div class="container">
+            <div class="hero-overlay-content">
+                <h1>Organic Products</h1>
+                <p>Choose a healthier lifestyle with our organic products feel the natural difference in every bite.</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="mellona-section">
+        <div class="container">
+            <header class="section-header">
+                <h2>Mellona Foods Promotes A Healthy Lifestyle<br> With Its Premium Range Of 100% Organic Products.</h2>
+            </header>
+
+            <div class="hero-image-wrapper">
+                <img src="Organic products.jpeg" alt="Organic produce display">
+            </div>
+
+            <article class="content-body">
+                <p>Mellona Foods stands among the leading suppliers and exporters of high-quality organic food products. India's climate offers ideal conditions for cultivating organic produce, and without the use of harmful chemicals or pesticides, our farmers grow food that is naturally healthier and more nutritious.</p>
+                
+                <p>With increasing awareness of health and wellness, consumers today are making conscious choices opting for organic products in their daily diets. The nutrient-rich soil and traditional farming methods used in organic agriculture contribute to products that support a stronger immune system boosting it by up to 50%.</p>
+                
+                <p>At Mellona Foods, we understand the importance of sourcing the right organic products, rigorously testing their quality, and packaging them carefully to preserve their natural flavor and freshness. Your health is our priority, and we are committed to ensuring that every product you receive is pure, safe, and free from adulteration.</p>
+                
+                <p>Organic foods are not only better for your well-being but also for the planet, as their cultivation avoids synthetic pesticides and fertilizers. Our wide range of organic offerings includes millets, edible oils, cashews, pulses, and healthy snacks each chosen to promote a wholesome lifestyle.</p>
+                
+                <h3 class="tagline">Choose Mellona Foods Because Clean Eating Begins With Trust.</h3>
+                
+                <a href="#" class="cta-button">Request a callback</a>
+            </article>
+        </div>
+        <div class="decorative-branch"></div>
+    </section>
+
+
+    <!--feature-->
+	<section class="features-section">
+  <h2 class="section-title">Essential Features Of Our Organic Food Line.</h2>
+  
+  <div class="features-grid">
+    <div class="feature-card">
+      <div class="icon">🌿</div>
+      <h3>100% Organic & Chemical-Free</h3>
+      <p>All our products are grown without synthetic fertilizers, pesticides, or GMOs, ensuring purity and safety.</p>
+    </div>
+
+    <div class="feature-card">
+      <div class="icon">🥗</div>
+      <h3>Nutrient-Rich & Wholesome</h3>
+      <p>Grown in nutrient-dense soil using traditional methods, our foods retain higher levels of essential vitamins and minerals.</p>
+    </div>
+
+    <div class="feature-card">
+      <div class="icon">🌍</div>
+      <h3>Sustainably Sourced</h3>
+      <p>We partner with farmers who use eco-friendly practices, promoting soil health and reducing environmental impact.</p>
+    </div>
+
+    <div class="feature-card">
+      <div class="icon">✅</div>
+      <h3>Expert Quality Control</h3>
+      <p>Every batch is rigorously tested by our team to meet the highest standards of hygiene, taste, and nutritional value.</p>
+    </div>
+
+    <div class="feature-card">
+      <div class="icon">📦</div>
+      <h3>Freshness Preserved in Packaging</h3>
+      <p>Our innovative packaging techniques keep the original taste, aroma, and freshness intact until it reaches you.</p>
+    </div>
+
+    <div class="feature-card">
+      <div class="icon">🛡️</div>
+      <h3>Boosts Immunity Naturally</h3>
+      <p>Regular consumption of our organic foods supports a stronger immune system and overall well-being.</p>
+    </div>
+
+    <div class="feature-card">
+      <div class="icon">🧺</div>
+      <h3>Wide & Diverse Product Range</h3>
+      <p>From millets and pulses to snacks, oils, and dry fruits we cater to all your organic food needs in one place.</p>
+    </div>
+
+    <div class="feature-card">
+      <div class="icon">🤝</div>
+      <h3>Ethically Produced & Fair Trade Aligned</h3>
+      <p>We support local communities and ensure fair wages for farmers, promoting ethical sourcing and social responsibility.</p>
+    </div>
+  </div>
+</section>
+
+  <footer class="footer">
+
+<div class="footer-container">
+
+    <div class="footer-col">
+        <h3>Information</h3>
+        <ul>
+            <li><a href="#">Home</a></li>
+            <li><a href="#">About us</a></li>
+            <li><a href="#">Our Products</a></li>
+            <li><a href="#">Our Services</a></li>
+            <li><a href="#">Blogs</a></li>
+            <li><a href="#">News</a></li>
+            <li><a href="#">Contact Us</a></li>
+            <li><a href="#">Login</a></li>
+        </ul>
+    </div>
+
+    <div class="footer-col">
+        <h3>Products</h3>
+        <ul>
+            <li><a href="#">Millets</a></li>
+            <li><a href="#">Organic foods</a></li>
+            <li><a href="#">Snacks</a></li>
+        </ul>
+    </div>
+
+    <div class="footer-col">
+        <h3>Branches</h3>
+        <ul>
+            <li><a href="#">Mumbai</a></li>
+        </ul>
+    </div>
+
+    <div class="footer-col contact">
+        <h3>Stay Connected</h3>
+
+        <p><strong>Registered address:</strong></p>
+        <p>Andheri , 9th Floor, Office 909</p>
+
+        <p><strong>Phone Number:</strong></p>
+        <p>+91 915 200 1234</p>
+
+        <p><strong>Email-Id</strong></p>
+        <p>sales@athena-logistics.com</p>
+
+        <p>Mon - Fri / 09:00 AM - 8:00 PM</p>
+    </div>
+
+</div>
+
+</footer>
+
+    
+</body>
+</html>

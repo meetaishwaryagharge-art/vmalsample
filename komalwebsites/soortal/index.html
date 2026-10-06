@@ -1,0 +1,1099 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>SoorTaal Nation™ | Unite · Empower · Inspire · Heal</title>
+
+  <!-- Bootstrap 5.3 -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"/>
+  <!-- Font Awesome 6 -->
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" rel="stylesheet"/>
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;700;900&family=Poppins:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet"/>
+
+  <style>
+    /* ───────────── TOKENS (Extracted from soortal.jpeg) ───────────── */
+    :root {
+      --dark:      #060b14;
+      --dark-2:    #0c1220;
+      --dark-3:    #121b2d;
+      --gold:      #dfb23f; /* Warm metallic gold from lettering */
+      --gold-lt:   #fcd269; /* Bright reflection gold */
+      --orange:    #e6581b; /* Vibrant saffron/orange stroke */
+      --green:     #09863f; /* Deep Indian green stroke & icon */
+      --blue:      #0b3b7b; /* Rich royal navy from "Soor" lettering */
+      --blue-lt:   #00aeef; /* Light accent blue */
+      --red:       #b31219; /* Deep crimson from "Taal" lettering */
+      --purple:    #5c2473; /* Violet from "Heal" icon */
+      --text:      #f1f5f9;
+      --muted:     #94a3b8;
+      --border:    rgba(255,255,255,0.08);
+      --glass:     rgba(255,255,255,0.04);
+      --radius:    18px;
+      --shadow-gold: 0 8px 32px rgba(223,178,63,0.18);
+      
+      /* Vibrant Multi-Color Brand Gradients */
+      --gradient-brand: linear-gradient(90deg, var(--orange), var(--gold), var(--blue-lt), var(--red), var(--green));
+      --gradient-text: linear-gradient(135deg, var(--orange) 10%, var(--gold-lt) 40%, var(--blue-lt) 70%, var(--red) 100%);
+    }
+
+    /* ───────────── BASE ───────────── */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: 'Poppins', sans-serif;
+      background: var(--dark);
+      color: var(--text);
+      overflow-x: hidden;
+      font-size: 1rem;
+      line-height: 1.7;
+    }
+    h1,h2,h3,h4,.brand-font { font-family: 'Cinzel', serif; letter-spacing: .5px; }
+    a { text-decoration: none; }
+
+    ::-webkit-scrollbar { width: 6px; }
+    ::-webkit-scrollbar-track { background: var(--dark); }
+    ::-webkit-scrollbar-thumb { background: var(--gradient-brand); border-radius: 4px; }
+
+    /* ───────────── UTILITIES ───────────── */
+    .gold  { color: var(--gold); }
+    .text-muted-custom { color: var(--muted); }
+    .section-pad { padding: 96px 0; }
+    .section-pad-sm { padding: 64px 0; }
+    
+    .color-gradient-text {
+      background: var(--gradient-text);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      display: inline-block;
+    }
+
+    /* ───────────── GRADIENT RULE ───────────── */
+    .rule-gradient {
+      display: block;
+      width: 120px; height: 4px;
+      background: var(--gradient-brand);
+      border-radius: 4px;
+      margin: 14px 0 0;
+    }
+    .rule-gradient.mx { margin: 14px auto 0; }
+
+    /* ───────────── BUTTONS ───────────── */
+    .btn-gold {
+      background: linear-gradient(135deg, var(--orange) 0%, var(--gold) 50%, var(--green) 100%);
+      color: #fff;
+      font-weight: 700;
+      font-size: .9rem;
+      padding: 13px 32px;
+      border-radius: 50px;
+      border: none;
+      transition: transform .25s, box-shadow .25s;
+      box-shadow: 0 8px 24px rgba(230, 88, 27, 0.25);
+      letter-spacing: .4px;
+    }
+    .btn-gold:hover { transform: translateY(-3px); box-shadow: 0 12px 36px rgba(223,178,63,.45); color: #fff; }
+
+    .btn-outline-gold {
+      background: transparent;
+      color: #fff;
+      font-weight: 600;
+      font-size: .9rem;
+      padding: 12px 30px;
+      border-radius: 50px;
+      border: 2px solid var(--gold);
+      position: relative;
+      background-clip: padding-box;
+      transition: transform .25s, background .25s;
+    }
+    .btn-outline-gold:hover {
+      background: var(--gradient-brand);
+      border-color: transparent;
+      transform: translateY(-3px);
+      color: #fff;
+    }
+
+    .btn-ghost {
+      background: var(--glass);
+      color: var(--text);
+      font-weight: 600;
+      font-size: .9rem;
+      padding: 12px 30px;
+      border-radius: 50px;
+      border: 1px solid var(--border);
+      transition: background .25s, border-color .25s, transform .25s;
+    }
+    .btn-ghost:hover { background: rgba(255,255,255,.08); border-color: rgba(0, 174, 239, 0.4); transform: translateY(-3px); color: #fff; }
+
+    /* ───────────── NAVBAR ───────────── */
+    #mainNav {
+      background: rgba(6,11,20,.92);
+      backdrop-filter: blur(14px);
+      border-bottom: 2px solid rgba(223, 178, 63, 0.2);
+      transition: background .3s, box-shadow .3s;
+      z-index: 1050;
+    }
+    #mainNav.scrolled { background: rgba(6,11,20,.98); box-shadow: 0 4px 20px rgba(0,0,0,.5); border-bottom-color: rgba(0, 174, 239, 0.3); }
+    .navbar-brand {
+      font-family: 'Cinzel', serif;
+      font-weight: 700;
+      font-size: 1.2rem;
+      color: var(--gold) !important;
+      letter-spacing: 1px;
+    }
+    .navbar-brand img {
+      object-fit: contain;
+      border: 1px solid rgba(255,255,255,0.15);
+    }
+    .nav-link {
+      color: rgba(241,245,249,.8) !important;
+      font-weight: 500;
+      font-size: .88rem;
+      padding: 8px 14px !important;
+      border-radius: 6px;
+      transition: color .2s, background .2s;
+      letter-spacing: .2px;
+    }
+    .nav-link:hover { color: var(--gold-lt) !important; background: rgba(255, 255, 255, 0.05); }
+    .nav-link.nav-cta {
+      background: var(--gradient-brand);
+      color: #fff !important;
+      font-weight: 700;
+      padding: 9px 22px !important;
+      border-radius: 50px;
+      margin-left: 8px;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+    }
+    .nav-link.nav-cta:hover { opacity: .95; transform: scale(1.03); color: #fff !important; }
+    .navbar-toggler { border-color: var(--border); }
+    .navbar-toggler-icon { filter: invert(1) sepia(1) saturate(4) hue-rotate(5deg); }
+
+    /* ───────────── HERO ───────────── */
+    .hero {
+      position: relative;
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      padding: 140px 0 90px;
+      overflow: hidden;
+    }
+    .hero-bg {
+      position: absolute; inset: 0;
+      background: url('https://images.unsplash.com/photo-1514525253161-7a46d19cd819?q=80&w=1974&auto=format&fit=crop') center/cover no-repeat;
+      z-index: 0;
+    }
+    .hero-bg::after {
+      content: '';
+      position: absolute; inset: 0;
+      background: linear-gradient(120deg, rgba(6,11,20,.95) 50%, rgba(11, 27, 45, 0.85) 100%);
+    }
+    .hero-content { position: relative; z-index: 1; }
+
+    .hero-eyebrow {
+      display: inline-flex; align-items: center; gap: 10px;
+      background: linear-gradient(90deg, rgba(230,88,27,.15), rgba(9,134,63,.15));
+      border: 1px solid rgba(223,178,63,.3);
+      color: var(--gold-lt);
+      font-size: .8rem;
+      font-weight: 600;
+      letter-spacing: 2.5px;
+      text-transform: uppercase;
+      padding: 7px 18px;
+      border-radius: 50px;
+      margin-bottom: 28px;
+    }
+
+    .hero-title {
+      font-size: clamp(2.4rem, 5vw, 4rem);
+      font-weight: 900;
+      line-height: 1.15;
+      margin-bottom: 22px;
+      color: #fff;
+    }
+
+    .hero-desc { color: var(--text); opacity: 0.85; font-size: 1.07rem; max-width: 540px; margin-bottom: 36px; }
+
+    /* Tag pills styled to match the image icons */
+    .hero-tags { display: flex; flex-wrap: wrap; gap: 10px; margin-bottom: 36px; }
+    .hero-tag {
+      display: inline-flex; align-items: center; gap: 7px;
+      padding: 7px 18px;
+      border-radius: 50px;
+      font-size: .82rem;
+      font-weight: 600;
+      letter-spacing: .5px;
+      border: 1px solid;
+    }
+    .tag-unite   { color: #ff7838;       border-color: rgba(230,88,27,.5);   background: rgba(230,88,27,.12); }
+    .tag-empower { color: #38b6ff;       border-color: rgba(0,174,239,.5);   background: rgba(0,174,239,.12); }
+    .tag-inspire { color: #2ecc71;       border-color: rgba(9,134,63,.5);    background: rgba(9,134,63,.12); }
+    .tag-heal    { color: #e066ff;       border-color: rgba(92,36,115,.6);   background: rgba(92,36,115,.15); }
+
+    /* Floating mic visual */
+    .hero-visual {
+      display: flex; align-items: center; justify-content: center;
+      position: relative;
+    }
+    .mic-glow {
+      position: relative; width: 340px; height: 340px;
+      display: flex; align-items: center; justify-content: center;
+      animation: floatY 5s ease-in-out infinite;
+    }
+    .mic-glow::before {
+      content: '';
+      position: absolute; inset: 0;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(0,174,239,.25) 0%, rgba(230,88,27,.15) 50%, transparent 70%);
+    }
+    .mic-glow::after {
+      content: '';
+      position: absolute; inset: -30px;
+      border-radius: 50%;
+      border: 1px solid rgba(223,178,63,.2);
+      animation: ringPulse 3s ease-out infinite;
+    }
+    .mic-glow i { 
+      font-size: 9rem; 
+      background: var(--gradient-text);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      filter: drop-shadow(0 0 25px rgba(0,174,239,.4)); 
+      position: relative; 
+      z-index: 1; 
+    }
+
+    @keyframes floatY { 0%,100%{transform:translateY(0)} 50%{transform:translateY(-18px)} }
+    @keyframes ringPulse { 0%{opacity:.6;transform:scale(1)} 100%{opacity:0;transform:scale(1.25)} }
+
+    /* ───────────── STATS BAR ───────────── */
+    .stats-bar {
+      background: linear-gradient(90deg, rgba(230,88,27,.12), rgba(0,174,239,.1), rgba(9,134,63,.12));
+      border-top: 1px solid rgba(255,255,255,0.1);
+      border-bottom: 1px solid rgba(255,255,255,0.1);
+      padding: 52px 0;
+    }
+    .stat-item { text-align: center; }
+    .stat-number {
+      font-family: 'Cinzel', serif;
+      font-size: 3rem;
+      font-weight: 900;
+      color: var(--gold-lt);
+      line-height: 1;
+      margin-bottom: 8px;
+    }
+    .stat-label { color: #cbd5e1; font-size: .9rem; font-weight: 500; }
+
+    /* ───────────── SECTION HEADING ───────────── */
+    .sec-heading { text-align: center; margin-bottom: 56px; }
+    .sec-heading h2 { font-size: clamp(1.7rem, 3.5vw, 2.6rem); font-weight: 700; margin-bottom: 14px; color: #fff; }
+    .sec-heading p  { color: #cbd5e1; font-size: 1.05rem; max-width: 640px; margin: 0 auto; }
+
+    /* ───────────── ABOUT ───────────── */
+    .about-check-list { list-style: none; padding: 0; }
+    .about-check-list li {
+      display: flex; align-items: flex-start; gap: 14px;
+      padding: 14px 0;
+      border-bottom: 1px solid var(--border);
+    }
+    .about-check-list li:last-child { border-bottom: none; }
+    .about-check-list .icon-wrap {
+      width: 36px; height: 36px; border-radius: 50%;
+      background: linear-gradient(135deg, rgba(9,134,63,.2), rgba(0,174,239,.2));
+      display: flex; align-items: center; justify-content: center;
+      flex-shrink: 0;
+      color: #2ecc71;
+      font-size: .9rem;
+      margin-top: 2px;
+      border: 1px solid rgba(255,255,255,0.1);
+    }
+    .about-check-list strong { display: block; margin-bottom: 2px; color: var(--text); font-weight: 600; }
+    .about-check-list span  { color: var(--muted); font-size: .9rem; }
+
+    /* ───────────── PILLAR CARDS ───────────── */
+    .pillar-card {
+      background: var(--glass);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 36px 28px;
+      text-align: center;
+      height: 100%;
+      transition: transform .3s, border-color .3s, box-shadow .3s, background .3s;
+    }
+    .pillar-card.p-unite:hover { border-color: var(--orange); box-shadow: 0 12px 30px rgba(230,88,27,.25); }
+    .pillar-card.p-stars:hover { border-color: var(--gold); box-shadow: 0 12px 30px rgba(223,178,63,.25); }
+    .pillar-card.p-living:hover { border-color: var(--green); box-shadow: 0 12px 30px rgba(9,134,63,.25); }
+    .pillar-card.p-unity:hover { border-color: var(--blue-lt); box-shadow: 0 12px 30px rgba(0,174,239,.25); }
+    
+    .pillar-card:hover {
+      transform: translateY(-10px);
+      background: rgba(255,255,255,.07);
+    }
+    .pillar-icon {
+      width: 72px; height: 72px;
+      border-radius: 20px;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1.8rem;
+      margin: 0 auto 22px;
+      border: 1px solid rgba(255,255,255,0.1);
+    }
+    .pillar-card h4 { font-size: 1.1rem; font-weight: 700; margin-bottom: 10px; color: #fff; }
+    .pillar-card p  { color: #cbd5e1; font-size: .9rem; margin: 0; }
+
+    /* ───────────── COURSE CARDS ───────────── */
+    .course-card {
+      background: rgba(12,18,32,.7);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 22px 20px;
+      display: flex; align-items: center; gap: 18px;
+      height: 100%;
+      transition: border-color .25s, transform .25s, background .25s;
+    }
+    .course-card:hover { 
+      border-color: transparent; 
+      background: rgba(20, 30, 50, 0.9); 
+      transform: translateY(-4px);
+      box-shadow: 0 5px 15px rgba(0, 174, 239, 0.15);
+      border: 1px solid rgba(0, 174, 239, 0.4);
+    }
+    .course-icon {
+      width: 52px; height: 52px;
+      border-radius: 12px;
+      background: linear-gradient(135deg, rgba(223,178,63,.15), rgba(230,88,27,.15));
+      display: flex; align-items: center; justify-content: center;
+      color: var(--gold-lt); font-size: 1.4rem;
+      flex-shrink: 0;
+      border: 1px solid rgba(255,255,255,0.05);
+    }
+    .course-card h5 { font-size: 1rem; font-weight: 600; margin: 0; color: #fff; }
+    .course-card p  { color: var(--muted); font-size: .82rem; margin: 3px 0 0; }
+
+    /* ───────────── WISDOM / SCIENCE BOXES ───────────── */
+    .wisdom-box, .science-box {
+      border-radius: var(--radius); padding: 38px 36px; height: 100%;
+      background: linear-gradient(145deg, rgba(18,27,45,.8), rgba(6,11,20,.95));
+      border: 1px solid var(--border);
+    }
+    .wisdom-box  { border-left: 5px solid var(--orange); }
+    .science-box { border-left: 5px solid var(--blue-lt); }
+    .wisdom-box h4  { color: var(--gold-lt); margin-bottom: 18px; }
+    .science-box h4 { color: #42a5f5; margin-bottom: 18px; }
+    .wisdom-box p, .science-box p, .science-box li { color: #cbd5e1; font-size: .95rem; }
+    .science-box ul { list-style: none; padding: 0; }
+    .science-box li { display: flex; align-items: center; gap: 10px; padding: 6px 0; }
+
+    /* ───────────── MID CTA BAR ───────────── */
+    .cta-bar {
+      background: linear-gradient(135deg, rgba(230,88,27,.15) 0%, rgba(11,59,123,.15) 50%, rgba(9,134,63,.15) 100%);
+      border-top: 1px solid rgba(255,255,255,0.1);
+      border-bottom: 1px solid rgba(255,255,255,0.1);
+      padding: 68px 0;
+    }
+    .cta-bar h2 { font-size: clamp(1.6rem,3.5vw,2.4rem); font-weight: 800; margin-bottom: 12px; }
+    .cta-bar p  { color: #cbd5e1; max-width: 580px; margin: 0 auto 32px; font-size: 1.02rem; }
+
+    /* ───────────── FUNDING CARDS ───────────── */
+    .fund-card {
+      background: var(--glass);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 36px 28px;
+      text-align: center;
+      height: 100%;
+      position: relative; overflow: hidden;
+      transition: border-color .3s, transform .3s, box-shadow .3s;
+    }
+    .fund-card:hover { border-color: var(--blue-lt); transform: translateY(-8px); box-shadow: 0 16px 36px rgba(0,0,0,.4); }
+    .fund-card.featured { border-color: transparent; background: rgba(223,178,63,.06); position: relative; }
+    .fund-card.featured::after {
+      content: '';
+      position: absolute; inset: 0; border-radius: var(--radius);
+      border: 2px solid var(--gold); pointer-events: none;
+    }
+    .fund-card.featured::before {
+      content: 'MOST POPULAR';
+      position: absolute; top: 20px; right: -38px;
+      background: var(--gradient-brand); color: #fff;
+      font-size: .7rem; font-weight: 800; letter-spacing: 1px;
+      padding: 5px 50px;
+      transform: rotate(45deg);
+      z-index: 2;
+    }
+    .fund-tier { font-size: .72rem; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; color: #cbd5e1; }
+    .fund-amount { font-family: 'Cinzel', serif; font-size: 2.6rem; font-weight: 900; color: var(--gold-lt); margin: 16px 0; }
+    .fund-card p { color: #cbd5e1; font-size: .88rem; margin-bottom: 0; }
+
+    /* ───────────── FORM SECTION ───────────── */
+    .form-section {
+      background: url('https://images.unsplash.com/photo-1465847899084-d164df4dedc6?q=80&w=2070&auto=format&fit=crop') center/cover no-repeat;
+      position: relative;
+    }
+    .form-section::before {
+      content: '';
+      position: absolute; inset: 0;
+      background: linear-gradient(rgba(6,11,20,.94), rgba(18, 27, 45, 0.96));
+    }
+    .form-section .container { position: relative; z-index: 1; }
+    .form-card {
+      background: rgba(12,18,32,.9);
+      border: 2px solid rgba(0, 174, 239, 0.25);
+      border-radius: 24px;
+      padding: 50px 44px;
+      backdrop-filter: blur(16px);
+    }
+    .form-control, .form-select {
+      background: rgba(6,11,20,.8) !important;
+      border: 1px solid var(--border) !important;
+      color: var(--text) !important;
+      padding: 12px 18px;
+      border-radius: 10px;
+      font-size: .93rem;
+    }
+    .form-control::placeholder { color: #64748b; }
+    .form-control:focus, .form-select:focus {
+      border-color: rgba(0, 174, 239, 0.5) !important;
+      box-shadow: 0 0 0 3px rgba(0, 174, 239, 0.15) !important;
+    }
+    .form-label { color: #cbd5e1; font-size: .85rem; font-weight: 600; margin-bottom: 6px; letter-spacing: .3px; }
+    .form-select option { background: var(--dark-2); color: var(--text); }
+
+    /* ───────────── FOOTER ───────────── */
+    footer {
+      background: #03060c;
+      border-top: 3px solid transparent;
+      background-image: linear-gradient(#03060c, #03060c), var(--gradient-brand);
+      background-origin: border-box;
+      background-clip: padding-box, border-box;
+      padding: 64px 0 28px;
+      color: #cbd5e1;
+      font-size: .92rem;
+    }
+    footer h5 { color: var(--text); font-size: 1rem; font-weight: 600; margin-bottom: 20px; }
+    .footer-brand { font-family: 'Cinzel', serif; color: var(--gold) !important; font-size: 1.2rem; font-weight: 700; }
+    .footer-links { list-style: none; padding: 0; }
+    .footer-links li { margin-bottom: 11px; }
+    .footer-links a { color: #cbd5e1; transition: color .2s; display: flex; align-items: center; gap: 8px; }
+    .footer-links a:hover { color: var(--gold-lt); }
+    .footer-socials a {
+      width: 40px; height: 40px;
+      border-radius: 10px;
+      border: 1px solid var(--border);
+      display: flex; align-items: center; justify-content: center;
+      color: #cbd5e1; font-size: 1rem;
+      transition: background .2s, border-color .2s, color .2s;
+    }
+    .footer-socials a:hover { background: rgba(0, 174, 239, 0.15); border-color: var(--blue-lt); color: #fff; }
+    .footer-divider { border-color: var(--border); margin: 32px 0 20px; }
+    .footer-copy { font-size: .82rem; color: #64748b; }
+    .footer-quote { font-style: italic; color: var(--gold-lt); opacity: .9; font-size: .82rem; }
+
+    /* ───────────── BACK TO TOP ───────────── */
+    #backToTop {
+      position: fixed; bottom: 28px; right: 28px;
+      width: 44px; height: 44px;
+      background: var(--gradient-brand); color: #fff;
+      border-radius: 12px;
+      display: none; align-items: center; justify-content: center;
+      font-size: 1rem; z-index: 999;
+      border: none; cursor: pointer;
+      box-shadow: 0 4px 16px rgba(0, 174, 239, 0.3);
+      transition: opacity .3s, transform .3s;
+    }
+    #backToTop:hover { transform: translateY(-3px); opacity: 0.95; }
+
+    /* ───────────── REVEAL ANIMATION ───────────── */
+    .reveal { opacity: 0; transform: translateY(36px); transition: opacity .75s cubic-bezier(.25,1,.5,1), transform .75s cubic-bezier(.25,1,.5,1); }
+    .reveal.active { opacity: 1; transform: translateY(0); }
+    .reveal-delay-1 { transition-delay: .1s; }
+    .reveal-delay-2 { transition-delay: .2s; }
+    .reveal-delay-3 { transition-delay: .3s; }
+
+    /* ───────────── RESPONSIVE ───────────── */
+    @media (max-width: 991.98px) {
+      .hero { padding: 120px 0 72px; }
+      .hero-visual { margin-top: 48px; }
+      .mic-glow { width: 220px; height: 220px; }
+      .mic-glow i { font-size: 6rem; }
+      .form-card { padding: 32px 24px; }
+    }
+    @media (max-width: 575.98px) {
+      .stat-number { font-size: 2.2rem; }
+      .section-pad { padding: 72px 0; }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after { animation: none !important; transition: none !important; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- ══════════ NAVBAR ══════════ -->
+<nav id="mainNav" class="navbar navbar-expand-lg fixed-top">
+  <div class="container">
+    <a class="navbar-brand d-flex align-items-center" href="#">
+      <img src="soortal.jpeg" alt="SoorTaal Nation Logo" height="65" class="me-2 rounded-2">
+      <span class="color-gradient-text" style="font-weight: 900;">SOORTAAL NATION™</span>
+    </a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navMenu" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navMenu">
+      <ul class="navbar-nav ms-auto align-items-lg-center gap-1">
+        <li class="nav-item"><a class="nav-link" href="#about">About</a></li>
+        <li class="nav-item"><a class="nav-link" href="#mission">Mission</a></li>
+        <li class="nav-item"><a class="nav-link" href="#courses">Courses</a></li>
+        <li class="nav-item"><a class="nav-link" href="#healing">Healing Wisdom</a></li>
+        <li class="nav-item"><a class="nav-link" href="#sponsor">Sponsor</a></li>
+        <li class="nav-item"><a class="nav-link nav-cta" href="#join"><i class="fa-solid fa-star me-1"></i>Join Movement</a></li>
+      </ul>
+    </div>
+  </div>
+</nav>
+
+<!-- ══════════ HERO ══════════ -->
+<header class="hero">
+  <div class="hero-bg"></div>
+  <div class="container">
+    <div class="row align-items-center gy-5">
+      <div class="col-lg-7 hero-content">
+        <div class="hero-eyebrow">
+          <i class="fa-solid fa-music"></i>
+          Founded by Komal Ashok Khandge · Mumbai, India
+        </div>
+        <h1 class="hero-title">
+          Uniting Our Nation<br/>
+          Through the <span class="color-gradient-text">Power of Music</span>
+        </h1>
+        <p class="hero-desc">
+          Preserving India's rich musical legacy, safeguarding folk traditions, and creating sustainable professional platforms for tomorrow's emerging music stars.
+        </p>
+        <div class="hero-tags">
+          <span class="hero-tag tag-unite"><i class="fa-solid fa-users"></i> Unite</span>
+          <span class="hero-tag tag-empower"><i class="fa-solid fa-bolt"></i> Empower</span>
+          <span class="hero-tag tag-inspire"><i class="fa-solid fa-lightbulb"></i> Inspire</span>
+          <span class="hero-tag tag-heal"><i class="fa-solid fa-heart-pulse"></i> Heal</span>
+        </div>
+        <div class="d-flex flex-wrap gap-3">
+          <a href="#join" class="btn-gold"><i class="fa-solid fa-graduation-cap me-2"></i>Start Learning</a>
+          <a href="#sponsor" class="btn-outline-gold"><i class="fa-solid fa-hand-holding-heart me-2"></i>Support the Cause</a>
+        </div>
+      </div>
+      <div class="col-lg-5 hero-content d-none d-lg-flex justify-content-center">
+        <div class="hero-visual">
+          <div class="mic-glow"><i class="fa-solid fa-microphone-lines"></i></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</header>
+
+<!-- ══════════ STATS BAR ══════════ -->
+<section class="stats-bar reveal">
+  <div class="container">
+    <div class="row g-4 align-items-center text-center">
+      <div class="col-6 col-md-4">
+        <div class="stat-item">
+          <div class="stat-number">₹78B</div>
+          <div class="stat-label">Indian Music Sector (2026 Projection)</div>
+        </div>
+      </div>
+      <div class="col-6 col-md-4">
+        <div class="stat-item">
+          <div class="stat-number">1000s</div>
+          <div class="stat-label">Live Concerts & Orchestra Shows</div>
+        </div>
+      </div>
+      <div class="col-12 col-md-4">
+        <div class="stat-item">
+          <div class="stat-number">100%</div>
+          <div class="stat-label">Living Cultural Heritage Preserved</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════ ABOUT ══════════ -->
+<section id="about" class="section-pad" style="background: var(--dark-2);">
+  <div class="container">
+    <div class="row align-items-center gy-5">
+      <div class="col-lg-6 reveal">
+        <div class="hero-eyebrow d-inline-flex mb-4" style="font-size:.75rem;">
+          <i class="fa-solid fa-landmark me-2"></i>Our Foundation Story
+        </div>
+        <h2 class="brand-font mb-3" style="font-size:clamp(1.6rem,3vw,2.4rem);">Bridging India's <span class="color-gradient-text" style="font-weight:700;">Musical Gap</span></h2>
+        <span class="rule-gradient d-block mb-20" style="margin-bottom:22px;"></span>
+        <p class="text-muted-custom mb-3" style="font-size:1rem;line-height:1.8; color: #cbd5e1;">
+          India's entertainment landscape accelerates at a record pace — yet thousands of brilliant singers, instrumentalists, and regional folk artists remain hidden from global view due to a lack of professional infrastructure.
+        </p>
+        <p class="text-muted-custom" style="font-size:1rem;line-height:1.8; color: #cbd5e1;">
+          <strong style="color:var(--text);">SoorTaal Nation™</strong> acts as a national catalyst. We build a vibrant, inclusive platform where musicians and cultural custodians can showcase talents, access mentorship, manage careers, and integrate into premium audience networks.
+        </p>
+      </div>
+      <div class="col-lg-6 reveal reveal-delay-2">
+        <ul class="about-check-list">
+          <li>
+            <div class="icon-wrap" style="color: var(--orange);"><i class="fa-solid fa-star"></i></div>
+            <div>
+              <strong>Guaranteed Performance Stages</strong>
+              <span>Dynamic local live orchestra shows, cultural events, and festivals.</span>
+            </div>
+          </li>
+          <li>
+            <div class="icon-wrap" style="color: var(--gold);"><i class="fa-solid fa-chalkboard-user"></i></div>
+            <div>
+              <strong>Professional Mentorship</strong>
+              <span>Direct industry feedback from experienced, active professionals.</span>
+            </div>
+          </li>
+          <li>
+            <div class="icon-wrap" style="color: var(--blue-lt);"><i class="fa-solid fa-briefcase"></i></div>
+            <div>
+              <strong>Livelihood Support</strong>
+              <span>Tangible employment pipelines and professional career advisory.</span>
+            </div>
+          </li>
+          <li>
+            <div class="icon-wrap" style="color: var(--red);"><i class="fa-solid fa-globe"></i></div>
+            <div>
+              <strong>Audience Network Exposure</strong>
+              <span>Digital marketing outreach and custom portfolio building.</span>
+            </div>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════ MISSION PILLARS ══════════ -->
+<section id="mission" class="section-pad" style="background: var(--dark-3);">
+  <div class="container">
+    <div class="sec-heading reveal">
+      <h2>Why Our Mission Matters</h2>
+      <span class="rule-gradient mx"></span>
+      <p class="mt-3">Every year, traditional musical identities are silently lost. We step forward to change the narrative.</p>
+    </div>
+    <div class="row g-4">
+      <div class="col-sm-6 col-lg-3 reveal reveal-delay-1">
+        <div class="pillar-card p-unite">
+          <div class="pillar-icon" style="background:rgba(11,59,123,.15); color:#38b6ff;">
+            <i class="fa-solid fa-guitar"></i>
+          </div>
+          <h4>Folk &amp; Classical</h4>
+          <p>Preserving delicate regional melodies, rich devotional forms, and classical frameworks for posterity.</p>
+        </div>
+      </div>
+      <div class="col-sm-6 col-lg-3 reveal reveal-delay-2">
+        <div class="pillar-card p-stars">
+          <div class="pillar-icon" style="background:rgba(223,178,63,.15); color:var(--gold-lt);">
+            <i class="fa-solid fa-microphone"></i>
+          </div>
+          <h4>Tomorrow's Stars</h4>
+          <p>Unlocking structured talent hunts and premium performance spotlights for young and seasoned artists alike.</p>
+        </div>
+      </div>
+      <div class="col-sm-6 col-lg-3 reveal reveal-delay-3">
+        <div class="pillar-card p-living">
+          <div class="pillar-icon" style="background:rgba(9,134,63,.15); color:#2ecc71;">
+            <i class="fa-solid fa-handshake"></i>
+          </div>
+          <h4>Sustainable Living</h4>
+          <p>Providing real income paths for folk musicians, underprivileged artists, and music educators.</p>
+        </div>
+      </div>
+      <div class="col-sm-6 col-lg-3 reveal reveal-delay-3">
+        <div class="pillar-card p-unity">
+          <div class="pillar-icon" style="background:rgba(230,88,27,.15); color:#ff7838;">
+            <i class="fa-solid fa-users-rectangle"></i>
+          </div>
+          <h4>National Unity</h4>
+          <p>Weaving diverse regional communities across boundaries through the language of harmony.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════ MID CTA BAR ══════════ -->
+<section class="cta-bar reveal">
+  <div class="container text-center">
+    <div class="hero-eyebrow d-inline-flex mb-4" style="font-size:.75rem;">
+      <i class="fa-solid fa-bolt me-2"></i>Take Action Today
+    </div>
+    <h2 class="brand-font text-white">Ready to Begin Your Musical Journey?</h2>
+    <p>Join thousands of artists, learners, and cultural preservers who are already part of the SoorTaal Nation movement.</p>
+    <div class="d-flex flex-wrap justify-content-center gap-3">
+      <a href="#join" class="btn-gold"><i class="fa-solid fa-play me-2"></i>Enroll Now — It's Free</a>
+      <a href="#courses" class="btn-outline-gold"><i class="fa-solid fa-list me-2"></i>Browse Courses</a>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════ COURSES ══════════ -->
+<section id="courses" class="section-pad" style="background: var(--dark-2);">
+  <div class="container">
+    <div class="sec-heading reveal">
+      <h2>Courses &amp; Skill Development</h2>
+      <span class="rule-gradient mx"></span>
+      <p class="mt-3">No age limits. No barriers. Learn directly from working orchestra artists and professional performers.</p>
+    </div>
+    <div class="row g-3">
+      <div class="col-sm-6 col-lg-4 reveal reveal-delay-1">
+        <div class="course-card">
+          <div class="course-icon" style="color: var(--orange);"><i class="fa-solid fa-record-vinyl"></i></div>
+          <div><h5>Vocal Training</h5><p>Classical, folk &amp; contemporary vocal techniques</p></div>
+        </div>
+      </div>
+      <div class="col-sm-6 col-lg-4 reveal reveal-delay-2">
+        <div class="course-card">
+          <div class="course-icon" style="color: var(--gold-lt);"><i class="fa-solid fa-keyboard"></i></div>
+          <div><h5>Keyboard &amp; Piano</h5><p>From beginner scales to advanced compositions</p></div>
+        </div>
+      </div>
+      <div class="col-sm-6 col-lg-4 reveal reveal-delay-3">
+        <div class="course-card">
+          <div class="course-icon" style="color: var(--blue-lt);"><i class="fa-solid fa-guitar"></i></div>
+          <div><h5>Guitar &amp; String Training</h5><p>Acoustic, electric, and classical string mastery</p></div>
+        </div>
+      </div>
+      <div class="col-sm-6 col-lg-4 reveal reveal-delay-1">
+        <div class="course-card">
+          <div class="course-icon" style="color: var(--red);"><i class="fa-solid fa-drum"></i></div>
+          <div><h5>Drums &amp; Percussion</h5><p>Tabla, dholak, drum-kit &amp; world percussion</p></div>
+        </div>
+      </div>
+      <div class="col-sm-6 col-lg-4 reveal reveal-delay-2">
+        <div class="course-card">
+          <div class="course-icon" style="color: var(--green);"><i class="fa-solid fa-music"></i></div>
+          <div><h5>Violin &amp; Harmonium</h5><p>Traditional Indian &amp; Western string mastery</p></div>
+        </div>
+      </div>
+      <div class="col-sm-6 col-lg-4 reveal reveal-delay-3">
+        <div class="course-card">
+          <div class="course-icon" style="color: var(--purple);"><i class="fa-solid fa-circle-nodes"></i></div>
+          <div><h5>Folk Instruments</h5><p>Rare regional instruments &amp; heritage sounds</p></div>
+        </div>
+      </div>
+      <div class="col-sm-6 col-lg-4 reveal reveal-delay-1">
+        <div class="course-card">
+          <div class="course-icon" style="color: var(--orange);"><i class="fa-solid fa-tower-broadcast"></i></div>
+          <div><h5>Stage Performance Skills</h5><p>Confidence, presence &amp; live audience mastery</p></div>
+        </div>
+      </div>
+      <div class="col-sm-6 col-lg-4 reveal reveal-delay-2">
+        <div class="course-card">
+          <div class="course-icon" style="color: var(--gold-lt);"><i class="fa-solid fa-radio"></i></div>
+          <div><h5>Live Orchestra Training</h5><p>Ensemble coordination &amp; symphony techniques</p></div>
+        </div>
+      </div>
+      <div class="col-sm-6 col-lg-4 reveal reveal-delay-3">
+        <div class="course-card">
+          <div class="course-icon" style="color: var(--blue-lt);"><i class="fa-solid fa-microphone-lines"></i></div>
+          <div><h5>Recording &amp; Mic Techniques</h5><p>Studio fundamentals, mic placement &amp; audio</p></div>
+        </div>
+      </div>
+    </div>
+    <div class="text-center mt-5 reveal">
+      <a href="#join" class="btn-gold"><i class="fa-solid fa-graduation-cap me-2"></i>Apply for a Course</a>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════ HEALING WISDOM ══════════ -->
+<section id="healing" class="section-pad" style="background: var(--dark);">
+  <div class="container">
+    <div class="sec-heading reveal">
+      <h2>Ancient Wisdom Meets Modern Science</h2>
+      <span class="rule-gradient mx"></span>
+      <p class="mt-3">Music is not just entertainment — it is a proven, fundamental instrument of systemic healing.</p>
+    </div>
+    <div class="row g-4">
+      <div class="col-lg-6 reveal reveal-delay-1">
+        <div class="wisdom-box">
+          <h4><i class="fa-solid fa-gopuram me-2"></i>Thousands of Years of Wisdom</h4>
+          <p class="mb-3">
+            From ancient Vedic chants, Bhajans, and kirtan assemblies to Hindustani Ragas, Carnatic structures, and Sufi melodies — Indian culture has inherently understood the therapeutic capability of sound frequencies to balance mind, body, and spiritual awareness.
+          </p>
+          <p class="mb-0">
+            In 2025, evaluations affiliated with <strong style="color:var(--text);">Tata Memorial Hospital, Mumbai</strong> verified that structured exposure to Classical Indian Music yielded significant drops in anxiety markers and pain scores.
+          </p>
+        </div>
+      </div>
+      <div class="col-lg-6 reveal reveal-delay-2">
+        <div class="science-box">
+          <h4><i class="fa-solid fa-flask-vial me-2"></i>Peer-Reviewed Healthcare Science</h4>
+          <p class="mb-4">
+            The WHO published a metadata review spanning 3,000+ clinical protocols. Their conclusion? Active musical participation dramatically fosters health, aids surgical recovery, builds emotional resilience, and combats loneliness.
+          </p>
+          <ul>
+            <li><i class="fa-solid fa-angles-right" style="color:var(--blue-lt);"></i> Lowers continuous stress hormone cascades</li>
+            <li><i class="fa-solid fa-angles-right" style="color:var(--blue-lt);"></i> Accelerates cognitive activation in elderly groups</li>
+            <li><i class="fa-solid fa-angles-right" style="color:var(--blue-lt);"></i> Promotes neurochemical endorphin release</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════ SPONSOR / FUND ══════════ -->
+<section id="sponsor" class="section-pad" style="background: var(--dark-3);">
+  <div class="container">
+    <div class="sec-heading reveal">
+      <h2>Support the Movement</h2>
+      <span class="rule-gradient mx"></span>
+      <p class="mt-3">Corporate sponsors, patrons, and cultural philanthropists can co-create meaningful societal change with us.</p>
+    </div>
+
+    <div class="row g-4 justify-content-center mb-5">
+      <div class="col-sm-6 col-lg-3 reveal reveal-delay-1">
+        <div class="fund-card">
+          <div class="fund-tier">Community Sparks</div>
+          <div class="fund-amount">₹500</div>
+          <p>Directly sponsors a young artist's localized live concert performance segment.</p>
+          <a href="#join" class="btn-ghost d-block mt-4" style="text-align:center;">Contribute Now</a>
+        </div>
+      </div>
+      <div class="col-sm-6 col-lg-3 reveal reveal-delay-2">
+        <div class="fund-card">
+          <div class="fund-tier">Education Packs</div>
+          <div class="fund-amount">₹1,000</div>
+          <p>Funds acoustic resources, sheet music, and entry instruments for students.</p>
+          <a href="#join" class="btn-ghost d-block mt-4" style="text-align:center;">Contribute Now</a>
+        </div>
+      </div>
+      <div class="col-sm-6 col-lg-3 reveal reveal-delay-3">
+        <div class="fund-card featured">
+          <div class="fund-tier" style="color:var(--gold-lt);">⭐ Outreach Patron</div>
+          <div class="fund-amount">₹5,000</div>
+          <p>Organizes rural talent showcases and community-focused music wellness classes.</p>
+          <a href="#join" class="btn-gold d-block mt-4" style="text-align:center;">Contribute Now</a>
+        </div>
+      </div>
+      <div class="col-sm-6 col-lg-3 reveal reveal-delay-3">
+        <div class="fund-card">
+          <div class="fund-tier">Heritage Preserver</div>
+          <div class="fund-amount">₹10,000<span style="font-size:1.2rem;">+</span></div>
+          <p>Creates sustainable living wages for dying folk artists and educational custodians.</p>
+          <a href="#join" class="btn-ghost d-block mt-4" style="text-align:center;">Contribute Now</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- Corporate CTA row -->
+    <div class="reveal">
+      <div class="p-4 p-md-5 rounded-4 text-center" style="background:rgba(255,255,255,.02); border: 1px solid rgba(0, 174, 239, 0.2);">
+        <h4 class="brand-font mb-2"><span class="color-gradient-text" style="font-weight:700;">Corporate Sponsorships &amp; Brand Partnerships</span></h4>
+        <p class="text-muted-custom mb-0" style="max-width:700px;margin:0 auto; color: #cbd5e1;">
+          Align your CSR mandates with cultural preservation, youth career enablement, and medical health outcomes. Connect with us at
+          <a href="mailto:partnerships@soortaalnation.org" style="color:var(--gold-lt);">partnerships@soortaalnation.org</a>
+          to fund large-scale performance festivals and structural workshops.
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════ JOIN FORM ══════════ -->
+<section id="join" class="form-section section-pad">
+  <div class="container">
+    <div class="row justify-content-center">
+      <div class="col-lg-8 col-xl-7">
+        <div class="form-card reveal">
+          <div class="text-center mb-4">
+            <div class="hero-eyebrow d-inline-flex mb-3" style="font-size:.75rem;">
+              <i class="fa-solid fa-envelope-open-text me-2"></i>Join the Family
+            </div>
+            <h2 class="brand-font mb-2"><span class="color-gradient-text" style="font-weight:700;">Join the SoorTaal Nation Family</span></h2>
+            <p class="text-muted-custom">Whether you wish to learn music, sponsor talent, or protect cultural lines, submit your query below.</p>
+          </div>
+
+          <form id="enrollForm" onsubmit="handleSubmit(event)" novalidate >
+            <div class="row g-3">
+              <div class="col-md-6">
+                <label class="form-label">Full Name</label>
+                <input type="text" class="form-control" placeholder="Enter your full name" required/>
+              </div>
+              <div class="col-md-6">
+                <label class="form-label">Email Address</label>
+                <input type="email" class="form-control" placeholder="name@example.com" required/>
+              </div>
+              <div class="col-md-6">
+                <label class="form-label">Phone Number</label>
+                <input type="tel" class="form-control" placeholder="+91 XXXXX XXXXX" required/>
+              </div>
+              <div class="col-md-6">
+                <label class="form-label">Path of Interest</label>
+                <select class="form-select" required>
+                  <option value="" disabled selected>Select an option</option>
+                  <option>Learn Music / Enroll in Courses</option>
+                  <option>Perform / Join Orchestra Network</option>
+                  <option>Corporate Sponsorship Partnerships</option>
+                  <option>Crowdfund / Micro-Donation Support</option>
+                  <option>Preserve Traditional Folk Heritage</option>
+                </select>
+              </div>
+              <div class="col-12">
+                <label class="form-label">Message or Specific Goals</label>
+                <textarea class="form-control" rows="4" placeholder="Tell us about your musical journey or support vision..."></textarea>
+              </div>
+              <div class="col-12 mt-2">
+  <a href="tel:" class="btn-gold w-100 py-3 text-center d-block text-decoration-none" style="font-size:1rem; border-radius:12px;">
+   Submit
+  </a>
+</div>
+            </div>
+          </form>
+
+          <div id="formSuccess" class="d-none mt-4 p-3 rounded-3 text-center" style="background:rgba(9,134,63,.12);border:1px solid rgba(9,134,63,.3);">
+            <i class="fa-solid fa-circle-check text-success me-2 fs-5"></i>
+            <strong style="color:#2ecc71;">Application received!</strong>
+            <p class="mb-0 mt-1 text-muted-custom" style="font-size:.88rem;">Our team will reach out within 48 hours.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<!--<script>
+  function handleSubmit(event) {
+  event.preventDefault(); // Prevents the page from reloading
+
+  // 1. Grab all the form values
+  const form = document.getElementById('enrollForm');
+  const name = form.querySelector('input[type="text"]').value;
+  const email = form.querySelector('input[type="email"]').value;
+  const phone = form.querySelector('input[type="tel"]').value;
+  const interest = form.querySelector('select').value;
+  const message = form.querySelector('textarea').value || "No additional message.";
+
+  // 2. Format the text for WhatsApp
+  const whatsappText = `*New SoorTaal Application*%0A%0A` +
+                       `*Name:* ${encodeURIComponent(name)}%0A` +
+                       `*Email:* ${encodeURIComponent(email)}%0A` +
+                       `*Phone:* ${encodeURIComponent(phone)}%0A` +
+                       `*Interest:* ${encodeURIComponent(interest)}%0A` +
+                       `*Message:* ${encodeURIComponent(message)}`;
+
+  // 3. Your phone number with country code (91)
+  const whatsappNumber = "918830701688";
+
+  // 4. Open WhatsApp in a new tab
+  window.open(`https://wa.me/${whatsappNumber}?text=${whatsappText}`, '_blank');
+
+  // 5. Show the success message on the website
+  document.getElementById('formSuccess').classList.remove('d-none');
+  form.reset(); // Clear the form fields
+}
+</script>-->
+<!-- ══════════ FOOTER ══════════ -->
+<footer>
+  <div class="container">
+    <div class="row g-4 mb-4">
+      <div class="col-lg-5">
+        <div class="footer-brand mb-3"><span class="color-gradient-text" style="font-weight:900;">SOORTAAL NATION™</span></div>
+        <p class="text-muted-custom pe-lg-4" style="font-size:.9rem;line-height:1.75; color: #cbd5e1;">
+          A registered trademark dedicated to nourishing emerging artists, cultivating community health outcomes, preserving ancient musical wisdom, and organizing high-end orchestra concerts.
+        </p>
+        <p class="mb-0" style="font-size:.82rem;color:#4a5568;">Headquarters: Mumbai, Maharashtra, India</p>
+      </div>
+      <div class="col-6 col-lg-3">
+        <h5>Quick Navigation</h5>
+        <ul class="footer-links">
+          <li><a href="#about"><i class="fa-solid fa-chevron-right" style="color:var(--orange);font-size:.7rem;"></i>About Ecosystem</a></li>
+          <li><a href="#mission"><i class="fa-solid fa-chevron-right" style="color:var(--gold);font-size:.7rem;"></i>Mission Statement</a></li>
+          <li><a href="#courses"><i class="fa-solid fa-chevron-right" style="color:var(--blue-lt);font-size:.7rem;"></i>Courses Matrix</a></li>
+          <li><a href="#healing"><i class="fa-solid fa-chevron-right" style="color:var(--red);font-size:.7rem;"></i>Healing Wisdom</a></li>
+          <li><a href="#sponsor"><i class="fa-solid fa-chevron-right" style="color:var(--green);font-size:.7rem;"></i>Philanthropy Portal</a></li>
+        </ul>
+      </div>
+      <div class="col-6 col-lg-4">
+        <h5>Connect With Us</h5>
+        <p class="text-muted-custom mb-3" style="font-size:.87rem;">Join our community for audition notices, concert tickets, and event feeds.</p>
+        <div class="footer-socials d-flex gap-2">
+          <a href="#" aria-label="Facebook"><i class="fa-brands fa-facebook-f"></i></a>
+          <a href="#" aria-label="Instagram"><i class="fa-brands fa-instagram"></i></a>
+          <a href="#" aria-label="YouTube"><i class="fa-brands fa-youtube"></i></a>
+          <a href="#" aria-label="LinkedIn"><i class="fa-brands fa-linkedin-in"></i></a>
+        </div>
+        <p class="mt-4 mb-0" style="font-size:.82rem;color:#4a5568;">
+          <i class="fa-solid fa-envelope me-1" style="color:var(--gold-lt);"></i>
+          <a href="mailto:partnerships@soortaalnation.org" style="color:#cbd5e1;">partnerships@soortaalnation.org</a>
+        </p>
+      </div>
+    </div>
+    <hr class="footer-divider"/>
+    <div class="row align-items-center">
+      <div class="col-md-7 footer-copy text-center text-md-start">
+        &copy; 2026 SoorTaal Nation™. All Rights Reserved. Founded by Komal Ashok Khandge. Registered Trademark, Mumbai, India.
+      </div>
+      <div class="col-md-5 footer-quote text-center text-md-end mt-2 mt-md-0">
+        "When words fail, music speaks."
+      </div>
+    </div>
+  </div>
+</footer>
+
+<!-- Back to top -->
+<button id="backToTop" aria-label="Back to top"><i class="fa-solid fa-chevron-up"></i></button>
+
+<!-- Bootstrap JS -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+
+<script>
+  /* ── Navbar scroll effect ── */
+  const nav = document.getElementById('mainNav');
+  window.addEventListener('scroll', () => {
+    nav.classList.toggle('scrolled', window.scrollY > 60);
+  });
+
+  /* ── Reveal on scroll ── */
+  function revealElements() {
+    document.querySelectorAll('.reveal').forEach(el => {
+      if (el.getBoundingClientRect().top < window.innerHeight - 80) {
+        el.classList.add('active');
+      }
+    });
+  }
+  window.addEventListener('scroll', revealElements, { passive: true });
+  document.addEventListener('DOMContentLoaded', revealElements);
+
+  /* ── Back to top ── */
+  const btn = document.getElementById('backToTop');
+  window.addEventListener('scroll', () => {
+    btn.style.display = window.scrollY > 400 ? 'flex' : 'none';
+  }, { passive: true });
+  btn.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
+
+  /* ── Form submit ── */
+  function handleSubmit(e) {
+    e.preventDefault();
+    const form = document.getElementById('enrollForm');
+    const success = document.getElementById('formSuccess');
+    success.classList.remove('d-none');
+    form.reset();
+    success.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+    setTimeout(() => success.classList.add('d-none'), 6000);
+  }
+
+  /* ── Active nav link on scroll ── */
+  const sections = document.querySelectorAll('section[id], header[id]');
+  const navLinks = document.querySelectorAll('.nav-link:not(.nav-cta)');
+  window.addEventListener('scroll', () => {
+    let current = '';
+    sections.forEach(s => {
+      if (window.scrollY >= s.offsetTop - 120) current = s.id;
+    });
+    navLinks.forEach(link => {
+      link.style.color = link.getAttribute('href') === `#${current}` ? 'var(--gold-lt)' : '';
+    });
+  }, { passive: true });
+</script>
+</body>
+</html>

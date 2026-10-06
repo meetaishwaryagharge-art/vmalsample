@@ -1,0 +1,715 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mellona Foods - About Us</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+       :root {
+            --brand-blue: #2a58ad;
+            --brand-gold: #d4ac2b;
+            --text-dark: #1a1a1a;
+            --text-gray: #666;
+            --bg-light: #f9fbfd;
+            --white: #ffffff;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Poppins', sans-serif; }
+        body { background-color: var(--white); color: var(--text-dark); line-height: 1.6; }
+        .container { max-width: 1200px; margin: 0 auto; padding: 0 20px; }
+
+        /* --- Updated Header --- */
+        .main-header {
+            background: var(--white);
+            padding: 15px 0;
+            border-bottom: 1px solid #f0f0f0;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .nav-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo-area { display: flex; align-items: center; gap: 10px; text-decoration: none; }
+        .logo-box { 
+            width: 45px; height: 45px; background: var(--brand-blue); 
+            border-radius: 8px; display: flex; align-items: center; 
+            justify-content: center; color: white; font-weight: 800; font-size: 22px; 
+        }
+        .logo-text h1 { font-size: 1.2rem; font-weight: 800; color: var(--text-dark); margin: 0; line-height: 1; }
+        .logo-text span { font-size: 0.7rem; color: var(--text-gray); text-transform: uppercase; letter-spacing: 0.5px; }
+
+        .nav-links { display: flex; list-style: none; gap: 25px; align-items: center; }
+        .nav-links a { text-decoration: none; color: var(--text-dark); font-size: 0.95rem; font-weight: 500; transition: 0.3s; }
+        .nav-links a:hover, .nav-links a.active { color: var(--brand-blue); }
+
+        /* Dropdown Logic */
+        .dropdown { position: relative; }
+        .dropdown-content {
+            display: none; position: absolute; background: var(--white);
+            min-width: 180px; box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+            border-radius: 6px; top: 100%; padding: 10px 0; z-index: 10;
+        }
+        .dropdown-content a { padding: 10px 20px; display: block; font-size: 0.9rem; }
+        .dropdown:hover .dropdown-content { display: block; }
+
+        .nav-right { display: flex; align-items: center; gap: 20px; }
+        .btn-contact { 
+            background: var(--brand-blue); color: white !important; 
+            padding: 10px 22px; border-radius: 25px; font-size: 0.85rem; 
+            text-decoration: none; transition: 0.3s;
+        }
+        .nav-icons { display: flex; gap: 15px; font-size: 1.1rem; color: var(--text-dark); }
+        .nav-icons i { cursor: pointer; transition: 0.2s; }
+        .nav-icons i:hover { color: var(--brand-blue); }
+
+
+
+
+        /* Custom Slants using Clip-Path */
+        .slant-left {
+            clip-path: polygon(0 0, 100% 0, 85% 100%, 0% 100%);
+        }
+        .slant-middle {
+            clip-path: polygon(15% 0, 100% 0, 85% 100%, 0% 100%);
+        }
+        .slant-right {
+            clip-path: polygon(15% 0, 100% 0, 100% 100%, 0% 100%);
+        }
+        .blue-accent-shape {
+            clip-path: polygon(20% 0%, 100% 0%, 80% 100%, 0% 100%);
+        }
+		.mission-vision{
+background:#f4f4f4;
+padding:60px 8%;
+}
+
+.mv-container{
+display:flex;
+justify-content:space-between;
+gap:60px;
+flex-wrap:wrap;
+}
+
+.mv-box{
+display:flex;
+align-items:flex-start;
+gap:25px;
+max-width:500px;
+}
+
+.mv-icon{
+font-size:50px;
+color:#2f5da8;
+}
+
+.mv-text h3{
+font-size:22px;
+font-weight:700;
+margin-bottom:10px;
+}
+
+.mv-text p{
+color:#666;
+line-height:1.6;
+font-size:15px;
+}
+.values-section{
+background:#eef2f3;
+padding:80px 8%;
+text-align:center;
+font-family:'Poppins',sans-serif;
+}
+
+.values-header i{
+font-size:45px;
+color:#2f7a3e;
+margin-bottom:10px;
+}
+
+.values-header h2{
+font-size:28px;
+margin-bottom:5px;
+}
+
+.values-header .line{
+width:40px;
+height:3px;
+background:#6c63ff;
+margin:10px auto 40px;
+}
+
+.values-container{
+display:grid;
+grid-template-columns:repeat(2,1fr);
+gap:60px 120px;
+max-width:1000px;
+margin:auto;
+}
+
+.value-box{
+max-width:400px;
+margin:auto;
+}
+
+.value-box i{
+font-size:40px;
+color:#2b4ea2;
+margin-bottom:15px;
+}
+
+.value-box h4{
+font-size:16px;
+margin-bottom:10px;
+font-weight:600;
+}
+
+.value-box p{
+font-size:14px;
+color:#666;
+line-height:1.6;
+}
+
+.center-box{
+grid-column:span 2;
+}
+/* Container Styles */
+.about-us {
+  font-family: 'Poppins', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  color: #555;
+  line-height: 1.6;
+  padding: 60px 20px;
+  background-color: #ffffff;
+}
+
+.container {
+  max-width: 900px;
+  margin: 0 auto 60px auto;
+  text-align: center;
+}
+
+/* Header & Icon Styles */
+.header {
+  margin-bottom: 25px;
+}
+
+.icon {
+  width: 80px; /* Adjust based on your logo size */
+  height: auto;
+  margin-bottom: 15px;
+}
+
+h2 {
+  font-size: 2rem;
+  font-weight: 700;
+  color: #1a1a1a;
+  margin: 0;
+  padding-bottom: 8px;
+}
+
+/* The blue accent line below the heading */
+.accent-line {
+  width: 80px;
+  height: 3px;
+  background-color: #3b71ca; /* Matching the blue in the image */
+  border: none;
+  margin: 0 auto;
+}
+
+/* Description Text */
+.description {
+  font-size: 1.1rem;
+  color: #666;
+  max-width: 850px;
+  margin: 0 auto;
+  font-weight: 400;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  h2 {
+    font-size: 1.75rem;
+  }
+  .description {
+    font-size: 1rem;
+    padding: 0 10px;
+  }
+}
+/* Center the Logo/Icon */
+.icon {
+  display: block;       /* Necessary for margin auto to work */
+  margin: 0 auto 15px;  /* Centers horizontally and adds bottom spacing */
+  width: 90px;          /* Adjust to match your image scale */
+  height: auto;
+}
+
+/* Container & Heading Center Alignment */
+.container {
+  max-width: 850px;     /* Keeps text from getting too wide */
+  margin: 0 auto 80px;  /* Centers the whole section and adds bottom padding */
+  text-align: center;   /* Centers the H2 and Paragraph text */
+}
+
+/* The blue accent line below the heading */
+.accent-line {
+  width: 75px;
+  height: 3.5px;
+  background-color: #3b71ca; /* The blue color from your image */
+  border: none;
+  margin: 10px auto 0;      /* Centers the line horizontally */
+  border-radius: 2px;
+}
+
+/* Refining the text style */
+.description {
+  margin-top: 30px;
+  color: #666;
+  font-size: 1.1rem;
+  line-height: 1.7;
+  font-weight: 400;
+}
+.enquiry-banner {
+  background-color: #2b5ab4; /* Royal blue background */
+  padding: 50px 20px;
+  color: white;
+  font-family: 'Poppins', sans-serif;
+}
+
+.banner-container {
+  max-width: 1100px;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 30px;
+  flex-wrap: wrap; /* Ensures it looks good on mobile */
+}
+
+/* Text Styles */
+.banner-text span {
+  font-size: 1.1rem;
+  font-weight: 300;
+  display: block;
+  margin-bottom: 5px;
+}
+
+.banner-text h2 {
+  font-size: 2rem;
+  font-weight: 700;
+  margin: 0;
+  letter-spacing: 0.5px;
+}
+
+/* Form & Input Styles */
+.banner-form {
+  display: flex;
+  gap: 20px;
+  flex-grow: 1;
+  max-width: 600px;
+}
+
+.banner-form input {
+  flex-grow: 1;
+  padding: 15px 25px;
+  border-radius: 50px; /* Pill shape */
+  border: none;
+  outline: none;
+  font-size: 1rem;
+}
+
+.banner-form button {
+  background-color: #dcb033; /* Mustard yellow */
+  color: #000;
+  padding: 15px 35px;
+  border-radius: 50px;
+  border: none;
+  font-weight: 700;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  white-space: nowrap;
+}
+
+.banner-form button:hover {
+  background-color: #c99e2a;
+}
+
+/* Mobile Responsive */
+@media (max-width: 768px) {
+  .banner-container {
+    flex-direction: column;
+    text-align: center;
+  }
+  
+  .banner-form {
+    flex-direction: column;
+    width: 100%;
+  }
+}
+  .footer{
+background:#222;
+color:#fff;
+padding:80px 8% 30px;
+}
+
+.footer-container{
+display:grid;
+grid-template-columns:repeat(4,1fr);
+gap:40px;
+max-width:1200px;
+margin:auto;
+}
+
+.footer-col h3{
+font-size:20px;
+margin-bottom:20px;
+position:relative;
+}
+
+.footer-col h3::after{
+content:"";
+width:40px;
+height:2px;
+background: #fff;
+position:absolute;
+left:0;
+bottom:-8px;
+}
+
+.footer-col ul{
+list-style:none;
+}
+
+.footer-col ul li{
+margin:10px 0;
+}
+
+.footer-col ul li a{
+text-decoration:none;
+color:#ccc;
+font-size:14px;
+}
+
+.footer-col ul li a:hover{
+color:#fff;
+}
+
+.contact p{
+color:#ccc;
+font-size:14px;
+margin:6px 0;
+}
+    </style>
+</head>
+<body class="font-sans text-gray-800">
+
+   <header class="main-header">
+        <div class="container nav-container">
+            <a href="#" class="logo-area">
+                <div class="logo-box">M</div>
+                <div class="logo-text">
+                    <h1>MELLONA FOODS</h1>
+                    <span>Organic Origins. Honest Flavors.</span>
+                </div>
+            </a>
+
+            <nav>
+                <ul class="nav-links">
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="about.html">About Us</a></li>
+                    <li class="dropdown">
+                        <a href="#">Our Products <i class="fa-solid fa-chevron-down" style="font-size: 10px;"></i></a>
+                        <div class="dropdown-content">
+                            <a href="organic food.html">Organic Food</a>
+                            <a href="millets.html">Millets</a>
+                            <a href="snack.html">Snacks</a>
+                            <a href="oil.html">Edible oil</a>
+                            <a href="spice.html">Spices</a>
+                        </div>
+						
+                    </li>
+					 <li class="dropdown">
+                        <a href="#">Our Services <i class="fa-solid fa-chevron-down" style="font-size: 10px;"></i></a>
+                        <div class="dropdown-content">
+                            <a href="service.html">Logistics</a>
+                            <a href="certificate.html">certification</a>
+                            <a href="source.html">Sourcing</a>
+                           
+                        </div>
+						
+                    </li>
+                    <li><a href="blog.html">Blogs</a></li>
+                    <li><a href="news.html" >News</a></li>
+                </ul>
+            </nav>
+
+            <div class="nav-right">
+                <a href="contactus.html" class="btn-contact">Contact us</a>
+                <div class="nav-icons">
+                    <i class="fa-solid fa-magnifying-glass"></i>
+                    <i class="fa-regular fa-user"></i>
+                    <i class="fa-solid fa-basket-shopping"></i>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <div class="relative h-64 flex overflow-hidden">
+        <div class="w-1/3 bg-gray-200 slant-left flex flex-col justify-center pl-20 z-10">
+            <h1 class="text-4xl font-bold text-gray-700">About Us</h1>
+            <p class="text-xs text-gray-500 mt-1 uppercase tracking-widest">Home / About Us</p>
+        </div>
+        
+        <div class="w-1/3 -ml-16 slant-middle bg-cover bg-center z-0" style="background-image: url('https://images.unsplash.com/photo-1509440159596-0249088772ff?auto=format&fit=crop&q=80&w=800');">
+        </div>
+
+        <div class="w-1/2 -ml-16 slant-right bg-cover bg-center" style="background-image: url('https://media.istockphoto.com/id/659524906/photo/composition-with-variety-of-vegetarian-food-ingredients.jpg?s=612x612&w=0&k=20&c=AzFdpJXWAVArpzTxJxhUqCENYcYb2ozltPhYaYJAkFQ=');">
+        </div>
+    </div>
+
+    <main class="max-w-7xl mx-auto px-10 py-20 flex flex-col md:flex-row items-start gap-16">
+        
+        <div class="w-full md:w-2/5 relative">
+            <div class="relative flex items-center">
+                <div class="rounded-2xl overflow-hidden shadow-2xl z-10 border-8 border-white">
+                    <img src="https://images.unsplash.com/photo-1522071820081-009f0129c71c?auto=format&fit=crop&q=80&w=600" alt="Team meeting" class="w-full">
+                </div>
+                <div class="absolute -right-12 w-32 h-48 bg-blue-700 blue-accent-shape z-0"></div>
+            </div>
+
+            <div class="mt-12 relative w-3/4">
+                <div class="rounded-2xl overflow-hidden shadow-lg border-8 border-white">
+                    <img src="https://images.unsplash.com/photo-1494412519320-aa613dfb7738?auto=format&fit=crop&q=80&w=500" alt="Logistics">
+                </div>
+                <div class="absolute -bottom-6 left-0 w-full h-16 bg-yellow-500 rounded-bl-3xl rounded-tr-3xl -z-10 transform translate-y-4"></div>
+            </div>
+        </div>
+
+        <div class="w-full md:w-3/5 pt-10">
+            <h2 class="text-4xl font-bold mb-8 text-gray-900">Welcome To Mellona</h2>
+            
+            <div class="space-y-6 text-gray-600 leading-relaxed text-lg">
+                <p>
+                    We Are A Global Trading And Sourcing Company, Providing Customized Solutions To Buyers Around The World. 
+                    We Specialize In Sourcing And Producing Goods As Per Client Requirements, Ensuring Quality And Reliability Throughout The Process.
+                </p>
+                
+                <p>
+                    One Of Our Key Initiatives, <span class="font-bold text-gray-900">Mellona Foods</span>, Is Dedicated To Promoting High-Quality Food Products. 
+                    This Venture Supports Farmers And Small-Scale Food Businesses By Helping Them Access Wider Markets, Improve Their Livelihoods, 
+                    And Deliver Pure, Trustworthy Food To Consumers.
+                </p>
+            </div>
+        </div>
+    </main>
+	<section class="mission-vision">
+
+<div class="mv-container">
+
+<div class="mv-box">
+<div class="mv-icon">
+<i class="fas fa-bullseye"></i>
+</div>
+
+<div class="mv-text">
+<h3>OUR MISSION</h3>
+<p>
+To source and trade quality products globally while supporting
+farmers and small food businesses with better market access.
+</p>
+</div>
+</div>
+
+<div class="mv-box">
+<div class="mv-icon">
+<i class="fas fa-award"></i>
+</div>
+
+<div class="mv-text">
+<h3>OUR VISION</h3>
+<p>
+To be a trusted name in global sourcing and trading.
+</p>
+</div>
+</div>
+
+</div>
+
+</section>
+<section class="values-section">
+
+<div class="values-header">
+<i class="fas fa-leaf"></i>
+<h2>Values</h2>
+<div class="line"></div>
+</div>
+
+<div class="values-container">
+
+<div class="value-box">
+<i class="fas fa-award"></i>
+<h4>Best Quality Services</h4>
+<p>
+When it comes to food, there must be no compromise. This is why we strive to provide you
+with the best quality services to ensure that the food stays healthy and fresh.
+</p>
+</div>
+
+<div class="value-box">
+<i class="fas fa-check-circle"></i>
+<h4>Vast Experience in Food Trading</h4>
+<p>
+Our vast experience in the food industry is what makes us the ideal choice
+for your food trading needs.
+</p>
+</div>
+
+<div class="value-box center-box">
+<i class="fas fa-certificate"></i>
+<h4>Trusted & Legally Approved Certified Services</h4>
+<p>
+Being a legally certified food export company in India,
+our services are transparent and trustworthy.
+</p>
+</div>
+
+<div class="value-box">
+<i class="fas fa-handshake"></i>
+<h4>Commitment & Time Adherence</h4>
+<p>
+Time is a huge factor when it comes to food. This is why we are committed to
+ensuring that we get the job done on schedule without fail.
+</p>
+</div>
+
+<div class="value-box">
+<i class="fas fa-lightbulb"></i>
+<h4>Innovation</h4>
+<p>
+Using innovative methods and equipment,
+we ensure that the food is packaged and stored to the best.
+</p>
+</div>
+
+</div>
+
+</section>
+<section class="about-us">
+  
+  <div class="container">
+   
+<div class="values-header">
+<i class="fas fa-leaf"></i>
+<h2>Who We Are?</h2>
+<div class="line"></div>
+</div>
+     
+    </div>
+    <p class="description">
+      We are a passionate team of young professionals united by a shared vision to become a 
+      global leader in food trading. Driven by our belief in India’s rich legacy of spices and 
+      diverse food culture, we see food export as a vital contributor to the nation’s growth. 
+      Specializing in the export of Indian spices and other food products, we also bring deep 
+      market insights and a continuously updated global food trade database to support our 
+      clients with informed, strategic decisions.
+    </p>
+  </div>
+
+  <div class="container">
+  <div class="values-header">
+<i class="fas fa-leaf"></i>
+<h2>What We Do?</h2>
+<div class="line"></div>
+</div>
+    <div class="header">
+    
+    </div>
+    <p class="description">
+      We specialize in the export of premium Indian spices, but our services go far beyond that. 
+      Recognizing the global demand for authentic Indian products, we also offer the export of 
+      organic foods, millets, and a variety of high-quality food items. From identifying the 
+      right buyers to ensuring secure packaging and smooth shipping, we provide end-to-end 
+      support to make your export journey hassle-free. Whether your destination is Europe, 
+      the Middle East, the Americas, or anywhere else in the world — we make sure your products 
+      reach with care and commitment.
+    </p>
+  </div>
+
+</section>
+<section class="enquiry-banner">
+  <div class="banner-container">
+    
+    <div class="banner-text">
+      <span>Submit Your Requirements</span>
+      <h2>Just One Step Ahead</h2>
+    </div>
+
+    <form class="banner-form">
+      <input type="email" placeholder="Enter Email Address" required>
+      <button type="submit">ENQUIRY NOW</button>
+    </form>
+
+  </div>
+</section>
+<footer class="footer">
+
+<div class="footer-container">
+
+    <div class="footer-col">
+        <h3>Information</h3>
+        <ul>
+            <li><a href="#">Home</a></li>
+            <li><a href="#">About us</a></li>
+            <li><a href="#">Our Products</a></li>
+            <li><a href="#">Our Services</a></li>
+            <li><a href="#">Blogs</a></li>
+            <li><a href="#">News</a></li>
+            <li><a href="#">Contact Us</a></li>
+            <li><a href="#">Login</a></li>
+        </ul>
+    </div>
+
+    <div class="footer-col">
+        <h3>Products</h3>
+        <ul>
+            <li><a href="#">Millets</a></li>
+            <li><a href="#">Organic foods</a></li>
+            <li><a href="#">Snacks</a></li>
+        </ul>
+    </div>
+
+    <div class="footer-col">
+        <h3>Branches</h3>
+        <ul>
+            <li><a href="#">Mumbai</a></li>
+        </ul>
+    </div>
+
+    <div class="footer-col contact">
+        <h3>Stay Connected</h3>
+
+        <p><strong>Registered address:</strong></p>
+        <p>Andheri , 9th Floor, Office 909</p>
+
+        <p><strong>Phone Number:</strong></p>
+        <p>+91 915 200 1234</p>
+
+        <p><strong>Email-Id</strong></p>
+        <p>sales@athena-logistics.com</p>
+
+        <p>Mon - Fri / 09:00 AM - 8:00 PM</p>
+    </div>
+
+</div>
+
+</footer>
+
+</body>
+</html>

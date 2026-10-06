@@ -1,0 +1,714 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Millets | Mellona Foods</title>
+  <meta name="description" content="Premium, minimally processed millets from Mellona Foods - naturally gluten-free, fibre-rich and full of natural goodness.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&family=Open+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css">
+  <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@600&display=swap" rel="stylesheet">
+
+  <style>
+    :root{
+      --ink:#10251f;
+      --green:#0c6b49;
+      --green-2:#124f3c;
+      --lime:#c8e46a;
+      --orange:#f3a52d;
+      --cream:#f8f4e9;
+      --soft:#f2f6ef;
+      --white:#fff;
+      --muted:#6f7d76;
+      --line:rgba(16,37,31,.10);
+      --shadow:0 24px 70px rgba(15,45,34,.12);
+    }
+    *{box-sizing:border-box}
+    html{scroll-behavior:smooth}
+    body{margin:0;color:var(--ink);font-family:"Open Sans",sans-serif;background:#fff;overflow-x:hidden}
+    h1,h2,h3,h4,h5,h6,.brand{font-family:"Montserrat",sans-serif}
+    a{text-decoration:none}
+    .container{max-width:1220px}
+
+    /* PRELOADER 
+    #preloader{position:fixed;inset:0;background:var(--ink);z-index:9999;display:grid;place-items:center;transition:.7s}
+    .loader-logo{color:#fff;font:800 28px Montserrat;letter-spacing:-1px}
+    .loader-logo span{color:var(--lime)}
+    .loader-bar{width:180px;height:3px;background:rgba(255,255,255,.15);margin:20px auto 0;overflow:hidden}
+    .loader-bar i{display:block;height:100%;width:45%;background:var(--lime);animation:load 1s infinite}
+    @keyframes load{to{transform:translateX(400%)}}*/
+
+    /* NAV */
+    .site-nav{position:fixed;top:0;left:0;right:0;z-index:1000;padding:20px 0;transition:.35s}
+    .site-nav.scrolled{background:rgba(255,255,255,.92);backdrop-filter:blur(18px);padding:11px 0;box-shadow:0 5px 30px rgba(0,0,0,.06)}
+    .nav-wrap{background:rgba(255,255,255,.9);backdrop-filter:blur(16px);border:1px solid rgba(255,255,255,.7);border-radius:100px;padding:7px 9px 7px 22px}
+    .brand{font-size:20px;font-weight:800;letter-spacing:-1px;color:var(--ink)}
+    .brand .dot{color:var(--orange)}
+    .brand small{display:block;font:600 7px "Open Sans";letter-spacing:2px;color:var(--muted);margin-top:-2px}
+    .nav-link{font-weight:600;color:#31433d!important;font-size:14px;padding:10px 15px!important}
+    .nav-link:hover{color:var(--green)!important}
+    .btn-main{background:var(--green);color:#fff;border:0;border-radius:100px;padding:13px 22px;font-weight:700;transition:.3s}
+    .btn-main:hover{background:var(--ink);color:#fff;transform:translateY(-2px)}
+    .menu-btn{border:0;background:var(--green);color:#fff;width:43px;height:43px;border-radius:50%}
+
+    /* HERO */
+    .hero{min-height:820px;padding:150px 0 90px;background:
+      radial-gradient(circle at 10% 15%,rgba(200,228,106,.35),transparent 25%),
+      radial-gradient(circle at 92% 70%,rgba(243,165,45,.16),transparent 24%),
+      linear-gradient(135deg,#f6f5e9 0%,#fff 47%,#edf6e9 100%);position:relative;overflow:hidden}
+    .hero:before{content:"";position:absolute;width:650px;height:650px;border:1px solid rgba(12,107,73,.12);border-radius:50%;right:-180px;top:40px}
+    .hero:after{content:"";position:absolute;width:500px;height:500px;border:1px dashed rgba(12,107,73,.1);border-radius:50%;right:-100px;top:115px}
+    .eyebrow{display:inline-flex;align-items:center;gap:9px;text-transform:uppercase;letter-spacing:2.5px;font-size:11px;font-weight:800;color:var(--green);margin-bottom:20px}
+    .eyebrow:before{content:"";width:34px;height:2px;background:var(--orange)}
+    .hero h1{font-size:clamp(48px,6.5vw,88px);line-height:.98;letter-spacing:-4px;font-weight:800;max-width:760px}
+    .hero h1 span{color:var(--green)}
+    .hero-copy{font-size:18px;color:#68756f;line-height:1.7;max-width:570px;margin:25px 0 32px}
+    .hero-actions{display:flex;gap:12px;flex-wrap:wrap}
+    .btn-outline{border:1px solid var(--line);color:var(--ink);background:#fff;border-radius:100px;padding:13px 22px;font-weight:700}
+    .btn-outline:hover{border-color:var(--green);color:var(--green)}
+    .hero-media{position:relative;height:550px}
+    .hero-card{position:absolute;inset:20px 10px 0 30px;border-radius:42px;overflow:hidden;box-shadow:var(--shadow);transform:rotate(2deg)}
+    .hero-card img{width:100%;height:100%;object-fit:cover}
+    .hero-card:after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,transparent 55%,rgba(10,40,28,.48))}
+    .float-card{position:absolute;z-index:3;background:#fff;border-radius:20px;padding:18px 20px;box-shadow:0 20px 50px rgba(0,0,0,.13)}
+    .float-card.top{top:70px;left:-10px}
+    .float-card.bottom{bottom:28px;right:-18px}
+    .float-icon{width:42px;height:42px;border-radius:14px;background:#edf6df;color:var(--green);display:grid;place-items:center;font-size:20px}
+    .stat-row{display:flex;gap:22px;margin-top:34px}
+    .mini-stat strong{display:block;font:800 24px Montserrat}
+    .mini-stat span{font-size:11px;color:var(--muted);text-transform:uppercase;letter-spacing:1px}
+
+    /* TRUST STRIP */
+    .trust{padding:23px 0;border-bottom:1px solid var(--line);border-top:1px solid var(--line);background:#fff}
+    .trust-item{display:flex;align-items:center;gap:12px;justify-content:center;color:#52615a;font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:.8px}
+    .trust-item i{color:var(--green);font-size:21px}
+
+    /* SECTION */
+    section{padding:110px 0}
+    .section-tag{color:var(--green);font-size:11px;font-weight:800;letter-spacing:2.2px;text-transform:uppercase;margin-bottom:13px}
+    .section-title{font-size:clamp(36px,4vw,58px);line-height:1.05;letter-spacing:-2.5px;font-weight:800}
+    .section-lead{color:var(--muted);line-height:1.8;max-width:610px}
+
+    /* CATEGORIES */
+    .category-section{background:var(--soft)}
+    .category-card{height:420px;border-radius:28px;overflow:hidden;position:relative;color:#fff;box-shadow:0 14px 35px rgba(0,0,0,.08);transition:.45s}
+    .category-card:hover{transform:translateY(-10px)}
+    .category-card img{width:100%;height:100%;object-fit:cover;transition:.6s}
+    .category-card:hover img{transform:scale(1.07)}
+    .category-card:after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,transparent 38%,rgba(4,20,14,.84))}
+    .cat-content{position:absolute;z-index:2;bottom:0;left:0;right:0;padding:28px}
+    .cat-no{font-size:11px;opacity:.7;letter-spacing:2px}
+    .cat-content h3{font-size:29px;margin:6px 0}
+    .cat-content p{font-size:13px;opacity:.82;margin:0;max-width:280px}
+    .cat-arrow{position:absolute;right:25px;bottom:28px;width:44px;height:44px;border-radius:50%;background:#fff;color:var(--ink);display:grid;place-items:center;z-index:3}
+
+    /* STORY */
+    .story{background:var(--green);color:#fff;position:relative;overflow:hidden}
+    .story:before{content:"GLOBAL FOOD • FRESHNESS • TRUST • GLOBAL FOOD • FRESHNESS • TRUST";position:absolute;white-space:nowrap;font:800 95px Montserrat;color:rgba(255,255,255,.035);top:30px;left:-30px}
+    .story-image{height:570px;border-radius:35px;overflow:hidden;position:relative}
+    .story-image img{width:100%;height:100%;object-fit:cover}
+    .story-badge{position:absolute;left:25px;bottom:25px;background:var(--lime);color:var(--ink);border-radius:20px;padding:18px 20px;font-weight:800}
+    .story .section-tag{color:var(--lime)}
+    .story .section-lead{color:rgba(255,255,255,.7)}
+    .story .section-title{max-width:620px}
+    .check-list{list-style:none;padding:0;margin:30px 0}
+    .check-list li{display:flex;gap:12px;margin:15px 0;color:rgba(255,255,255,.86)}
+    .check-list i{color:var(--lime)}
+    .why-list{display:grid;grid-template-columns:1fr 1fr;gap:6px 18px}
+    .why-list li{align-items:center;font-weight:700;font-size:14px;margin:8px 0}
+    .why-list i{width:38px;height:38px;flex:0 0 auto;border-radius:50%;background:rgba(255,255,255,.1);display:grid;place-items:center;font-size:16px}
+
+    /* NUMBERS */
+    .numbers{background:var(--cream)}
+    .numbers{padding:50px 0}
+    .number-box{padding:20px 15px;border-right:1px solid var(--line)}
+    .number-box:last-child{border:0}
+    .number-box strong{font:800 clamp(28px,3vw,40px) Montserrat;letter-spacing:-1px;color:var(--green)}
+    .number-box span{display:block;font-weight:600;font-size:14px;color:#5f6c66;margin-top:4px}
+    .number-box{opacity:0;transform:translateY(30px);transition:opacity .7s cubic-bezier(.22,1,.36,1),transform .7s cubic-bezier(.22,1,.36,1);transition-delay:var(--d,0s)}
+    .numbers.in .number-box{opacity:1;transform:none}
+    .number-box strong{display:inline-block;font-variant-numeric:tabular-nums}
+    .number-box strong.pop{animation:numPop .5s cubic-bezier(.34,1.56,.64,1)}
+    @keyframes numPop{0%{transform:scale(1)}50%{transform:scale(1.12)}100%{transform:scale(1)}}
+    .number-box span{opacity:0;transform:translateY(8px);transition:opacity .6s ease .5s,transform .6s ease .5s}
+    .numbers.in .number-box span{opacity:1;transform:none}
+
+    /* PROCESS */
+    .process-card{border:1px solid var(--line);border-radius:25px;padding:28px;height:100%;background:#fff;transition:.3s}
+    .process-card:hover{box-shadow:var(--shadow);transform:translateY(-5px)}
+    .process-icon{width:58px;height:58px;border-radius:18px;background:#edf6df;color:var(--green);display:grid;place-items:center;font-size:25px;margin-bottom:24px}
+    .process-card h4{font-size:20px}
+    .process-card p{font-size:14px;color:var(--muted);line-height:1.7;margin:0}
+    .learn-link{display:inline-flex;align-items:center;gap:6px;color:var(--green);font-weight:800;margin-top:10px}
+    .step-row{display:flex;align-items:flex-start;justify-content:space-between;gap:8px;flex-wrap:wrap}
+    .step-item{flex:1 1 150px;text-align:center;max-width:190px}
+    .step-circle{width:130px;height:130px;border-radius:50%;overflow:hidden;margin:0 auto 20px;box-shadow:0 14px 35px rgba(0,0,0,.1);border:6px solid var(--soft)}
+    .step-circle img{width:100%;height:100%;object-fit:cover}
+    .step-item h4{font-size:17px;margin-bottom:6px}
+    .step-item p{font-size:13px;color:var(--muted);line-height:1.6;margin:0}
+    .step-arrow{color:var(--green);font-size:22px;padding-top:55px;flex:0 0 auto}
+    @media(max-width:991px){.step-arrow{display:none}.step-row{gap:36px 20px}}
+
+    /* GLOBAL */
+    .global{background:#f6f8f2;overflow:hidden}
+    .world-map{position:relative;min-height:480px;margin-top:45px;background:
+      radial-gradient(ellipse at center,rgba(200,228,106,.3),transparent 55%)}
+    .map-svg{width:100%;height:480px;opacity:1}
+    .map-land{fill:#e3decb;transition:.3s}
+    .map-land:hover{fill:#d8d0b4}
+    .route{stroke:var(--orange);stroke-width:2;stroke-dasharray:6 8;fill:none;opacity:.85;animation:dash 6s linear infinite}
+    .route.slow{animation-duration:9s;stroke:var(--green)}
+    @keyframes dash{to{stroke-dashoffset:-140}}
+    .pin{position:absolute;width:13px;height:13px;border-radius:50%;background:var(--orange);box-shadow:0 0 0 8px rgba(243,165,45,.18);animation:pulse 2s infinite}
+    .pin.one{left:16.7%;top:25%}.pin.two{left:48.3%;top:18.7%}.pin.three{left:48.3%;top:47.9%}.pin.four{left:84.2%;top:71.9%}
+    .pin.source{width:17px;height:17px;background:var(--green);box-shadow:0 0 0 9px rgba(12,107,73,.2);left:68.75%;top:42.7%;animation:pulse2 2s infinite}
+    .pin.source:after{content:"India";position:absolute;top:-24px;left:50%;transform:translateX(-50%);font:800 10px Montserrat;color:var(--green);white-space:nowrap;letter-spacing:.5px}
+    @keyframes pulse{50%{box-shadow:0 0 0 14px rgba(243,165,45,0)}}
+    @keyframes pulse2{50%{box-shadow:0 0 0 15px rgba(12,107,73,0)}}
+    .global-note{position:absolute;right:4%;top:30px;background:#fff;padding:18px 22px;border-radius:18px;box-shadow:0 14px 35px rgba(0,0,0,.08);font-size:12px}
+    .global-note strong{display:block;font:800 25px Montserrat;color:var(--green)}
+
+    /* PRODUCT */
+    .product-card{border:1px solid var(--line);border-radius:26px;overflow:hidden;background:#fff;height:100%;transition:.35s}
+    .product-card:hover{transform:translateY(-7px);box-shadow:var(--shadow)}
+    .product-img{height:250px;overflow:hidden;background:#eee}
+    .product-img img{width:100%;height:100%;object-fit:cover;transition:.5s}
+    .product-card:hover .product-img img{transform:scale(1.06)}
+    .product-body{padding:22px}
+    .product-body small{color:var(--green);font-weight:800;text-transform:uppercase;letter-spacing:1.5px}
+    .product-body h3{font-size:21px;margin:8px 0}
+    .product-body p{color:var(--muted);font-size:13px;line-height:1.65}
+    .product-link{color:var(--ink);font-weight:800;font-size:13px}
+
+    /* CTA */
+    .cta{padding:75px 0}
+    .cta-box{background:var(--ink);color:#fff;border-radius:36px;padding:70px;position:relative;overflow:hidden}
+    .cta-box:after{content:"";position:absolute;width:360px;height:360px;border:70px solid rgba(200,228,106,.07);border-radius:50%;right:-100px;top:-100px}
+    .cta-box .section-title{max-width:720px}
+    .btn-lime{background:var(--lime);color:var(--ink);border:0;border-radius:100px;padding:14px 24px;font-weight:800}
+    .btn-lime:hover{background:#fff;color:var(--ink)}
+
+    /* FOOTER */
+    footer{background:#0b1713;color:#fff;padding:75px 0 25px}
+    footer .brand{color:#fff}
+    .footer-text{color:rgba(255,255,255,.55);line-height:1.7;font-size:13px;max-width:340px}
+    footer h3{font-size:12px;letter-spacing:1.4px;text-transform:uppercase;color:var(--lime);margin-bottom:20px}
+    footer ul{list-style:none;padding:0;margin:0}
+    footer li{margin:10px 0}
+    footer a{color:rgba(255,255,255,.6);font-size:13px}
+    footer a:hover{color:#fff}
+    .social-row{display:flex;flex-direction:row;flex-wrap:nowrap;align-items:center;gap:10px}
+    .social{width:39px;height:39px;flex:0 0 auto;border:1px solid rgba(255,255,255,.14);border-radius:50%;display:flex;align-items:center;justify-content:center;color:#fff;transition:.25s}
+    .social:hover{background:var(--green);border-color:var(--green)}
+    .copyright{border-top:1px solid rgba(255,255,255,.09);margin-top:55px;padding-top:20px;color:rgba(255,255,255,.38);font-size:11px}
+
+    /* REVEAL */
+    .reveal{opacity:0;transform:translateY(35px);transition:opacity .8s ease,transform .8s ease}
+    .reveal.show{opacity:1;transform:none}
+
+    @media(max-width:991px){
+      .site-nav{padding:10px}
+      .nav-wrap{border-radius:22px;padding:9px 15px}
+      .hero{padding-top:135px;min-height:auto}
+      .hero-media{height:470px;margin-top:40px}
+      .hero-card{inset:10px 15px 0 15px}
+      .float-card.top{left:0}
+      .float-card.bottom{right:0}
+      .story-image{height:430px;margin-bottom:40px}
+      .number-box{border-right:0;border-bottom:1px solid var(--line)}
+      .cta-box{padding:45px 28px}
+    }
+    @media(max-width:575px){
+      section{padding:75px 0}
+      .hero h1{letter-spacing:-2.5px}
+      .hero-media{height:390px}
+      .hero-card{border-radius:25px}
+      .float-card{padding:13px 14px}
+      .stat-row{gap:13px}
+      .stat-row .mini-stat strong{font-size:19px}
+      .category-card{height:350px}
+      .world-map,.map-svg{height:340px;min-height:340px}
+      .global-note{right:0;top:10px}
+      .cta-box{padding:36px 22px;border-radius:26px}
+      .fab-stack{right:16px;bottom:16px}
+    }
+    @media(max-width:420px){
+      .stat-row{flex-wrap:wrap}
+      .float-card.bottom{position:static;margin-top:14px;display:inline-flex}
+      .hero-media{height:auto;padding-bottom:20px}
+    }
+
+    /* ===== SCROLL PROGRESS ===== */
+    #scrollProgress{position:fixed;top:0;left:0;height:3px;width:0%;background:linear-gradient(90deg,var(--orange),var(--lime));z-index:1200;transition:width .12s linear}
+
+    /* ===== HERO LOAD SEQUENCE ===== */
+    .hero h1 .word{display:inline-block;opacity:0;transform:translateY(28px);animation:wordIn .75s cubic-bezier(.16,1,.3,1) forwards}
+    @keyframes wordIn{to{opacity:1;transform:translateY(0)}}
+    .hero-fade{opacity:0;transform:translateY(18px);animation:heroFade .7s cubic-bezier(.16,1,.3,1) forwards}
+    @keyframes heroFade{to{opacity:1;transform:translateY(0)}}
+    .hero-media{animation:mediaIn 1s cubic-bezier(.16,1,.3,1) .35s both}
+    @keyframes mediaIn{from{opacity:0;transform:translateY(24px) scale(.97)}to{opacity:1;transform:none}}
+    .hero:before,.hero:after{animation:ringSpin 60s linear infinite}
+    @keyframes ringSpin{to{transform:rotate(360deg)}}
+
+    /* ===== MAGNETIC BUTTONS / TILT ===== */
+    .btn-main,.btn-lime,.btn-outline{will-change:transform}
+    .tilt{will-change:transform;transform-style:preserve-3d}
+
+    /* ===== STAGGERED REVEAL ===== */
+    .reveal{transition-delay:var(--d,0s)}
+
+    /* ===== CERTIFICATIONS / MARQUEE ===== */
+    .cert-section{background:var(--ink);padding:64px 0;overflow:hidden;position:relative}
+    .cert-heading{color:rgba(255,255,255,.55);font:700 12px "Open Sans";letter-spacing:1.5px;text-transform:uppercase;text-align:center;margin-bottom:34px}
+    .cert-strip{overflow:hidden;-webkit-mask-image:linear-gradient(90deg,transparent,#000 6%,#000 94%,transparent);mask-image:linear-gradient(90deg,transparent,#000 6%,#000 94%,transparent)}
+    .cert-track{display:flex;gap:64px;width:max-content;animation:marquee 26s linear infinite}
+    .cert-strip:hover .cert-track{animation-play-state:paused}
+    @keyframes marquee{to{transform:translateX(-50%)}}
+    .cert-item{display:flex;align-items:center;gap:14px;flex-shrink:0}
+    .cert-item i{font-size:28px;color:var(--lime)}
+    .cert-item span{font:700 15px Montserrat;color:rgba(255,255,255,.88);white-space:nowrap}
+
+    /* ===== TESTIMONIALS ===== */
+    .testimonial-section{background:var(--soft)}
+    .quote-card{background:#fff;border:1px solid var(--line);border-radius:28px;padding:44px;height:100%}
+    .quote-mark{font:800 60px Montserrat;color:var(--lime);line-height:.4;display:block;margin-bottom:18px}
+    .quote-text{font-size:18px;line-height:1.75;color:var(--ink);min-height:150px}
+    .quote-person{display:flex;align-items:center;gap:14px;margin-top:26px}
+    .quote-avatar{width:48px;height:48px;border-radius:50%;background:var(--green);color:#fff;display:grid;place-items:center;font:800 15px Montserrat;flex-shrink:0}
+    .quote-name{font-weight:800;font-size:14px}
+    .quote-role{font-size:12px;color:var(--muted)}
+
+    /* ===== FAQ ===== */
+    .faq-section .accordion-item{border:1px solid var(--line);border-radius:20px!important;margin-bottom:14px;overflow:hidden}
+    .faq-section .accordion-button{font-family:Montserrat;font-weight:700;font-size:17px;padding:24px 26px;color:var(--ink);background:#fff}
+    .faq-section .accordion-button:not(.collapsed){color:var(--green);background:var(--soft);box-shadow:none}
+    .faq-section .accordion-button:focus{box-shadow:none}
+    .faq-section .accordion-button::after{width:34px;height:34px;background-color:var(--soft);border-radius:50%;background-size:16px;transition:.35s}
+    .faq-section .accordion-button:not(.collapsed)::after{background-color:var(--lime);transform:rotate(180deg)}
+    .faq-section .accordion-body{padding:0 26px 26px;color:var(--muted);line-height:1.75;font-size:14.5px}
+
+    /* ===== FLOATING ACTIONS ===== */
+    .fab-stack{position:fixed;right:26px;bottom:26px;z-index:900;display:flex;flex-direction:column;align-items:center;gap:14px}
+    .fab-wa{width:56px;height:56px;border-radius:50%;background:#25D366;color:#fff;display:grid;place-items:center;font-size:26px;box-shadow:0 12px 30px rgba(37,211,102,.4);animation:fabPulse 2.6s infinite}
+    @keyframes fabPulse{0%,100%{box-shadow:0 12px 30px rgba(37,211,102,.4)}50%{box-shadow:0 12px 30px rgba(37,211,102,.65),0 0 0 8px rgba(37,211,102,.12)}}
+    .fab-top{width:46px;height:46px;border-radius:50%;background:#fff;display:grid;place-items:center;position:relative;box-shadow:0 10px 25px rgba(0,0,0,.12);opacity:0;pointer-events:none;transition:.35s;color:var(--ink)}
+    .fab-top.show{opacity:1;pointer-events:auto}
+    .fab-top svg{position:absolute;inset:0;transform:rotate(-90deg)}
+    .fab-top circle{fill:none;stroke:var(--line);stroke-width:3}
+    .fab-top circle.prog{stroke:var(--green);stroke-linecap:round;transition:stroke-dashoffset .1s linear}
+    .fab-top i{position:relative;z-index:2;font-size:16px}
+
+    @media(prefers-reduced-motion:reduce){
+      *{animation-duration:.001s!important;animation-iteration-count:1!important;transition-duration:.001s!important;scroll-behavior:auto!important}
+    }
+
+    /* ===== GlobalEats sections (scoped with ge- prefix) ===== */
+    .ge-eyebrow{font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:#c8952b;font-weight:600}
+    .ge-h2{font-family:'Montserrat',sans-serif;font-weight:600;line-height:1.2;letter-spacing:0}
+    .ge-btn{display:inline-flex;align-items:center;gap:8px;padding:12px 26px;border-radius:6px;font-size:14px;font-weight:600;transition:.25s}
+    .ge-btn-gold{background:#c8952b;color:#fff}.ge-btn-gold:hover{background:#b0811f;color:#fff}
+    .ge-btn-green{background:#0f3d2e;color:#fff}.ge-btn-green:hover{background:#15503b;color:#fff}
+    .ge-link{color:#0f3d2e;font-weight:600;font-size:14px}
+    .ge-head{display:flex;justify-content:space-between;align-items:flex-end;gap:24px;flex-wrap:wrap;margin-bottom:40px}
+    .ge-head .ge-h2{font-size:38px;max-width:520px;margin:8px 0 0}
+    .ge-head p{max-width:340px;color:#5d6b64;font-size:15px;margin:0}
+
+    .ge-products{padding:80px 0;background:#faf7f0}
+    .ge-grid{display:grid;grid-template-columns:repeat(5,1fr);gap:20px}
+    .ge-card{background:#fff;border:1px solid #e6e0d2;border-radius:10px;overflow:hidden;transition:.3s}
+    .ge-card:hover{transform:translateY(-6px);box-shadow:0 14px 30px rgba(15,61,46,.12)}
+    .ge-card img{width:100%;aspect-ratio:1/1;object-fit:cover;display:block}
+    .ge-card .body{padding:18px}
+    .ge-card h3{font-family:'Montserrat',sans-serif;font-size:19px;margin-bottom:6px}
+    .ge-card p{font-size:13.5px;color:#5d6b64;margin-bottom:12px}
+    .ge-card a{font-size:13px;font-weight:600;color:#c8952b}
+
+    /* ===== GlobalEats: Why Choose / Global Presence / Process ===== */
+    :root{--gx-green:#0d3a25;--gx-green-2:#123524;--gx-ink:#5b5f57}
+    .gx-eyebrow{display:block;font-size:11px;font-weight:500;letter-spacing:.2em;text-transform:uppercase;color:var(--gx-ink)}
+    .gx-h2{font-family:'Montserrat',sans-serif;font-weight:500;font-size:clamp(34px,3.7vw,50px);line-height:1.12;letter-spacing:-.01em;color:var(--gx-green-2);margin:14px 0 20px}
+    .gx-btn{display:inline-flex;align-items:center;gap:10px;padding:13px 28px;border-radius:100px;font-size:14px;font-weight:500;transition:.25s}
+    .gx-btn-solid{background:var(--gx-green);color:#fff;border:1px solid var(--gx-green)}
+    .gx-btn-solid:hover{background:#155234;color:#fff}
+    .gx-btn-line{background:transparent;color:#fff;border:1px solid rgba(255,255,255,.85)}
+    .gx-btn-line:hover{background:#fff;color:var(--gx-green)}
+
+    /* WHY CHOOSE US */
+    .gx-why{position:relative;padding:0;overflow:hidden;color:#fff;background:var(--gx-green)}
+    .gx-why:before{content:"";position:absolute;top:0;bottom:0;left:41%;width:36%;
+      background:url('ge-why-hand.jpg') center/cover no-repeat;
+      -webkit-mask-image:linear-gradient(90deg,transparent 0%,#000 28%,#000 78%,transparent 100%);
+      mask-image:linear-gradient(90deg,transparent 0%,#000 28%,#000 78%,transparent 100%)}
+    .gx-why:after{content:"";position:absolute;inset:0;
+      background:linear-gradient(90deg,rgba(13,58,37,0) 0%,rgba(13,58,37,0) 60%,rgba(13,58,37,.55) 78%,rgba(13,58,37,.9) 100%)}
+    .gx-why-in{position:relative;z-index:2;display:grid;grid-template-columns:1fr auto;gap:40px;min-height:430px;padding-top:70px;padding-bottom:50px}
+    .gx-why-text{align-self:center;max-width:520px}
+    .gx-why .gx-eyebrow{color:#fff;opacity:.92}
+    .gx-why .gx-h2{color:#fff;margin:18px 0 20px}
+    .gx-why-text p{color:rgba(255,255,255,.88);font-size:15px;line-height:1.65;max-width:400px;margin:0 0 30px}
+    .gx-why-side{display:flex;flex-direction:column;justify-content:space-between;align-items:flex-end;padding-top:8px}
+    .gx-feats{list-style:none;margin:0;padding:0;display:grid;gap:20px}
+    .gx-feats li{display:flex;align-items:center;gap:14px;font-size:10.5px;font-weight:500;letter-spacing:.09em;text-transform:uppercase;line-height:1.4;color:#fff}
+    .gx-feats .ic{flex:0 0 46px;width:46px;height:46px;border-radius:50%;border:1.2px solid rgba(255,255,255,.85);display:grid;place-items:center}
+    .gx-feats svg{width:22px;height:22px;fill:none;stroke:#fff;stroke-width:1.4;stroke-linecap:round;stroke-linejoin:round}
+    .gx-script{font-family:'Dancing Script',cursive;font-weight:400;font-size:30px;line-height:1.15;text-align:right;transform:rotate(-6deg);margin-top:26px;color:#fff}
+
+    /* GLOBAL PRESENCE */
+    .gx-presence{padding:80px 0;background:#fbfaf6}
+    .gx-presence-in{display:grid;grid-template-columns:minmax(0,1.1fr) minmax(0,1.4fr) auto;gap:32px;align-items:center}
+    @media(min-width:1001px){.gx-presence .gx-h2{white-space:nowrap;font-size:clamp(32px,3.3vw,46px)}.gx-presence-text{position:relative;z-index:2}}
+    .gx-presence-text p{color:#4f564f;font-size:15px;line-height:1.65;max-width:400px;margin:0 0 28px}
+    .gx-map{width:100%;height:auto;display:block}
+    .gx-map .land{fill:#e6dcc5}
+    .gx-map .routes path{fill:none;stroke:#1d3d2c;stroke-width:1;stroke-linecap:round;stroke-dasharray:.5 4.5;opacity:.85}
+    .gx-map .dots circle{fill:#123524}
+    .gx-count{text-align:left;padding-right:6px}
+    .gx-count small{display:block;font-size:11px;font-weight:500;letter-spacing:.2em;text-transform:uppercase;color:var(--gx-ink)}
+    .gx-count b{display:block;font-family:'Montserrat',sans-serif;font-weight:500;font-size:clamp(48px,5vw,66px);line-height:1.05;color:var(--gx-green-2);margin:6px 0 2px}
+    .gx-count i{display:block;width:28px;height:2px;background:#1f6b3f;margin-top:14px}
+
+    /* PROCESS */
+    .gx-process{padding:70px 0 80px;background:#fff}
+    .gx-process-head{display:flex;align-items:center;justify-content:space-between;gap:40px;flex-wrap:wrap;margin-bottom:46px}
+    .gx-process-head .gx-h2{margin:14px 0 0}
+    .gx-process-head p{flex:0 1 340px;margin:0;font-size:13px;line-height:1.6;color:#4f564f}
+    .gx-link{display:inline-flex;align-items:center;gap:8px;font-size:13.5px;font-weight:500;color:var(--gx-green-2);white-space:nowrap}
+    .gx-link:hover{color:#1f6b3f}
+    .gx-steps{display:flex;align-items:flex-start;justify-content:space-between}
+    .gx-step{flex:0 0 auto;width:var(--c);position:relative}
+    .gx-steps{--c:clamp(120px,14vw,168px)}
+    .gx-step .pic{width:var(--c);height:var(--c);border-radius:50%;overflow:hidden;display:block}
+    .gx-step .pic img{width:100%;height:100%;object-fit:cover;display:block}
+    .gx-step .txt{width:230px;margin-left:calc((var(--c) - 230px)/2);margin-top:20px;text-align:center}
+    .gx-step h3{font-family:'Montserrat',sans-serif;font-size:16px;font-weight:600;color:#1a2a22;margin:0 0 6px}
+    .gx-step p{font-size:13px;line-height:1.55;color:#5b5f57;margin:0 auto;max-width:170px}
+    .gx-arrow{flex:1 1 auto;text-align:center;padding-top:calc(var(--c)/2 - 12px);color:#1a2a22;font-size:20px;line-height:1}
+
+    @media(max-width:1000px){
+      .ge-grid{grid-template-columns:repeat(2,1fr)}
+      .gx-why:before{left:0;width:100%;opacity:.35;-webkit-mask-image:none;mask-image:none}
+      .gx-why:after{background:linear-gradient(180deg,rgba(13,58,37,.85) 0%,rgba(13,58,37,.75) 100%)}
+      .gx-why-in{grid-template-columns:1fr;min-height:0;padding-top:60px}
+      .gx-why-side{align-items:flex-start}
+      .gx-feats{grid-template-columns:1fr 1fr}
+      .gx-script{text-align:left;transform:none}
+      .gx-presence-in{grid-template-columns:1fr}
+      .gx-count{display:flex;align-items:center;gap:16px;flex-wrap:wrap}
+      .gx-count b{margin:0}
+      .gx-count i{display:none}
+      .gx-steps{flex-wrap:wrap;justify-content:center;gap:36px 28px}
+      .gx-arrow{display:none}
+    }
+    @media(max-width:560px){
+      .ge-grid{grid-template-columns:1fr}
+      .ge-head .ge-h2{font-size:30px}
+      .gx-feats{grid-template-columns:1fr}
+      .gx-step{width:100%;max-width:230px}
+      .gx-step .pic{margin:0 auto}
+      .gx-step .txt{margin-left:auto;margin-right:auto;width:100%}
+    }
+
+    /* ===== GlobalEats: Let's Grow Together CTA ===== */
+    .gx-cta{position:relative;padding:0;overflow:hidden;background:#5d7f3a url('ge-cta-bg.jpg') center/cover no-repeat}
+    .gx-cta-in{position:relative;aspect-ratio:630/269;min-height:520px}
+    .gx-cta-card{position:absolute;left:6.35%;top:7.4%;width:45.9%;height:63.2%;display:flex;flex-direction:column;justify-content:center;align-items:flex-start;padding:0 8%;background:linear-gradient(135deg,rgba(255,255,255,.94),rgba(244,245,240,.88));backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);border:1px solid rgba(255,255,255,.55);border-radius:12px;box-shadow:0 14px 40px rgba(0,0,0,.10)}
+    .gx-cta-card .gx-eyebrow{font-size:10.5px}
+    .gx-cta-card .gx-h2{margin:12px 0 14px;font-size:clamp(28px,3vw,44px);color:#10261c}
+    .gx-cta-card p{font-size:clamp(13px,1vw,14.5px);line-height:1.6;color:#2f382f;max-width:430px;margin:0 0 24px}
+    .gx-cta-mark{position:absolute;left:72.2%;top:49.5%;color:#fff}
+    .gx-cta-row{display:flex;align-items:center;gap:18px}
+    .gx-cta-row svg{width:58px;height:58px;flex:0 0 58px;fill:none;stroke:#fff;stroke-width:1.2;stroke-linecap:round;stroke-linejoin:round}
+    .gx-cta-row .sep{width:1px;height:50px;background:rgba(255,255,255,.45)}
+    .gx-cta-row span.t{display:block;font-size:13px;font-weight:500;letter-spacing:.13em;text-transform:uppercase;line-height:24px;white-space:nowrap}
+    .gx-cta-line{display:block;width:60px;height:2px;background:#fff;margin-top:36px}
+    @media(max-width:900px){
+      .gx-cta-in{aspect-ratio:auto;min-height:0;padding:44px 16px 150px}
+      .gx-cta-card{position:static;width:100%;height:auto;padding:32px 26px}
+      .gx-cta-mark{left:22px;top:auto;right:auto;bottom:30px;position:absolute}
+      .gx-cta-row span.t{font-size:10px;line-height:19px}
+      .gx-cta-row svg{width:44px;height:44px;flex-basis:44px}
+    }
+  
+    /* ===== Unified heading typography (matches "Why Choose GlobalEats") ===== */
+    .eyebrow,.ge-eyebrow,.section-tag{font-family:'Open Sans',sans-serif;font-size:11px;font-weight:500;letter-spacing:.2em;text-transform:uppercase;color:var(--gx-ink)}
+    .hero .eyebrow{color:var(--gx-ink)}
+    .story .section-tag,.cta-box .section-tag{color:#fff;opacity:.92}
+    .hero h1,.ge-h2,.section-title{font-family:'Montserrat',sans-serif;font-weight:500;line-height:1.12;letter-spacing:-.01em;color:var(--gx-green-2)}
+    .hero h1{font-size:clamp(40px,5.2vw,68px)}
+    .hero h1 span{color:inherit}
+    .section-title{font-size:clamp(34px,3.7vw,50px);margin:14px 0 20px}
+    .ge-head .ge-h2{font-size:clamp(34px,3.7vw,50px);margin:14px 0 0}
+    .story .section-title,.cta-box .section-title{color:#fff}
+    @media(max-width:560px){.ge-head .ge-h2{font-size:30px}}
+
+    /* HEADING SCALE — one consistent hierarchy */
+    h1,h2,h3,h4{margin-top:0;text-wrap:balance}
+    .hero h1{font-size:clamp(40px,5.2vw,68px);font-weight:700;line-height:1.1;letter-spacing:-.02em}
+    .section-title,.ge-h2,.gx-h2,.ge-head .ge-h2{font-size:clamp(30px,3.7vw,48px);font-weight:700;line-height:1.15;letter-spacing:-.015em}
+    .gx-presence .gx-h2,.gx-cta-card .gx-h2{font-size:clamp(28px,3.3vw,44px)}
+    .ge-card h3,.gx-step h3,.product-body h3,.faq-section .accordion-button{font-size:18px;font-weight:600;line-height:1.3;letter-spacing:0}
+    footer h3{font-size:13px;font-weight:700;letter-spacing:1.4px;text-transform:uppercase;line-height:1.3}
+    @media(max-width:560px){.section-title,.ge-h2,.gx-h2,.ge-head .ge-h2{font-size:28px}.ge-card h3,.gx-step h3,.product-body h3{font-size:17px}}
+    /* ===== Nav dropdowns (Our Products / Our Services) ===== */
+    .nav-dd{position:relative}
+    .nav-dd>.nav-link i{font-size:10px;margin-left:5px;transition:transform .25s}
+    .nav-dd:hover>.nav-link i,.nav-dd:focus-within>.nav-link i{transform:rotate(180deg)}
+    .dd-menu{position:absolute;top:100%;left:50%;min-width:230px;padding:10px;margin-top:8px;background:#fff;border:1px solid var(--line);border-radius:18px;box-shadow:0 22px 60px rgba(15,45,34,.16);opacity:0;visibility:hidden;transform:translate(-50%,10px);transition:opacity .22s,transform .22s,visibility .22s;z-index:1100}
+    .dd-menu:before{content:"";position:absolute;left:0;right:0;top:-12px;height:12px}
+    .nav-dd:hover>.dd-menu,.nav-dd:focus-within>.dd-menu{opacity:1;visibility:visible;transform:translate(-50%,0)}
+    .dd-menu a{display:flex;align-items:center;gap:10px;padding:11px 14px;border-radius:12px;font-size:14px;font-weight:600;color:#31433d;transition:.2s;white-space:nowrap}
+    .dd-menu a:before{content:"";width:6px;height:6px;border-radius:50%;background:var(--orange);flex:0 0 auto;transition:.2s}
+    .dd-menu a:hover{background:var(--soft);color:var(--green);padding-left:18px}
+    .dd-menu a:hover:before{background:var(--green)}
+    /* mobile accordion menu */
+    .mob-toggle{display:flex;width:100%;align-items:center;justify-content:space-between;background:none;border:0;text-align:left}
+    .mob-toggle i{transition:transform .25s;font-size:12px}
+    .mob-toggle:not(.collapsed) i{transform:rotate(180deg)}
+    .mob-toggle:not(.collapsed){color:var(--green)!important}
+    .mob-sub{display:flex;flex-direction:column;margin:2px 0 8px 14px;padding-left:12px;border-left:2px solid var(--lime)}
+    .mob-sub a{padding:9px 10px;font-size:14px;font-weight:600;color:#4a5751}
+    .mob-sub a:hover{color:var(--green)}
+
+    /* ===== MILLETS PAGE ===== */
+    section{padding:90px 0}
+    .nav-link.active{color:var(--green)!important}
+    .pr-hero{position:relative;min-height:360px;display:flex;align-items:center;background:#e4eadf;overflow:hidden}
+    .pr-hero .pic{position:absolute;top:0;bottom:0;right:0;width:62%;clip-path:polygon(16% 0,100% 0,100% 100%,0 100%);
+      background:url('https://images.unsplash.com/photo-1512621776951-a57141f2eefd?auto=format&fit=crop&w=1800&q=75') center/cover no-repeat,url('Millets.png') center/cover no-repeat,#c9d6bd}
+    .pr-hero .grey{position:absolute;inset:0;width:50%;background:#e4eadf;clip-path:polygon(0 0,100% 0,78% 100%,0 100%);z-index:1}
+    .pr-hero .container{position:relative;z-index:2;padding-top:100px;padding-bottom:40px}
+    .pr-hero h1{font-size:clamp(36px,4.6vw,56px);font-weight:700;color:var(--green-2);margin:0 0 6px}
+    .crumb{font-size:13px;letter-spacing:.06em;text-transform:uppercase;font-weight:600;color:var(--muted)}
+    .crumb a{color:var(--green)}.crumb a:hover{color:var(--ink)}
+    @media(max-width:767px){.pr-hero .grey{width:100%;clip-path:none;opacity:.78}.pr-hero .pic{width:100%;clip-path:none}}
+
+    .pr-intro{padding:90px 0 70px}
+    .pr-title{text-align:center;margin-bottom:34px}
+    .pr-title h2{font-size:clamp(26px,3.3vw,40px);font-weight:700;color:var(--gx-green-2);line-height:1.25;margin:0 0 14px}
+    .pr-title i.bar{display:block;width:54px;height:3px;border-radius:3px;background:var(--orange);margin:0 auto}
+    .pr-banner{display:block;width:100%;max-width:960px;height:auto;aspect-ratio:982/668;object-fit:cover;margin:0 auto 46px;border-radius:26px;box-shadow:0 22px 55px rgba(15,45,34,.16)}
+    .pr-body{max-width:900px;margin:0 auto}
+    .pr-body p{font-size:16px;line-height:1.9;color:#3d4b45;margin:0 0 22px}
+    .pr-tagline{font-weight:800;font-size:18px;color:var(--green-2)!important;margin-top:34px!important;text-align:center}
+    .pr-cta{text-align:center;margin-top:10px}
+
+    .pr-why{background:#f3f8ee}
+    .pr-grid{display:flex;flex-wrap:wrap;justify-content:center;gap:26px;margin-top:10px}
+    .pr-card{flex:0 1 calc(33.333% - 18px);min-width:270px;background:#fff;border:1px solid var(--line);border-radius:22px;padding:34px 30px;box-shadow:0 12px 34px rgba(15,45,34,.06);transition:.3s}
+    .pr-card:hover{transform:translateY(-6px);box-shadow:var(--shadow)}
+    .pr-ic{width:60px;height:60px;border-radius:50%;background:#edf6df;color:var(--green);display:grid;place-items:center;font-size:27px;margin-bottom:18px}
+    .pr-card h3{font-size:18px;font-weight:700;margin:0 0 10px;color:var(--ink)}
+    .pr-card p{font-size:14.5px;line-height:1.75;color:var(--muted);margin:0}
+    @media(max-width:991px){.pr-intro{padding:70px 0 50px}.pr-card{flex-basis:calc(50% - 13px)}}
+    @media(max-width:640px){.pr-card{flex-basis:100%}.pr-banner{border-radius:18px;margin-bottom:34px}}
+  </style>
+</head>
+<body>
+<div id="scrollProgress"></div>
+<!--<div id="preloader">
+  <div class="text-center">
+    <div class="loader-logo">MELLONA<span>•</span>FOODS</div>
+    <div class="loader-bar"><i></i></div>
+  </div>
+</div>-->
+
+<nav class="site-nav" id="siteNav">
+  <div class="container">
+    <div class="nav-wrap d-flex align-items-center justify-content-between">
+      <a href="index.html" class="brand">MELLONA<span class="dot">.</span>FOODS<small>GLOBAL FOOD TRADE</small></a>
+      <div class="d-none d-lg-flex align-items-center">
+        <a class="nav-link" href="index.html">Home</a>
+        <a class="nav-link" href="about.html">About Us</a>
+        <div class="nav-dd">
+          <a class="nav-link " href="index.html#products">Our Products <i class="bi bi-chevron-down"></i></a>
+          <div class="dd-menu"><a href="organic_food.html">Organic Foods</a><a href="millets.html">Millets</a><a href="snack.html">Snacks</a><a href="oil.html">Edible Oil</a><a href="spice.html">Spices</a></div>
+        </div>
+        <div class="nav-dd">
+          <a class="nav-link" href="#">Our Services <i class="bi bi-chevron-down"></i></a>
+          <div class="dd-menu"><a href="logistics.html">Logistics</a><a href="certificate.html">Certifications</a><a href="source.html">Sourcing</a></div>
+        </div>
+        <a class="nav-link" href="blogs.html">Blogs</a>
+        <a class="nav-link" href="news.html">News</a>
+        <a class="nav-link" href="contact.html">Contact</a>
+        <a href="contact.html" class="btn-main ms-2 magnet">Let's Talk <i class="bi bi-arrow-up-right ms-1"></i></a>
+      </div>
+      <button class="menu-btn d-lg-none" data-bs-toggle="offcanvas" data-bs-target="#mobileMenu"><i class="bi bi-list"></i></button>
+    </div>
+  </div>
+</nav>
+
+<div class="offcanvas offcanvas-end" tabindex="-1" id="mobileMenu">
+  <div class="offcanvas-header">
+    <div class="brand">MELLONA<span class="dot">.</span>FOODS</div>
+    <button class="btn-close" data-bs-dismiss="offcanvas"></button>
+  </div>
+  <div class="offcanvas-body">
+    <div class="d-flex flex-column gap-2">
+      <a class="nav-link" href="index.html">Home</a>
+      <a class="nav-link" href="about.html">About Us</a>
+      <button class="nav-link mob-toggle collapsed active" type="button" data-bs-toggle="collapse" data-bs-target="#mobProducts" aria-expanded="false">Our Products <i class="bi bi-chevron-down"></i></button>
+      <div class="collapse" id="mobProducts"><div class="mob-sub"><a class="nav-link" href="organic_food.html" data-bs-dismiss="offcanvas">Organic Foods</a><a class="nav-link" href="millets.html" data-bs-dismiss="offcanvas">Millets</a><a class="nav-link" href="snack.html" data-bs-dismiss="offcanvas">Snacks</a><a class="nav-link" href="oil.html" data-bs-dismiss="offcanvas">Edible Oil</a><a class="nav-link" href="spice.html" data-bs-dismiss="offcanvas">Spices</a></div></div>
+      <button class="nav-link mob-toggle collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#mobServices" aria-expanded="false">Our Services <i class="bi bi-chevron-down"></i></button>
+      <div class="collapse" id="mobServices"><div class="mob-sub"><a class="nav-link" href="logistics.html" data-bs-dismiss="offcanvas">Logistics</a><a class="nav-link" href="certificate.html" data-bs-dismiss="offcanvas">Certifications</a><a class="nav-link" href="source.html" data-bs-dismiss="offcanvas">Sourcing</a></div></div>
+      <a class="nav-link" href="blogs.html">Blogs</a>
+      <a class="nav-link" href="news.html">News</a>
+      <a class="nav-link" href="contact.html" data-bs-dismiss="offcanvas">Contact</a>
+    </div>
+  </div>
+</div>
+
+<main>
+<!-- HERO -->
+<section class="pr-hero">
+  <div class="pic"></div>
+  <div class="grey"></div>
+  <div class="container">
+    <h1>Millets</h1>
+    <div class="crumb"><a href="index.html">Home</a> / Our Products</div>
+  </div>
+</section>
+
+<!-- WELLNESS INTRO -->
+<section class="pr-intro">
+  <div class="container">
+    <div class="pr-title reveal">
+      <h2>Rediscover Wellness With Every Bite of<br class="d-none d-md-block"> Nutrient-Rich Millets</h2>
+      <i class="bar"></i>
+    </div>
+    <img class="pr-banner reveal" src="Millets.png" alt="Nutrient-rich millets pouring from a wooden scoop" width="982" height="668" loading="lazy">
+    <div class="pr-body reveal">
+      <p>Millets are ancient grains packed with modern health benefits. Naturally gluten-free and rich in fiber, vitamins, and minerals, they support digestion, help manage blood sugar, and keep you fuller for longer. Grown using sustainable farming practices, millets are not only great for your health but also gentle on the planet.</p>
+      <p>We bring you a wholesome range of premium quality millets carefully sourced, minimally processed, and full of natural goodness. Whether it’s breakfast, lunch, or dinner, millets make every meal healthier, tastier, and more nourishing.</p>
+      <p class="pr-tagline">Make the smart switch. Choose millets. Choose wellness.</p>
+      <div class="pr-cta"><a class="btn-main d-inline-block" href="contact.html">Request a call back</a></div>
+    </div>
+  </div>
+</section>
+
+<!-- WHY MILLETS -->
+<section class="pr-why">
+  <div class="container">
+    <div class="pr-title reveal"><h2>Why Millets Deserve a Place on Your Plate?</h2><i class="bar"></i></div>
+    <div class="pr-grid">
+      <div class="pr-card reveal"><div class="pr-ic"><i class="bi bi-flower2"></i></div><h3>Rich in Nutrients</h3><p>Millets are packed with essential vitamins, minerals, and antioxidants that support overall health and vitality.</p></div>
+      <div class="pr-card reveal"><div class="pr-ic"><i class="bi bi-lightning-charge-fill"></i></div><h3>Naturally Energizing</h3><p>Millets provide slow-releasing energy that keeps you active and focused throughout the day without the crash.</p></div>
+      <div class="pr-card reveal"><div class="pr-ic"><i class="bi bi-cup-hot-fill"></i></div><h3>Supports Digestion</h3><p>The high fiber content in millets promotes better digestion and keeps your gut healthy and happy.</p></div>
+      <div class="pr-card reveal"><div class="pr-ic"><i class="bi bi-heart-pulse-fill"></i></div><h3>Supports Heart Health</h3><p>Millets are rich in magnesium and fiber, which help regulate blood pressure and support a healthy heart.</p></div>
+      <div class="pr-card reveal"><div class="pr-ic"><i class="bi bi-speedometer2"></i></div><h3>Great for Weight Management</h3><p>Low in calories and high in fiber, millets keep you fuller for longer and support healthy weight goals.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- LET'S GROW TOGETHER -->
+<section class="gx-cta" id="contact">
+  <div class="gx-cta-in">
+    <div class="gx-cta-card reveal">
+      <span class="gx-eyebrow">Let's Grow Together</span>
+      <h2 class="gx-h2">Partner for a Healthier,<br>Happier Tomorrow</h2>
+      <p>Join hands with us to bring premium food products to your market. We welcome importers, distributors and retail partners worldwide.</p>
+      <a class="gx-btn gx-btn-solid" href="mailto:hello@mellonafoods.com">Get in Touch <span aria-hidden="true">→</span></a>
+    </div>
+    <div class="gx-cta-mark reveal">
+      <div class="gx-cta-row">
+        <svg viewBox="0 0 24 24"><path d="M12 22V9"/><path d="M12 9C12 5 14.500 2.500 18.500 2.500 18.500 6.500 16 9 12 9z"/><path d="M12 12C12 8.500 9.500 6.500 5.500 6.500 5.500 10 8 12 12 12z"/><path d="M12 17.500C12 14.500 14 13 17.500 13 17.500 16 15.500 17.500 12 17.500z"/><path d="M12 20C12 17.500 10 16 6.500 16 6.500 18.500 8.500 20 12 20z"/></svg>
+        <i class="sep"></i>
+        <span class="t">Good Food<br>Stronger Communities<br>Brighter Tomorrows</span>
+      </div>
+      <i class="gx-cta-line"></i>
+    </div>
+  </div>
+</section>
+</main>
+
+<footer>
+  <div class="container">
+    <div class="row g-5">
+      <div class="col-lg-5">
+        <div class="brand mb-3">MELLONA<span class="dot">.</span>FOODS</div>
+        <p class="footer-text">A modern global food-trade partner connecting quality producers and international markets through responsible sourcing, dependable logistics and long-term relationships.</p>
+        <div class="social-row mt-4">
+          <a class="social" href="#"><i class="bi bi-linkedin"></i></a>
+          <a class="social" href="#"><i class="bi bi-instagram"></i></a>
+          <a class="social" href="#"><i class="bi bi-facebook"></i></a>
+          <a class="social" href="#"><i class="bi bi-whatsapp"></i></a>
+        </div>
+      </div>
+      <div class="col-6 col-lg-2"><h3>Company</h3><ul><li><a href="about.html">About Us</a></li><li><a href="index.html#certifications">Certifications</a></li><li><a href="index.html#global">Global Reach</a></li><li><a href="index.html#faq">FAQ</a></li><li><a href="contact.html">Contact</a></li></ul></div>
+      <div class="col-6 col-lg-2"><h3>Products</h3><ul><li><a href="index.html#products">Fresh Fruits</a></li><li><a href="index.html#products">Vegetables</a></li><li><a href="index.html#products">Specialty Foods</a></li><li><a href="index.html#products">Ingredients</a></li></ul></div>
+      <div class="col-lg-3"><h3>Stay connected</h3><p class="footer-text mb-2">Get product news and global food-trade updates.</p><div class="input-group"><input class="form-control rounded-start-pill border-0" placeholder="Your email"><button class="btn btn-light rounded-end-pill"><i class="bi bi-arrow-right"></i></button></div></div>
+    </div>
+    <div class="copyright d-flex flex-wrap justify-content-between gap-2"><span>© 2026 Mellona Foods. All rights reserved.</span><span>Global Food Trade • Quality • Freshness • Trust</span></div>
+  </div>
+</footer>
+
+
+<div class="fab-stack">
+  <button class="fab-top" id="backToTop" aria-label="Back to top">
+    <svg viewBox="0 0 46 46"><circle cx="23" cy="23" r="20"></circle><circle class="prog" id="topProg" cx="23" cy="23" r="20" stroke-dasharray="125.6" stroke-dashoffset="125.6"></circle></svg>
+    <i class="bi bi-arrow-up"></i>
+  </button>
+  <a class="fab-wa" href="https://wa.me/910000000000" target="_blank" rel="noopener" aria-label="Chat on WhatsApp"><i class="bi bi-whatsapp"></i></a>
+</div>
+
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+<script>
+  const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const pre=document.getElementById('preloader');
+  if(pre){
+    window.addEventListener('load',()=>setTimeout(()=>pre.style.opacity='0',400));
+    window.addEventListener('load',()=>setTimeout(()=>pre.style.display='none',1050));
+  }
+
+  const nav=document.getElementById('siteNav');
+  const progressBar=document.getElementById('scrollProgress');
+  const topBtn=document.getElementById('backToTop');
+  const topProg=document.getElementById('topProg');
+  const RING=125.6;
+  function onScroll(){
+    const doc=document.documentElement;
+    const max=doc.scrollHeight-doc.clientHeight;
+    const pct=max>0?(window.scrollY/max)*100:0;
+    progressBar.style.width=pct+'%';
+    topProg.style.strokeDashoffset=RING-(RING*pct/100);
+    nav.classList.toggle('scrolled',window.scrollY>50);
+    topBtn.classList.toggle('show',window.scrollY>500);
+  }
+  window.addEventListener('scroll',onScroll,{passive:true});
+  onScroll();
+  topBtn.addEventListener('click',()=>window.scrollTo({top:0,behavior:reduceMotion?'auto':'smooth'}));
+
+  document.querySelectorAll('.row').forEach(row=>{
+    const items=row.querySelectorAll(':scope > [class*="col-"] > .reveal, :scope > [class*="col-"].reveal');
+    items.forEach((el,i)=>el.style.setProperty('--d',Math.min(i*0.08,.32)+'s'));
+  });
+  const observer=new IntersectionObserver(entries=>{
+    entries.forEach(e=>{if(e.isIntersecting){e.target.classList.add('show');observer.unobserve(e.target)}})
+  },{threshold:.12});
+  document.querySelectorAll('.reveal').forEach(el=>observer.observe(el));
+
+  document.querySelectorAll('#mobileMenu a').forEach(a=>a.addEventListener('click',()=>{
+    bootstrap.Offcanvas.getInstance(document.getElementById('mobileMenu'))?.hide();
+  }));
+
+
+  if(!reduceMotion && window.matchMedia('(hover:hover)').matches){
+    document.querySelectorAll('.magnet').forEach(btn=>{
+      btn.addEventListener('mousemove',e=>{
+        const r=btn.getBoundingClientRect();
+        btn.style.transform=`translate(${(e.clientX-r.left-r.width/2)*.35}px,${(e.clientY-r.top-r.height/2)*.45}px)`;
+      });
+      btn.addEventListener('mouseleave',()=>btn.style.transform='translate(0,0)');
+    });
+  }
+
+  // Dropdown parents with no page yet shouldn't jump to top
+  document.querySelectorAll('.nav-dd > a[href="#"]').forEach(a=>a.addEventListener('click',e=>e.preventDefault()));
+</script>
+</body>
+</html>

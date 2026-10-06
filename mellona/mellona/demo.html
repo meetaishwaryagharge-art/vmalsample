@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mellona Foods - Pure Taste of Tradition</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <style>
+        :root {
+            --brand-blue: #2a58ad;
+            --brand-gold: #d4ac2b;
+            --text-dark: #1a1a1a;
+            --footer-bg: #333333;
+        }
+
+        body { font-family: 'Poppins', sans-serif; background-color: #fff; color: var(--text-dark); }
+
+        /* --- STICKY HEADER (Existing Style) --- */
+        .main-header {
+            background: #fff; padding: 15px 0; border-bottom: 1px solid #f0f0f0;
+            position: sticky; top: 0; z-index: 1000;
+        }
+
+        /* --- HERO SECTION --- */
+        .hero-section {
+            background: url('https://img.freepik.com/premium-photo/set-detox-buddha-bowl-vegetarian-food-concept-healthy-eating-stone-background-top-view_187166-55453.jpg?semt=ais_hybrid&w=740&q=80') center/cover no-repeat;
+            padding: 120px 0; position: relative;
+        }
+        .hero-content { max-width: 600px; margin-left: auto; text-align: center; }
+        .hero-content h1 { font-size: 3.5rem; font-weight: 800; color: var(--brand-blue); line-height: 1.1; }
+        .btn-order { background: var(--brand-gold); color: #000; border: none; padding: 12px 40px; border-radius: 25px; font-weight: 700; margin-top: 20px; box-shadow: 0 4px 15px rgba(0,0,0,0.1); }
+
+        /* --- FEATURES STRIP --- */
+        .feature-box { text-align: center; padding: 40px 0; border-bottom: 1px solid #eee; }
+        .feature-box i { font-size: 2rem; color: #555; margin-bottom: 10px; }
+        .feature-box p { font-size: 0.8rem; font-weight: 600; text-transform: uppercase; color: #444; }
+
+        /* --- SEASONAL BOXES --- */
+        .section-title { font-weight: 800; font-size: 2.5rem; margin-bottom: 40px; }
+        .product-card { border: none; transition: 0.3s; margin-bottom: 30px; }
+        .product-card img { border-radius: 15px; height: 250px; object-fit: cover; }
+        .product-card h5 { font-weight: 700; margin-top: 15px; font-size: 1rem; }
+        .product-card .price { color: var(--brand-gold); font-weight: 700; }
+        .btn-see-more { border: none; background: var(--brand-gold); padding: 10px 30px; border-radius: 8px; font-weight: 700; }
+
+        /* --- OUR STORY (IMAGE ACCURATE) --- */
+        .story-container { background: #fdfaf3; position: relative; margin-top: 80px; }
+        .story-blue-bg { 
+            background: var(--brand-blue); color: white; padding: 80px 5%;
+            clip-path: polygon(0 0, 100% 0, 95% 100%, 0% 100%);
+            min-height: 450px;
+        }
+        .founder-img { width: 50%; height: 100%; object-fit: cover; }
+        .btn-read-more { background: var(--brand-gold); border: none; padding: 8px 25px; border-radius: 5px; font-weight: 600; margin-top: 15px; }
+
+        /* --- TASTE TEST BOX --- */
+        .taste-test-area { text-align: center; margin-top: -120px; position: relative; z-index: 10; padding-bottom: 60px; }
+        .box-img { width: 300px; filter: drop-shadow(0 20px 30px rgba(0,0,0,0.15)); }
+        .postcode-box { max-width: 400px; margin: 20px auto; display: flex; box-shadow: 0 5px 15px rgba(0,0,0,0.05); }
+        .postcode-box input { border: 1px solid #ddd; border-radius: 5px 0 0 5px; padding: 10px 15px; flex-grow: 1; outline: none; }
+        .btn-start { background: var(--brand-blue); color: white; border: none; padding: 10px 25px; border-radius: 0 5px 5px 0; }
+
+        /* --- GLOBAL SECTION --- */
+        .global-section { padding: 80px 0; text-align: center; }
+        .global-section h2 { font-weight: 400; font-size: 2.5rem; }
+        .global-section h2 span { font-weight: 800; color: var(--brand-blue); }
+        .map-wrapper { position: relative; max-width: 900px; margin: 50px auto; opacity: 0.6; }
+        .map-overlay-text { 
+            position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);
+            font-size: 8rem; font-weight: 800; color: rgba(220, 172, 43, 0.1); pointer-events: none;
+        }
+
+        /* --- FOOTER (Existing Style) --- */
+        footer { background: var(--footer-bg); color: white; padding: 60px 0; }
+        footer h5 { font-size: 1.1rem; margin-bottom: 25px; position: relative; }
+        footer h5::after { content: ''; width: 30px; height: 2px; background: #fff; position: absolute; left: 0; bottom: -8px; }
+        footer ul { list-style: none; padding: 0; }
+        footer ul li { margin-bottom: 10px; font-size: 0.9rem; opacity: 0.8; }
+        footer a { color: white; text-decoration: none; transition: 0.3s; }
+        footer a:hover { color: var(--brand-gold); }
+    </style>
+</head>
+<body>
+
+<header class="main-header">
+    <div class="container d-flex justify-content-between align-items-center">
+        <div class="logo d-flex align-items-center gap-2">
+            <div style="background:var(--brand-blue); color:white; padding:5px 12px; border-radius:5px; font-weight:800;">M</div>
+            <div style="font-weight:800; line-height:1;">MELLONA FOODS <br><span style="font-size:0.6rem; font-weight:400; color:#777;">Organic Origins. Honest Flavors.</span></div>
+        </div>
+        <nav class="d-none d-lg-block">
+            <ul class="d-flex list-unstyled gap-4 m-0 fw-semibold" style="font-size: 0.9rem;">
+                <li><a href="#" class="text-dark text-decoration-none">Home</a></li>
+                <li><a href="#" class="text-dark text-decoration-none">About us</a></li>
+                <li><a href="#" class="text-dark text-decoration-none">Our Products</a></li>
+                <li><a href="#" class="text-dark text-decoration-none">Our Services</a></li>
+                <li><a href="#" class="text-dark text-decoration-none">Blogs</a></li>
+                <li><a href="#" class="text-dark text-decoration-none">News</a></li>
+            </ul>
+        </nav>
+        <a href="#" class="btn btn-primary px-4 rounded-pill" style="background:var(--brand-blue); border:none; font-size:0.8rem;">Contact us</a>
+    </div>
+</header>
+
+<section class="hero-section">
+    <div class="container">
+        <div class="hero-content">
+            <p class="mb-1 text-secondary fw-bold">OUR JOURNEY TO</p>
+            <h1>Better, Fresher Produce Delivered</h1>
+            <p class="text-secondary mt-3">Regularly right to your door starts here...</p>
+            <button class="btn-order">Order Now</button>
+        </div>
+    </div>
+</section>
+
+<div class="container">
+    <div class="row">
+        <div class="col-6 col-md-3 feature-box">
+            <i class="fa-regular fa-clock"></i>
+            <p>Takes just 5 minutes <br> to sign up</p>
+        </div>
+        <div class="col-6 col-md-3 feature-box">
+            <i class="fa-solid fa-truck-fast"></i>
+            <p>Delivered <br> to your door</p>
+        </div>
+        <div class="col-6 col-md-3 feature-box">
+            <i class="fa-solid fa-medal"></i>
+            <p>100% Quality <br> Guarantee</p>
+        </div>
+        <div class="col-6 col-md-3 feature-box">
+            <i class="fa-solid fa-shield-halved"></i>
+            <p>Safe & Secure <br> Checkout</p>
+        </div>
+    </div>
+</div>
+
+<section class="py-5 text-center">
+    <div class="container">
+        <h2 class="section-title">Our Seasonal Boxes</h2>
+        <div class="row">
+            <div class="col-md-3">
+                <div class="product-card">
+                    <img src="https://images.unsplash.com/photo-1542838132-92c53300491e?w=400" class="w-100" alt="">
+                    <h5>Organic Food Box</h5>
+                    <p class="price">500.00</p>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="product-card">
+                    <img src="https://images.unsplash.com/photo-1512621776951-a57141f2eefd?w=400" class="w-100" alt="">
+                    <h5>Millets Box</h5>
+                    <p class="price">900.00</p>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="product-card">
+                    <img src="https://images.unsplash.com/photo-1626074353765-517a681e40be?w=400" class="w-100" alt="">
+                    <h5>Snacks Box</h5>
+                    <p class="price">300.00</p>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="product-card">
+                    <img src="https://images.unsplash.com/photo-1596040033229-a9821ebd058d?w=400" class="w-100" alt="">
+                    <h5>Spices Box</h5>
+                    <p class="price">300.00</p>
+                </div>
+            </div>
+        </div>
+        <button class="btn-see-more mt-4">See More</button>
+    </div>
+</section>
+
+<section class="story-container">
+    <div class="row g-0">
+        <div class="col-lg-7">
+            <div class="story-blue-bg">
+                <h2 class="fw-bold display-4 mb-4">Our Story</h2>
+                <p class="lead">Mellona Foods brings you the pure taste of tradition with organic millets, wholesome snacks, and natural oils.</p>
+                <p>Rooted in simplicity and health, we're committed to serving clean, honest food from our farms to your table.</p>
+                <button class="btn-read-more">Read More</button>
+            </div>
+        </div>
+        <div class="col-lg-5">
+            <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&q=80&w=800" class="founder-img" alt="Founder">
+        </div>
+    </div>
+
+    <div class="taste-test-area">
+        <img src="https://cdn-icons-png.flaticon.com/512/679/679821.png" class="box-img" alt="Package">
+        <h3 class="fw-bold mt-4">Do the taste test!</h3>
+        <p class="text-secondary">Find out if we deliver to you and taste the difference!</p>
+        <div class="postcode-box">
+            <input type="text" placeholder="Enter your postcode">
+            <button class="btn-start">Start</button>
+        </div>
+    </div>
+</section>
+
+<section class="global-section">
+    <div class="container">
+        <h2><span>WE ARE</span> ON THE GLOBE</h2>
+        <p class="text-secondary">Mellona is now reaching far and wide bringing the pure taste of India to homes across borders.</p>
+        <div class="map-wrapper">
+            <div class="map-overlay-text">Mellona</div>
+            <img src="https://upload.wikimedia.org/wikipedia/commons/e/ec/World_map_blank_without_borders.svg" class="w-100" alt="World Map">
+        </div>
+    </div>
+</section>
+
+<footer>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-3">
+                <h5>Information</h5>
+                <ul>
+                    <li><a href="#">Home</a></li>
+                    <li><a href="#">About us</a></li>
+                    <li><a href="#">Our Products</a></li>
+                    <li><a href="#">Our Services</a></li>
+                    <li><a href="#">Blogs</a></li>
+                    <li><a href="#">News</a></li>
+                    <li><a href="#">Contact Us</a></li>
+                    <li><a href="#">Login</a></li>
+                </ul>
+            </div>
+            <div class="col-md-3">
+                <h5>Products</h5>
+                <ul>
+                    <li><a href="#">Millets</a></li>
+                    <li><a href="#">Organic foods</a></li>
+                    <li><a href="#">Snacks</a></li>
+                </ul>
+            </div>
+            <div class="col-md-3">
+                <h5>Branches</h5>
+                <ul>
+                    <li><a href="#">Mumbai</a></li>
+                </ul>
+            </div>
+            <div class="col-md-3">
+                <h5>Stay Connected</h5>
+                <p class="small mb-1"><strong>Registered address:</strong></p>
+                <p class="small opacity-75">Andheri, 9th Floor, Office 909</p>
+                <p class="small mb-1"><strong>Phone Number:</strong></p>
+                <p class="small opacity-75">+91 915 200 1234</p>
+                <p class="small mb-1"><strong>Email-Id:</strong></p>
+                <p class="small opacity-75">sales@athena-logistics.com</p>
+                <p class="small mt-3">Mon - Fri / 09:00 AM - 8:00 PM</p>
+            </div>
+        </div>
+    </div>
+</footer>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

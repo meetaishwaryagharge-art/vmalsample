@@ -1,0 +1,416 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <!-- Firebase SDKs -->
+<script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore-compat.js"></script>
+
+<script>
+  // Paste your Firebase Config here
+  const firebaseConfig = {
+    apiKey: "YOUR_API_KEY",
+    authDomain: "YOUR_PROJECT.firebaseapp.com",
+    projectId: "YOUR_PROJECT_ID",
+    storageBucket: "YOUR_PROJECT.appspot.com",
+    messagingSenderId: "YOUR_SENDER_ID",
+    appId: "YOUR_APP_ID"
+  };
+
+  firebase.initializeApp(firebaseConfig);
+  const db = firebase.firestore();
+</script>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>SAB Global Corp | Parent Company</title>
+<meta name="description" content="SAB Global Corp is a diversified parent entity driving growth, creativity, and excellence across specialized subsidiaries.">
+
+<!-- Fonts -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500;600;700;800;900&family=Open+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+<!-- Bootstrap 5 -->
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+
+<style>
+  :root{
+    --sab-paper:#F8F6F1;
+    --sab-card:#FFFFFF;
+    --sab-ink:#1B2230;
+    --sab-navy:#0B2545;
+    --sab-navy2:#123363;
+    --sab-gold:#C9A227;
+    --sab-gold2:#E4C567;
+    --sab-maroon:#7A1636;
+    --sab-line:#E7E1D4;
+  }
+  html{ scroll-behavior:smooth; }
+  body{ font-family:'Open Sans', sans-serif; background:var(--sab-paper); color:var(--sab-ink); }
+  h1,h2,h3,h4,h5,h6,.sab-heading{ font-family:'Montserrat', sans-serif; }
+  ::selection{ background:var(--sab-gold); color:var(--sab-navy); }
+  a{ text-decoration:none; }
+  a:focus-visible, button:focus-visible, input:focus-visible, textarea:focus-visible{
+    outline:2px solid var(--sab-gold); outline-offset:3px;
+  }
+  @media (prefers-reduced-motion: reduce){
+    *{ animation-duration:.001ms !important; animation-iteration-count:1 !important; transition-duration:.001ms !important; scroll-behavior:auto !important; }
+  }
+
+  .sab-reveal{ opacity:0; transform:translateY(28px); transition:opacity .7s ease, transform .7s ease; }
+  .sab-reveal.in{ opacity:1; transform:translateY(0); }
+
+  #sabProgressBar{ position:fixed; top:0; left:0; height:3px; width:0%; background:linear-gradient(90deg,var(--sab-maroon),var(--sab-gold)); z-index:2000; transition:width .08s linear; }
+
+  .sab-navbar{ background:rgba(248,246,241,.92); backdrop-filter:blur(10px); -webkit-backdrop-filter:blur(10px); border-bottom:1px solid var(--sab-line); transition:box-shadow .3s ease; }
+  .sab-navbar.scrolled{ box-shadow:0 8px 24px rgba(11,37,69,0.08); }
+  .sab-navbar .navbar-brand{ font-family:'Montserrat',sans-serif; font-weight:800; letter-spacing:.02em; color:var(--sab-navy) !important; display:flex; align-items:center; gap:.5rem; }
+  .sab-navbar .navbar-brand .accent{ color:var(--sab-maroon); }
+  .sab-logo-dot{ width:2rem; height:2rem; border-radius:50%; border:2px solid var(--sab-gold); display:flex; align-items:center; justify-content:center; position:relative; flex-shrink:0; }
+  .sab-logo-dot::after{ content:""; position:absolute; inset:5px; border-radius:50%; background:var(--sab-gold); animation:sabPulse 2.4s ease-in-out infinite; }
+  @keyframes sabPulse{ 0%,100%{opacity:.55;} 50%{opacity:1;} }
+
+  .sab-nav-link{ font-family:'Montserrat',sans-serif; font-weight:600; font-size:.9rem; color:rgba(27,34,48,.7) !important; margin:0 .6rem; transition:color .2s ease; position:relative; }
+  .sab-nav-link:hover{ color:var(--sab-navy) !important; }
+  .sab-nav-link.active{ color:var(--sab-navy) !important; }
+  .sab-nav-link.active::after{ content:""; position:absolute; left:0; right:0; bottom:-6px; height:2px; background:var(--sab-gold); }
+
+  .btn-sab-navy{ background:var(--sab-navy); color:#fff; font-family:'Montserrat',sans-serif; font-weight:700; border:none; border-radius:.6rem; padding:.65rem 1.5rem; transition:background .2s ease, transform .2s ease; }
+  .btn-sab-navy:hover{ background:var(--sab-navy2); color:#fff; transform:translateY(-1px); }
+  .btn-sab-outline{ background:#fff; color:var(--sab-navy); font-family:'Montserrat',sans-serif; font-weight:600; border:1px solid var(--sab-line); border-radius:.6rem; padding:.65rem 1.5rem; transition:background .2s ease; }
+  .btn-sab-outline:hover{ background:var(--sab-paper); color:var(--sab-navy); }
+  .btn-sab-pill{ background:var(--sab-navy); color:#fff; font-family:'Montserrat',sans-serif; font-weight:700; border:none; border-radius:50rem; padding:.6rem 1.4rem; font-size:.9rem; transition:background .2s ease; }
+  .btn-sab-pill:hover{ background:var(--sab-navy2); color:#fff; }
+
+  .sab-eyebrow{ font-family:'Montserrat',sans-serif; font-weight:700; font-size:.72rem; text-transform:uppercase; letter-spacing:.14em; color:var(--sab-gold); }
+  .sab-eyebrow-maroon{ color:var(--sab-maroon); }
+  .sab-badge-pill{ display:inline-flex; align-items:center; gap:.4rem; padding:.4rem 1rem; border-radius:50rem; font-family:'Montserrat',sans-serif; font-weight:700; font-size:.72rem; text-transform:uppercase; letter-spacing:.1em; background:#fff; color:var(--sab-maroon); border:1px solid var(--sab-line); }
+
+  .sab-card{ background:#fff; border:1px solid var(--sab-line); border-radius:1rem; transition:transform .35s ease, box-shadow .35s ease; }
+  .sab-card-hover:hover{ transform:translateY(-6px); box-shadow:0 24px 48px rgba(11,37,69,0.10); }
+
+  .sab-hero{ position:relative; overflow:hidden; padding:6.5rem 0 5rem; background-image:radial-gradient(rgba(11,37,69,0.04) 1px, transparent 1px); background-size:16px 16px; }
+  .sab-blob{ position:absolute; width:22rem; height:22rem; border-radius:50%; filter:blur(70px); pointer-events:none; z-index:0; }
+  .sab-page-header{ background:var(--sab-navy); color:#fff; padding:5.5rem 0 3.5rem; position:relative; overflow:hidden; }
+  .sab-page-header .sab-eyebrow{ color:var(--sab-gold2); }
+
+  .sab-stat-num{ font-family:'Montserrat',sans-serif; font-weight:800; font-size:1.9rem; color:var(--sab-navy); }
+  .sab-stat-label{ font-family:'Montserrat',sans-serif; font-size:.7rem; text-transform:uppercase; letter-spacing:.12em; color:rgba(27,34,48,.5); }
+
+  footer.sab-footer{ background:var(--sab-navy); color:#fff; padding:5rem 0 2rem; }
+  footer.sab-footer a{ color:rgba(255,255,255,.6); }
+  footer.sab-footer a:hover{ color:#fff; }
+  footer.sab-footer .sab-footer-title{ font-family:'Montserrat',sans-serif; font-weight:700; font-size:.72rem; text-transform:uppercase; letter-spacing:.12em; color:var(--sab-gold); margin-bottom:1rem; }
+  .sab-social{ width:2.25rem; height:2.25rem; border-radius:50%; border:1px solid rgba(255,255,255,.15); display:flex; align-items:center; justify-content:center; font-family:'Montserrat',sans-serif; font-weight:700; font-size:.72rem; color:rgba(255,255,255,.6); transition:color .2s ease,border-color .2s ease; }
+  .sab-social:hover{ color:var(--sab-gold); border-color:var(--sab-gold); }
+
+  .sab-offcanvas .sab-nav-link{ display:block; padding:.6rem 0; margin:0; color:var(--sab-navy) !important; }
+</style>
+</head>
+<body>
+<div id="sabProgressBar"></div>
+<nav class="navbar navbar-expand-lg sab-navbar sticky-top py-3" id="sabHeader">
+  <div class="container">
+    <a href="index.html" class="navbar-brand">
+      <span class="sab-logo-dot"></span>
+      SAB GLOBAL <span class="accent">&nbsp;CORP</span>
+    </a>
+    <button class="navbar-toggler border-0" type="button" data-bs-toggle="offcanvas" data-bs-target="#sabOffcanvas" aria-controls="sabOffcanvas" aria-label="Toggle menu">
+      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#0B2545" stroke-width="2"><path d="M4 6h16M4 12h16M4 18h16"/></svg>
+    </button>
+    <div class="d-none d-lg-flex align-items-center ms-auto">
+      <a class="sab-nav-link active" href="index.html">Home</a>
+      <a class="sab-nav-link" href="about.html">About Us</a>
+      <a class="sab-nav-link" href="portfolio.html">Our Portfolio</a>
+      <a class="sab-nav-link" href="sabkaa-mangal.html">Sabkaa Mangal</a>
+      <a class="sab-nav-link" href="contact.html">Contact</a>
+      <a href="contact.html" class="btn-sab-navy ms-3">Partner With Us</a>
+    </div>
+  </div>
+</nav>
+
+<div class="offcanvas offcanvas-end sab-offcanvas" tabindex="-1" id="sabOffcanvas">
+  <div class="offcanvas-header">
+    <span class="navbar-brand mb-0"><span class="sab-logo-dot"></span> SAB GLOBAL <span class="accent">&nbsp;CORP</span></span>
+    <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+  </div>
+  <div class="offcanvas-body">
+    <a class="sab-nav-link active" href="index.html">Home</a>
+      <a class="sab-nav-link" href="about.html">About Us</a>
+      <a class="sab-nav-link" href="portfolio.html">Our Portfolio</a>
+      <a class="sab-nav-link" href="sabkaa-mangal.html">Sabkaa Mangal</a>
+      <a class="sab-nav-link" href="contact.html">Contact</a>
+    <a href="contact.html" class="btn-sab-navy d-block text-center mt-3">Partner With Us</a>
+  </div>
+</div>
+<main>
+<!-- Hero -->
+<section class="sab-hero">
+  <div class="sab-blob" style="top:-4rem; left:-2rem; background:rgba(201,162,39,0.18);"></div>
+  <div class="sab-blob" style="bottom:-6rem; right:-4rem; background:rgba(122,22,54,0.14);"></div>
+  <div class="container position-relative text-center" style="z-index:1;">
+    <span class="sab-reveal in sab-badge-pill mb-4 d-inline-flex">Global Parent Entity</span>
+    <h1 class="sab-reveal in fw-800 mb-4" style="font-weight:800; color:var(--sab-navy); line-height:1.1; font-size:clamp(2.1rem,5.2vw,3.6rem);">
+      Innovating Across Industries.<br class="d-none d-sm-inline">
+      <span style="color:var(--sab-maroon);">Anchored in Impact.</span>
+    </h1>
+    <p class="sab-reveal in mx-auto mb-4" style="max-width:42rem; color:rgba(27,34,48,.6); font-size:1.15rem;">
+      SAB Global Corp is a diversified parent entity driving growth, creativity, and excellence across our highly specialized subsidiaries.
+    </p>
+    <div class="sab-reveal in d-flex flex-column flex-sm-row justify-content-center gap-3 mb-5">
+      <a href="portfolio.html" class="btn-sab-navy px-4 py-3">Explore Our Portfolio</a>
+      <a href="sabkaa-mangal.html" class="btn-sab-outline px-4 py-3">Social Impact</a>
+    </div>
+    <div class="sab-reveal in d-flex flex-wrap justify-content-center gap-5">
+      <div><span class="sab-stat-num d-block"><span data-count="2">0</span></span><span class="sab-stat-label">Active Verticals</span></div>
+      <div><span class="sab-stat-num d-block"><span data-count="3">0</span></span><span class="sab-stat-label">Ventures Launched</span></div>
+      <div><span class="sab-stat-num d-block"><span data-count="2019">0</span></span><span class="sab-stat-label">Group Founded</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- Portfolio Preview -->
+<section class="py-5 py-md-6 border-top bg-white" style="border-color:var(--sab-line) !important; padding-top:6rem; padding-bottom:6rem;">
+  <div class="container">
+    <div class="sab-reveal text-center mx-auto mb-5" style="max-width:42rem;">
+      <h2 class="sab-eyebrow mb-2">Flagship Vertical</h2>
+      <h3 class="fw-800 mb-3" style="color:var(--sab-navy); font-weight:800;">Sab Ka Entertainment</h3>
+      <p style="color:rgba(27,34,48,.6); font-size:1.05rem;">
+        The pulse of our creative footprint &mdash; our premier media, events, and culture vertical, dedicated to crafting unforgettable experiences and world-class production value.
+      </p>
+    </div>
+    <div class="row g-4 justify-content-center">
+      <div class="col-md-6" style="max-width:26rem;">
+        <a href="ak-events.html" class="sab-reveal sab-card sab-card-hover d-block p-4 p-sm-5 text-decoration-none h-100">
+          <div class="d-flex justify-content-between align-items-center mb-4">
+            <div class="p-3 rounded-3" style="background:rgba(11,37,69,0.05); border:1px solid rgba(11,37,69,0.1); color:var(--sab-navy);">
+              <svg width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"/></svg>
+            </div>
+            <span class="sab-badge-pill" style="color:rgba(27,34,48,.4);">Level 1A</span>
+          </div>
+          <h4 class="fw-700 mb-2" style="color:var(--sab-navy); font-weight:700;">AK Events</h4>
+          <p class="small fst-italic mb-3" style="color:rgba(11,37,69,.7); font-weight:600;">Precision Planning. Unforgettable Experiences.</p>
+          <p class="small mb-4" style="color:rgba(27,34,48,.6);">Corporate and large-scale live event execution &mdash; from galas to experiential marketing to massive public gatherings.</p>
+          <span class="fw-bold small" style="color:var(--sab-navy);">Visit AK Events &rarr;</span>
+        </a>
+      </div>
+      <div class="col-md-6" style="max-width:26rem;">
+        <a href="soortaal-nation.html" class="sab-reveal sab-card sab-card-hover d-block p-4 p-sm-5 text-decoration-none h-100">
+          <div class="d-flex justify-content-between align-items-center mb-4">
+            <div class="p-3 rounded-3" style="background:rgba(122,22,54,0.05); border:1px solid rgba(122,22,54,0.1); color:var(--sab-maroon);">
+              <svg width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M9 19V6l12-3v13M9 19c0 1.105-1.343 2-3 2s-3-.895-3-2 1.343-2 3-2 3 .895 3 2zm12-3c0 1.105-1.343 2-3 2s-3-.895-3-2 1.343-2 3-2 3 .895 3 2zM9 10l12-3"/></svg>
+            </div>
+            <span class="sab-badge-pill" style="color:rgba(27,34,48,.4);">Level 1B</span>
+          </div>
+          <h4 class="fw-700 mb-2" style="color:var(--sab-navy); font-weight:700;">SoorTaal Nation</h4>
+          <p class="small fst-italic mb-3" style="color:var(--sab-maroon); font-weight:600;">Celebrating the Rhythm and Voice of a Culture.</p>
+          <p class="small mb-4" style="color:rgba(27,34,48,.6);">Music, art and culture &mdash; talent discovery, festivals and concert curation for artists worldwide.</p>
+          <span class="fw-bold small" style="color:var(--sab-navy);">Visit SoorTaal Nation &rarr;</span>
+        </a>
+      </div>
+    </div>
+    <div class="sab-reveal text-center mt-5">
+      <a href="portfolio.html" class="btn-sab-outline px-4 py-2">See Full Portfolio &rarr;</a>
+    </div>
+  </div>
+</section>
+
+<!-- Charity Preview -->
+<section class="py-6 border-top" style="border-color:var(--sab-line) !important; background:rgba(248,246,241,.5); padding-top:6rem; padding-bottom:6rem;">
+  <div class="container">
+    <div class="row align-items-center g-5">
+      <div class="col-lg-6 sab-reveal">
+        <h2 class="sab-eyebrow sab-eyebrow-maroon mb-2">Charity Arm</h2>
+        <h3 class="fw-800 mb-3" style="color:var(--sab-navy); font-weight:800;">Sabkaa Mangal</h3>
+        <p class="sab-eyebrow mb-3" style="letter-spacing:.08em;">Serving Humanity. Spreading Hope. Creating Blessings.</p>
+        <blockquote class="fst-italic mb-3 ps-3" style="color:var(--sab-navy); border-left:4px solid var(--sab-gold); font-size:1.15rem;">
+          "When We Give, Life Blesses Us All. A Call to Compassion. A Mission for Humanity."
+        </blockquote>
+        <p class="mb-4" style="color:rgba(27,34,48,.75); font-size:.95rem;">
+          Weekly Seva Drives bring food, comfort and hope to registered cancer patients at Tata Memorial Hospital, every Tuesday and Saturday.
+        </p>
+        <a href="sabkaa-mangal.html" class="btn-sab-navy px-4 py-2">Learn More About Sabkaa Mangal</a>
+      </div>
+      <div class="col-lg-6 sab-reveal" style="transition-delay:.1s">
+        <div class="sab-card p-4 p-sm-5">
+          <div class="row g-3 mb-4">
+            <div class="col-6">
+              <div class="p-3 rounded-3 d-flex align-items-center gap-3" style="background:var(--sab-paper); border:1px solid var(--sab-line);">
+                <div class="fs-4">&#128197;</div>
+                <div><div class="fw-bold small" style="color:var(--sab-navy);">TUESDAY</div><div class="small" style="color:rgba(27,34,48,.6);">Distribution</div></div>
+              </div>
+            </div>
+            <div class="col-6">
+              <div class="p-3 rounded-3 d-flex align-items-center gap-3" style="background:var(--sab-paper); border:1px solid var(--sab-line);">
+                <div class="fs-4">&#128197;</div>
+                <div><div class="fw-bold small" style="color:var(--sab-navy);">SATURDAY</div><div class="small" style="color:rgba(27,34,48,.6);">Distribution</div></div>
+              </div>
+            </div>
+          </div>
+          <div class="p-3 rounded-3 text-white small d-flex flex-column flex-sm-row justify-content-between gap-2" style="background:var(--sab-navy);">
+            <span>&#128222; +91 98204 13458</span>
+            <span>&#9993; sabkamangal2026@gmail.com</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- News Preview -->
+<section class="py-6 border-top bg-white" style="border-color:var(--sab-line) !important; padding-top:6rem; padding-bottom:6rem;">
+  <div class="container">
+    <div class="sab-reveal text-center mx-auto mb-5" style="max-width:36rem;">
+      <h2 class="sab-eyebrow mb-2">Group News</h2>
+      <h3 class="fw-800" style="color:var(--sab-navy); font-weight:800;">What's moving across the group.</h3>
+    </div>
+    <div class="row g-4">
+      <div class="col-md-4">
+        <article class="sab-reveal sab-card sab-card-hover h-100 overflow-hidden">
+          <div style="height:9rem; background:linear-gradient(135deg,var(--sab-navy),var(--sab-maroon));"></div>
+          <div class="p-4">
+            <span class="sab-eyebrow d-block mb-2">Sab Ka Entertainment</span>
+            <h4 class="fw-700 mb-2" style="color:var(--sab-navy); font-size:1.1rem; font-weight:700;">SoorTaal Nation announces its winter concert series</h4>
+            <p class="small mb-0" style="color:rgba(27,34,48,.6);">A new season of classical and fusion evenings opens across three cities.</p>
+          </div>
+        </article>
+      </div>
+      <div class="col-md-4">
+        <article class="sab-reveal sab-card sab-card-hover h-100 overflow-hidden" style="transition-delay:.1s">
+          <div style="height:9rem; background:linear-gradient(135deg,var(--sab-gold),var(--sab-maroon));"></div>
+          <div class="p-4">
+            <span class="sab-eyebrow d-block mb-2">AK Events</span>
+            <h4 class="fw-700 mb-2" style="color:var(--sab-navy); font-size:1.1rem; font-weight:700;">AK Events expands into large-format corporate production</h4>
+            <p class="small mb-0" style="color:rgba(27,34,48,.6);">The team adds full-scale corporate event management to its capabilities.</p>
+          </div>
+        </article>
+      </div>
+      <div class="col-md-4">
+        <article class="sab-reveal sab-card sab-card-hover h-100 overflow-hidden" style="transition-delay:.2s">
+          <div style="height:9rem; background:linear-gradient(135deg,var(--sab-navy),var(--sab-gold));"></div>
+          <div class="p-4">
+            <span class="sab-eyebrow d-block mb-2">Sabkaa Mangal</span>
+            <h4 class="fw-700 mb-2" style="color:var(--sab-navy); font-size:1.1rem; font-weight:700;">Weekly Seva Drive expands footprint</h4>
+            <p class="small mb-0" style="color:rgba(27,34,48,.6);">Bi-weekly support grows at Tata Memorial Hospital for more patient families.</p>
+          </div>
+        </article>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="py-6" style="padding-top:5rem; padding-bottom:5rem;">
+  <div class="container">
+    <div class="sab-reveal rounded-4 p-5 text-center text-white" style="background:var(--sab-navy);">
+      <h3 class="fw-800 mb-3" style="font-weight:800;">Explore Institutional Partnerships</h3>
+      <p class="mb-4" style="color:rgba(255,255,255,.7);">Connect with SAB Global Corp for investment and collaboration opportunities.</p>
+      <a href="contact.html" class="btn px-4 py-3 fw-bold" style="background:var(--sab-gold); color:var(--sab-navy); border-radius:.6rem; font-family:'Montserrat',sans-serif;">Get in Touch</a>
+    </div>
+  </div>
+</section>
+</main>
+<footer class="sab-footer">
+  <div class="container">
+    <div class="row g-5 mb-5">
+      <div class="col-md-4">
+        <div class="d-flex align-items-center gap-2 mb-3">
+          <span class="sab-logo-dot"></span>
+          <span class="sab-heading fw-800" style="font-weight:800;">SAB GLOBAL <span style="color:var(--sab-gold);">CORP</span></span>
+        </div>
+        <p class="small" style="max-width:22rem; color:rgba(255,255,255,.5);">A diversified parent entity building independently branded ventures, starting with Sab Ka Entertainment.</p>
+        <div class="d-flex gap-2 mt-4">
+          <a href="#" aria-label="LinkedIn" class="sab-social">in</a>
+          <a href="#" aria-label="Instagram" class="sab-social">IG</a>
+          <a href="#" aria-label="YouTube" class="sab-social">YT</a>
+        </div>
+      </div>
+      <div class="col-6 col-md-2">
+        <div class="sab-footer-title">Company</div>
+        <a href="about.html" class="d-block small mb-2">About Us</a>
+        <a href="portfolio.html" class="d-block small mb-2">Our Portfolio</a>
+        <a href="sabkaa-mangal.html" class="d-block small mb-2">Sabkaa Mangal</a>
+        <a href="contact.html" class="d-block small">Contact</a>
+      </div>
+      <div class="col-6 col-md-3">
+        <div class="sab-footer-title">Portfolios</div>
+        <a href="ak-events.html" class="d-block small mb-2">AK Events</a>
+        <a href="soortaal-nation.html" class="d-block small mb-2">SoorTaal Nation</a>
+        <a href="sabkaa-mangal.html" class="d-block small mb-2">Sabkaa Mangal (Charity)</a>
+        <a href="contact.html" class="d-block small">Partner Inquiries</a>
+      </div>
+      <div class="col-md-3">
+        <div class="sab-footer-title">Contact</div>
+        <a href="mailto:hello@sabglobalcorp.com" class="d-block small mb-2">hello@sabglobalcorp.com</a>
+        <span class="d-block small mb-2" style="color:rgba(255,255,255,.6);">Nagpur &amp; Mumbai, Maharashtra, India</span>
+        <a href="contact.html" class="small fw-bold" style="color:var(--sab-gold);">Get in touch &rarr;</a>
+      </div>
+    </div>
+    <div class="border-top pt-4 d-flex flex-column flex-sm-row justify-content-between align-items-center gap-3 small" style="border-color:rgba(255,255,255,.1) !important; color:rgba(255,255,255,.4);">
+      <p class="mb-0">&copy; <span id="sabYear"></span> SAB Global Corp. All rights reserved.</p>
+      <div class="d-flex gap-4">
+        <a href="#" class="small">Privacy Policy</a>
+        <a href="#" class="small">Terms of Service</a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+<script>
+  document.getElementById('sabYear').textContent = new Date().getFullYear();
+
+  var progressBar = document.getElementById('sabProgressBar');
+  var header = document.getElementById('sabHeader');
+  window.addEventListener('scroll', function () {
+    var h = document.documentElement;
+    var pct = h.scrollTop / (h.scrollHeight - h.clientHeight) * 100;
+    progressBar.style.width = pct + '%';
+    header.classList.toggle('scrolled', window.scrollY > 20);
+  });
+
+  var io = new IntersectionObserver(function (entries) {
+    entries.forEach(function (e) {
+      if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); }
+    });
+  }, { threshold: 0.15 });
+  document.querySelectorAll('.sab-reveal').forEach(function (el) { io.observe(el); });
+
+  var counterIO = new IntersectionObserver(function (entries) {
+    entries.forEach(function (entry) {
+      if (entry.isIntersecting) {
+        var el = entry.target;
+        var target = parseInt(el.getAttribute('data-count'), 10);
+        var duration = 1200;
+        var start = performance.now();
+        function tick(now) {
+          var p = Math.min((now - start) / duration, 1);
+          var eased = 1 - Math.pow(1 - p, 3);
+          el.textContent = Math.floor(eased * target);
+          if (p < 1) requestAnimationFrame(tick); else el.textContent = target;
+        }
+        requestAnimationFrame(tick);
+        counterIO.unobserve(el);
+      }
+    });
+  }, { threshold: 0.6 });
+  document.querySelectorAll('[data-count]').forEach(function (el) { counterIO.observe(el); });
+
+  var form = document.getElementById('sabContactForm');
+  if (form) {
+    form.addEventListener('submit', function (e) {
+      e.preventDefault();
+      var btn = document.getElementById('sabSubmitBtn');
+      var success = document.getElementById('sabFormSuccess');
+      btn.disabled = true;
+      btn.textContent = 'Sending...';
+      setTimeout(function () {
+        form.reset();
+        btn.disabled = false;
+        btn.textContent = 'Submit Inquiry';
+        success.classList.remove('d-none');
+      }, 900);
+    });
+  }
+</script>
+</body>
+</html>

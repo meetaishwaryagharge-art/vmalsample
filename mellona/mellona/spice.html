@@ -1,0 +1,310 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdn.tailwindcss.com"></script>
+     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700&display=swap" rel="stylesheet">
+    <style>
+       :root {
+            --brand-blue: #2a58ad;
+            --brand-gold: #d4ac2b;
+            --text-dark: #1a1a1a;
+            --text-gray: #666;
+            --bg-light: #f9fbfd;
+            --white: #ffffff;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Poppins', sans-serif; }
+        body { background-color: var(--white); color: var(--text-dark); line-height: 1.6; }
+        .container { max-width: 1200px; margin: 0 auto; padding: 0 20px; }
+
+        /* --- Updated Header --- */
+        .main-header {
+            background: var(--white);
+            padding: 15px 0;
+            border-bottom: 1px solid #f0f0f0;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .nav-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo-area { display: flex; align-items: center; gap: 10px; text-decoration: none; }
+        .logo-box { 
+            width: 45px; height: 45px; background: var(--brand-blue); 
+            border-radius: 8px; display: flex; align-items: center; 
+            justify-content: center; color: white; font-weight: 800; font-size: 22px; 
+        }
+        .logo-text h1 { font-size: 1.2rem; font-weight: 800; color: var(--text-dark); margin: 0; line-height: 1; }
+        .logo-text span { font-size: 0.7rem; color: var(--text-gray); text-transform: uppercase; letter-spacing: 0.5px; }
+
+        .nav-links { display: flex; list-style: none; gap: 25px; align-items: center; }
+        .nav-links a { text-decoration: none; color: var(--text-dark); font-size: 0.95rem; font-weight: 500; transition: 0.3s; }
+        .nav-links a:hover, .nav-links a.active { color: var(--brand-blue); }
+
+        /* Dropdown Logic */
+        .dropdown { position: relative; }
+        .dropdown-content {
+            display: none; position: absolute; background: var(--white);
+            min-width: 180px; box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+            border-radius: 6px; top: 100%; padding: 10px 0; z-index: 10;
+        }
+        .dropdown-content a { padding: 10px 20px; display: block; font-size: 0.9rem; }
+        .dropdown:hover .dropdown-content { display: block; }
+
+        .nav-right { display: flex; align-items: center; gap: 20px; }
+        .btn-contact { 
+            background: var(--brand-blue); color: white !important; 
+            padding: 10px 22px; border-radius: 25px; font-size: 0.85rem; 
+            text-decoration: none; transition: 0.3s;
+        }
+        .nav-icons { display: flex; gap: 15px; font-size: 1.1rem; color: var(--text-dark); }
+        .nav-icons i { cursor: pointer; transition: 0.2s; }
+        .nav-icons i:hover { color: var(--brand-blue); }
+
+
+        .product-card { transition: transform 0.2s; }
+        .product-card:hover { transform: translateY(-5px); }
+        .tagline {
+  font-weight: 800;
+  margin-top: 30px;
+  text-align: left;
+}
+
+        
+      .footer{
+background:#222;
+color:#fff;
+padding:80px 8% 30px;
+}
+
+.footer-container{
+display:grid;
+grid-template-columns:repeat(4,1fr);
+gap:40px;
+max-width:1200px;
+margin:auto;
+}
+
+.footer-col h3{
+font-size:20px;
+margin-bottom:20px;
+position:relative;
+}
+
+.footer-col h3::after{
+content:"";
+width:40px;
+height:2px;
+background: #fff;
+position:absolute;
+left:0;
+bottom:-8px;
+}
+
+.footer-col ul{
+list-style:none;
+}
+
+.footer-col ul li{
+margin:10px 0;
+}
+
+.footer-col ul li a{
+text-decoration:none;
+color:#ccc;
+font-size:14px;
+}
+
+.footer-col ul li a:hover{
+color:#fff;
+}
+
+.contact p{
+color:#ccc;
+font-size:14px;
+margin:6px 0;
+}
+    </style>
+</head>
+<body class="bg-white text-gray-900">
+
+   <header class="main-header">
+        <div class="container nav-container">
+            <a href="#" class="logo-area">
+                <div class="logo-box">M</div>
+                <div class="logo-text">
+                    <h1>MELLONA FOODS</h1>
+                    <span>Organic Origins. Honest Flavors.</span>
+                </div>
+            </a>
+
+            <nav>
+                <ul class="nav-links">
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="about.html">About Us</a></li>
+                    <li class="dropdown">
+                        <a href="#">Our Products <i class="fa-solid fa-chevron-down" style="font-size: 10px;"></i></a>
+                        <div class="dropdown-content">
+                            <a href="organic food.html">Organic Food</a>
+                            <a href="millets.html">Millets</a>
+                            <a href="snack.html">Snacks</a>
+                            <a href="oil.html">Edible oil</a>
+                            <a href="spice.html">Spices</a>
+                        </div>
+						
+                    </li>
+					 <li class="dropdown">
+                        <a href="#">Our Services <i class="fa-solid fa-chevron-down" style="font-size: 10px;"></i></a>
+                        <div class="dropdown-content">
+                            <a href="service.html">Logistics</a>
+                            <a href="certificate.html">certification</a>
+                            <a href="source.html">Sourcing</a>
+                           
+                        </div>
+						
+                    </li>
+                    <li><a href="blog.html">Blogs</a></li>
+                    <li><a href="news.html" >News</a></li>
+                </ul>
+            </nav>
+
+            <div class="nav-right">
+                <a href="contactus.html" class="btn-contact">Contact us</a>
+                <div class="nav-icons">
+                    <i class="fa-solid fa-magnifying-glass"></i>
+                    <i class="fa-regular fa-user"></i>
+                    <i class="fa-solid fa-basket-shopping"></i>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <div class="text-center py-16 bg-[#f9f9f9] relative overflow-hidden">
+        <h1 class="text-5xl font-bold mb-4">Spices</h1>
+        <p class="text-gray-500 max-w-2xl mx-auto">Natural spices that add rich flavor and goodness to every meal.</p>
+    </div>
+
+    <section class="max-w-6xl mx-auto px-6 py-16 text-center">
+        <h2 class="text-3xl font-bold mb-8">Spices That Don't Just Season Your Food:<br> They Tell The Story Of Tradition</h2>
+        <div class="rounded-3xl overflow-hidden mb-8">
+            <img src="https://images.unsplash.com/photo-1596040033229-a9821ebd058d?auto=format&fit=crop&w=1200&q=80" alt="Spices" class="w-full h-80 object-cover">
+        </div>
+        <p class="text-gray-600 leading-relaxed mb-6">
+           Spices bring flavor, aroma, and health to your meals. Full of natural goodness, they support digestion, boost immunity, and make every dish more enjoyable. Carefully sourced and minimally processed, our spices keep their true taste and benefits intact.
+We offer a range of premium-quality spices that are fresh, natural, and full of flavor. From everyday cooking to special meals, our spices make every dish tastier and healthier.
+
+
+        </p>
+         <p class="tagline">Choose natural flavors. Choose wholesome spices.</p><br>
+        <button class="bg-[#e6b94d] text-white px-8 py-2 rounded-md font-semibold">ALL PRODUCTS</button>
+    </section>
+
+    <section class="max-w-7xl mx-auto px-6 py-12">
+        <div class="grid grid-cols-2 md:grid-cols-4 gap-8">
+            <div class="product-card">
+                <div class="aspect-square bg-gray-100 rounded-xl mb-4 overflow-hidden border">
+                    <img src="https://via.placeholder.com/300x300?text=Spice+Pack" alt="Product" class="w-full h-full object-cover">
+                </div>
+                <h3 class="font-bold text-sm uppercase">Black Pepper Powder</h3>
+                <p class="text-xs text-gray-500">Pure & Organic</p>
+                <button class="mt-2 text-[#e6b94d] text-xs font-bold border-b border-[#e6b94d]">BUY NOW</button>
+            </div>
+            </div>
+    </section>
+
+    <section class="bg-white py-20 px-6">
+        <div class="max-w-6xl mx-auto">
+            <h2 class="text-3xl font-bold text-center mb-12">Why Choose Our Spices For Healthier, Tastier Cooking</h2>
+            <div class="grid md:grid-cols-3 gap-6">
+                <div class="p-8 bg-[#fffcf5] rounded-2xl border border-yellow-100">
+                    <div class="text-green-600 mb-4">🌿</div>
+                    <h4 class="font-bold mb-2">Pure Flavor in Every Pinch</h4>
+                    <p class="text-sm text-gray-500">Our spices are freshly harvested and carefully ground to preserve their natural oils, aroma, and taste. Every pinch adds depth, richness, and authenticity to your cooking.</p>
+                </div>
+                <div class="p-8 bg-[#fffcf5] rounded-2xl border border-yellow-100">
+                    <div class="text-yellow-600 mb-4">⭐</div>
+                    <h4 class="font-bold mb-2">Authentic & Natural</h4>
+                    <p class="text-sm text-gray-500">We believe in purity no artificial colors, additives, or fillers. Just clean, natural spices that let you enjoy food the way it was meant to be.</p>
+                </div>
+                <div class="p-8 bg-[#fffcf5] rounded-2xl border border-yellow-100">
+                    <div class="text-green-600 mb-4">🍲</div>
+                    <h4 class="font-bold mb-2">Wholesome Goodness, Endless Taste</h4>
+                    <p class="text-sm text-gray-500">Elevate every dish with bold, authentic flavors that bring your recipes to life.</p>
+                </div>
+                 <div class="p-8 bg-[#fffcf5] rounded-2xl border border-yellow-100">
+                    <div class="text-green-600 mb-4">⏱️</div>
+                    <h4 class="font-bold mb-2">From Kitchen to Table, Made Easy</h4>
+                    <p class="text-sm text-gray-500">Freshly packed spices that blend seamlessly into everyday cooking.</p>
+                </div>
+                 <div class="p-8 bg-[#fffcf5] rounded-2xl border border-yellow-100">
+                    <div class="text-green-600 mb-4">🤝</div>
+                    <h4 class="font-bold mb-2">Ethically Sourced, Responsibly Made</h4>
+                    <p class="text-sm text-gray-500">We partner with trusted farmers to ensure quality, sustainability, and care for the planet.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer class="footer">
+
+<div class="footer-container">
+
+    <div class="footer-col">
+        <h3>Information</h3>
+        <ul>
+            <li><a href="#">Home</a></li>
+            <li><a href="#">About us</a></li>
+            <li><a href="#">Our Products</a></li>
+            <li><a href="#">Our Services</a></li>
+            <li><a href="#">Blogs</a></li>
+            <li><a href="#">News</a></li>
+            <li><a href="#">Contact Us</a></li>
+            <li><a href="#">Login</a></li>
+        </ul>
+    </div>
+
+    <div class="footer-col">
+        <h3>Products</h3>
+        <ul>
+            <li><a href="#">Millets</a></li>
+            <li><a href="#">Organic foods</a></li>
+            <li><a href="#">Snacks</a></li>
+        </ul>
+    </div>
+
+    <div class="footer-col">
+        <h3>Branches</h3>
+        <ul>
+            <li><a href="#">Mumbai</a></li>
+        </ul>
+    </div>
+
+    <div class="footer-col contact">
+        <h3>Stay Connected</h3>
+
+        <p><strong>Registered address:</strong></p>
+        <p>Andheri , 9th Floor, Office 909</p>
+
+        <p><strong>Phone Number:</strong></p>
+        <p>+91 915 200 1234</p>
+
+        <p><strong>Email-Id</strong></p>
+        <p>sales@athena-logistics.com</p>
+
+        <p>Mon - Fri / 09:00 AM - 8:00 PM</p>
+    </div>
+
+</div>
+
+</footer>
+
+</body>
+</html>

@@ -1,0 +1,536 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mellona Foods | Let's Talk</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&family=Caveat:wght@700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+<style>
+:root {
+            --brand-blue: #2a58ad;
+            --brand-gold: #d4ac2b;
+            --text-dark: #1a1a1a;
+            --text-gray: #666;
+            --bg-light: #f9fbfd;
+            --white: #ffffff;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Poppins', sans-serif; }
+        body { background-color: var(--white); color: var(--text-dark); line-height: 1.6; }
+        .container { max-width: 1200px; margin: 0 auto; padding: 0 20px; }
+
+        /* --- Updated Header --- */
+        .main-header {
+            background: var(--white);
+            padding: 15px 0;
+            border-bottom: 1px solid #f0f0f0;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .nav-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo-area { display: flex; align-items: center; gap: 10px; text-decoration: none; }
+        .logo-box { 
+            width: 45px; height: 45px; background: var(--brand-blue); 
+            border-radius: 8px; display: flex; align-items: center; 
+            justify-content: center; color: white; font-weight: 800; font-size: 22px; 
+        }
+        .logo-text h1 { font-size: 1.2rem; font-weight: 800; color: var(--text-dark); margin: 0; line-height: 1; }
+        .logo-text span { font-size: 0.7rem; color: var(--text-gray); text-transform: uppercase; letter-spacing: 0.5px; }
+
+        .nav-links { display: flex; list-style: none; gap: 25px; align-items: center; }
+        .nav-links a { text-decoration: none; color: var(--text-dark); font-size: 0.95rem; font-weight: 500; transition: 0.3s; }
+        .nav-links a:hover, .nav-links a.active { color: var(--brand-blue); }
+
+        /* Dropdown Logic */
+        .dropdown { position: relative; }
+        .dropdown-content {
+            display: none; position: absolute; background: var(--white);
+            min-width: 180px; box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+            border-radius: 6px; top: 100%; padding: 10px 0; z-index: 10;
+        }
+        .dropdown-content a { padding: 10px 20px; display: block; font-size: 0.9rem; }
+        .dropdown:hover .dropdown-content { display: block; }
+
+        .nav-right { display: flex; align-items: center; gap: 20px; }
+        .btn-contact { 
+            background: var(--brand-blue); color: white !important; 
+            padding: 10px 22px; border-radius: 25px; font-size: 0.85rem; 
+            text-decoration: none; transition: 0.3s;
+        }
+        .nav-icons { display: flex; gap: 15px; font-size: 1.1rem; color: var(--text-dark); }
+        .nav-icons i { cursor: pointer; transition: 0.2s; }
+        .nav-icons i:hover { color: var(--brand-blue); }
+
+
+
+/* Hero Section Styles */
+.hero {
+    height: 450px; /* Adjust height as needed */
+    background: url('handshake-bg.jpg') no-repeat center center/cover;
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* This creates the blue tint overlay */
+.hero-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(to right, rgba(43, 90, 180, 0.8), rgba(43, 90, 180, 0.4));
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.hero-title {
+    color: #fff;
+    font-family: 'Caveat', cursive; /* Script font to match "Let's talk!" */
+    font-size: 6rem;
+    font-weight: 700;
+    text-shadow: 2px 2px 10px rgba(0,0,0,0.2);
+}
+
+/* Responsive Design */
+@media (max-width: 992px) {
+    .nav-links {
+        display: none; /* In a real site, you'd trigger a hamburger menu here */
+    }
+    .hero-title {
+        font-size: 4rem;
+    }
+}
+.contact-section {
+    padding: 100px 0;
+    background-color: #fff;
+    font-family: 'Poppins', sans-serif;
+    display: flex;
+    justify-content: center;
+    overflow: hidden; /* Prevents unwanted scrolls from overlaps */
+}
+
+.contact-container {
+    display: flex;
+    align-items: center;
+    max-width: 1100px;
+    width: 100%;
+    position: relative;
+}
+
+/* Form Card Styling */
+.form-card {
+    background: #ffffff;
+    padding: 50px;
+    border-radius: 15px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+    flex: 1;
+    z-index: 2; /* Sits on top */
+    margin-right: -80px; /* This creates the overlap */
+}
+
+.input-group {
+    margin-bottom: 30px;
+}
+
+.input-group input {
+    width: 100%;
+    border: none;
+    border-bottom: 1px solid #ccc;
+    padding: 10px 0;
+    font-size: 1rem;
+    outline: none;
+    color: #333;
+}
+
+.input-group input::placeholder {
+    color: #999;
+}
+
+.send-btn {
+    background-color: #2b5ab4; /* Blue color from your design */
+    color: white;
+    border: none;
+    padding: 12px 45px;
+    border-radius: 25px;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    display: block;
+    margin: 0 auto; /* Centers the button at the bottom of the card */
+    transform: translateY(25px); /* Makes it pop out slightly from the card */
+}
+
+/* Image Box Styling */
+.image-box {
+    flex: 1;
+    height: 500px;
+    z-index: 1;
+}
+
+.image-box img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 20px;
+}
+
+/* Responsive View */
+@media (max-width: 768px) {
+    .contact-container {
+        flex-direction: column;
+        padding: 0 20px;
+    }
+    .form-card {
+        margin-right: 0;
+        margin-bottom: -50px; /* Overlaps vertically on mobile */
+        width: 100%;
+    }
+    .image-box {
+        width: 100%;
+        height: 350px;
+    }
+}
+.visit-section {
+    padding: 80px 20px;
+    background-color: #f4faff; /* Light blue tint from the image */
+    text-align: center;
+    font-family: 'Poppins', sans-serif;
+}
+
+.top-icon img {
+    width: 60px;
+    margin-bottom: 20px;
+}
+
+.visit-header h2 {
+    color: #2b5ab4;
+    font-size: 2.2rem;
+    font-weight: 600;
+    margin-bottom: 10px;
+}
+
+.visit-header p {
+    font-size: 1.2rem;
+    color: #333;
+    margin-bottom: 50px;
+}
+
+/* Grid Layout */
+.address-grid {
+    display: flex;
+    justify-content: center;
+    align-items: stretch;
+    max-width: 1000px;
+    margin: 0 auto;
+    text-align: left;
+}
+
+.address-col {
+    flex: 1;
+    padding: 0 40px;
+}
+
+.address-col h3 {
+    font-size: 1.5rem;
+    color: #1a1a1a;
+    margin-bottom: 20px;
+}
+
+.company-name {
+    color: #888;
+    margin-bottom: 15px;
+}
+
+address {
+    font-style: normal;
+    line-height: 1.8;
+    color: #555;
+    margin-bottom: 20px;
+}
+
+.phone {
+    font-weight: 500;
+    margin-bottom: 10px;
+}
+
+.email {
+    color: #555;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.email i {
+    color: #dcb033; /* Gold/Yellow icon color */
+}
+
+/* The Vertical Line */
+.divider {
+    width: 2px;
+    background-color: #dcb033; /* Gold/Yellow line */
+    margin: 0 20px;
+}
+
+.factory-placeholder {
+    color: #777;
+    letter-spacing: 2px;
+}
+
+/* Mobile Responsive */
+@media (max-width: 768px) {
+    .address-grid {
+        flex-direction: column;
+        text-align: center;
+    }
+    .divider {
+        width: 100%;
+        height: 2px;
+        margin: 40px 0;
+    }
+    .email {
+        justify-content: center;
+    }
+}
+ .footer{
+background:#222;
+color:#fff;
+padding:80px 8% 30px;
+}
+
+.footer-container{
+display:grid;
+grid-template-columns:repeat(4,1fr);
+gap:40px;
+max-width:1200px;
+margin:auto;
+}
+
+.footer-col h3{
+font-size:20px;
+margin-bottom:20px;
+position:relative;
+}
+
+.footer-col h3::after{
+content:"";
+width:40px;
+height:2px;
+background: #fff;
+position:absolute;
+left:0;
+bottom:-8px;
+}
+
+.footer-col ul{
+list-style:none;
+}
+
+.footer-col ul li{
+margin:10px 0;
+}
+
+.footer-col ul li a{
+text-decoration:none;
+color:#ccc;
+font-size:14px;
+}
+
+.footer-col ul li a:hover{
+color:#fff;
+}
+
+.contact p{
+color:#ccc;
+font-size:14px;
+margin:6px 0;
+}
+</style>
+
+   <header class="main-header">
+        <div class="container nav-container">
+            <a href="#" class="logo-area">
+                <div class="logo-box">M</div>
+                <div class="logo-text">
+                    <h1>MELLONA FOODS</h1>
+                    <span>Organic Origins. Honest Flavors.</span>
+                </div>
+            </a>
+
+            <nav>
+                <ul class="nav-links">
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="about.html">About Us</a></li>
+                    <li class="dropdown">
+                        <a href="#">Our Products <i class="fa-solid fa-chevron-down" style="font-size: 10px;"></i></a>
+                        <div class="dropdown-content">
+                            <a href="organic food.html">Organic Food</a>
+                            <a href="millets.html">Millets</a>
+                            <a href="snack.html">Snacks</a>
+                            <a href="oil.html">Edible oil</a>
+                            <a href="spice.html">Spices</a>
+                        </div>
+						
+                    </li>
+					 <li class="dropdown">
+                        <a href="#">Our Services <i class="fa-solid fa-chevron-down" style="font-size: 10px;"></i></a>
+                        <div class="dropdown-content">
+                            <a href="service.html">Logistics</a>
+                            <a href="certificate.html">certification</a>
+                            <a href="source.html">Sourcing</a>
+                           
+                        </div>
+						
+                    </li>
+                    <li><a href="blog.html">Blogs</a></li>
+                    <li><a href="news.html" >News</a></li>
+                </ul>
+            </nav>
+
+            <div class="nav-right">
+                <a href="contactus.html" class="btn-contact">Contact us</a>
+                <div class="nav-icons">
+                    <i class="fa-solid fa-magnifying-glass"></i>
+                    <i class="fa-regular fa-user"></i>
+                    <i class="fa-solid fa-basket-shopping"></i>
+                </div>
+            </div>
+        </div>
+    </header>
+    <section class="hero">
+        <div class="hero-overlay">
+            <h1 class="hero-title">Let’s talk!</h1>
+        </div>
+    </section>
+	<section class="contact-section">
+    <div class="contact-container">
+        
+        <div class="form-card">
+            <form>
+                <div class="input-group">
+                    <input type="text" placeholder="Full Name" required>
+                </div>
+                <div class="input-group">
+                    <input type="email" placeholder="Email Address" required>
+                </div>
+                <div class="input-group">
+                    <input type="text" placeholder="Company">
+                </div>
+                <div class="input-group">
+                    <input type="text" placeholder="Message">
+                </div>
+                <button type="submit" class="send-btn">Send</button>
+            </form>
+        </div>
+
+        <div class="image-box">
+            <img src="https://cdn.magicdecor.in/com/2023/11/15111201/Fresh-Vegetables-and-Fruits-Wallpaper-for-Wall.jpg" alt="Fresh Vegetables">
+        </div>
+
+    </div>
+</section>
+<section class="visit-section">
+    <div class="top-icon">
+        <img src="avocado-icon.png" alt="Avocado">
+    </div>
+
+    <div class="visit-header">
+        <h2>You can also choose to visit us</h2>
+        <p>or drop an email.</p>
+    </div>
+
+    <div class="address-grid">
+        <div class="address-col">
+            <h3>Head office</h3>
+            <p class="company-name">Mellona Foods Pvt. Ltd.</p>
+            <address>
+                909, The Avenue, Off, Chhatrapati<br>
+                Shivaji Maharaj Int'l Airport Rd, near<br>
+                Waterstones Hotel, Navpada,<br>
+                Marol, Andheri East, Mumbai,<br>
+                Maharashtra 400059
+            </address>
+            <p class="phone">+91 915 200 1234</p>
+            <p class="email">
+                <i class="fa-solid fa-envelope"></i> 
+                sales@athena-logistics.com
+            </p>
+        </div>
+
+        <div class="divider"></div>
+
+        <div class="address-col">
+            <h3>Factory Address</h3>
+            <p class="factory-placeholder">XXXXXXXX</p>
+        </div>
+    </div>
+</section>
+
+
+       <footer class="footer">
+
+<div class="footer-container">
+
+    <div class="footer-col">
+        <h3>Information</h3>
+        <ul>
+            <li><a href="#">Home</a></li>
+            <li><a href="#">About us</a></li>
+            <li><a href="#">Our Products</a></li>
+            <li><a href="#">Our Services</a></li>
+            <li><a href="#">Blogs</a></li>
+            <li><a href="#">News</a></li>
+            <li><a href="#">Contact Us</a></li>
+            <li><a href="#">Login</a></li>
+        </ul>
+    </div>
+
+    <div class="footer-col">
+        <h3>Products</h3>
+        <ul>
+            <li><a href="#">Millets</a></li>
+            <li><a href="#">Organic foods</a></li>
+            <li><a href="#">Snacks</a></li>
+        </ul>
+    </div>
+
+    <div class="footer-col">
+        <h3>Branches</h3>
+        <ul>
+            <li><a href="#">Mumbai</a></li>
+        </ul>
+    </div>
+
+    <div class="footer-col contact">
+        <h3>Stay Connected</h3>
+
+        <p><strong>Registered address:</strong></p>
+        <p>Andheri , 9th Floor, Office 909</p>
+
+        <p><strong>Phone Number:</strong></p>
+        <p>+91 915 200 1234</p>
+
+        <p><strong>Email-Id</strong></p>
+        <p>sales@athena-logistics.com</p>
+
+        <p>Mon - Fri / 09:00 AM - 8:00 PM</p>
+    </div>
+
+</div>
+
+</footer>
+
+</body>
+</html>

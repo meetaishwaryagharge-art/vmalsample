@@ -1,0 +1,1435 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Komal Khandge | Founder & Group CEO — Sabka Global Corp</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800;900&family=Syne:wght@700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+
+  <style>
+    /* ===== ROOT & VARIABLES ===== */
+    :root {
+      --bg: #04060d;
+      --bg-alt: #070a15;
+      --cyan: #00f2fe;
+      --blue: #4facfe;
+      --gradient: linear-gradient(135deg, #00f2fe 0%, #4facfe 100%);
+      --glass-bg: rgba(255,255,255,0.025);
+      --glass-border: rgba(255,255,255,0.07);
+      --muted: #7a8fa8;
+      --text: #e2e8f0;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      overflow-x: hidden;
+    }
+
+    /* ===== SCROLLBAR ===== */
+    ::-webkit-scrollbar { width: 4px; }
+    ::-webkit-scrollbar-track { background: var(--bg); }
+    ::-webkit-scrollbar-thumb { background: var(--cyan); border-radius: 2px; }
+
+    /* ===== UTILITY ===== */
+    .py-section { padding: 100px 0; }
+    .bg-alt { background: var(--bg-alt); }
+    .text-gradient {
+      background: var(--gradient);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+    .section-divider { border: none; border-top: 1px solid var(--glass-border); margin: 0; }
+    .label-tag {
+      display: inline-block;
+      font-size: 0.72rem;
+      font-weight: 700;
+      letter-spacing: 2.5px;
+      text-transform: uppercase;
+      color: var(--cyan);
+      background: rgba(0,242,254,0.07);
+      border: 1px solid rgba(0,242,254,0.18);
+      padding: 6px 16px;
+      border-radius: 50px;
+      margin-bottom: 16px;
+    }
+
+    /* ===== PRELOADER ===== */
+    #preloader {
+      position: fixed; inset: 0; z-index: 9999;
+      background: var(--bg);
+      display: flex; align-items: center; justify-content: center;
+      transition: opacity 0.6s ease, visibility 0.6s ease;
+    }
+    #preloader.hidden { opacity: 0; visibility: hidden; pointer-events: none; }
+    .pre-ring {
+      width: 60px; height: 60px;
+      border: 2px solid rgba(0,242,254,0.15);
+      border-top-color: var(--cyan);
+      border-radius: 50%;
+      animation: spin 0.9s linear infinite;
+    }
+    @keyframes spin { to { transform: rotate(360deg); } }
+
+    /* ===== CURSOR ===== */
+    .cursor {
+      position: fixed; width: 10px; height: 10px;
+      background: var(--cyan); border-radius: 50%;
+      pointer-events: none; z-index: 9998;
+      transform: translate(-50%,-50%);
+      transition: transform 0.1s ease;
+      mix-blend-mode: difference;
+    }
+    .cursor-ring {
+      position: fixed; width: 36px; height: 36px;
+      border: 1px solid rgba(0,242,254,0.4); border-radius: 50%;
+      pointer-events: none; z-index: 9997;
+      transform: translate(-50%,-50%);
+      transition: all 0.18s ease;
+    }
+
+    /* ===== NAVBAR ===== */
+    .custom-navbar {
+      background: rgba(4,6,13,0.6) !important;
+      backdrop-filter: blur(24px);
+      -webkit-backdrop-filter: blur(24px);
+      border-bottom: 1px solid var(--glass-border);
+      padding: 18px 0;
+      transition: all 0.4s cubic-bezier(0.16,1,0.3,1);
+    }
+    .custom-navbar.scrolled {
+      padding: 10px 0;
+      background: rgba(4,6,13,0.97) !important;
+    }
+    .navbar-brand {
+      font-family: 'Syne', sans-serif;
+      font-size: 1.05rem;
+      letter-spacing: 2px;
+      color: #fff !important;
+    }
+    .brand-dot { color: var(--cyan); }
+    .nav-link {
+      color: var(--muted) !important;
+      font-weight: 500; font-size: 0.88rem;
+      padding: 8px 14px !important;
+      transition: color 0.3s ease;
+      position: relative;
+    }
+    .nav-link::after {
+      content: '';
+      position: absolute; bottom: 4px; left: 14px; right: 14px; height: 1px;
+      background: var(--gradient); transform: scaleX(0); transform-origin: right;
+      transition: transform 0.3s ease;
+    }
+    .nav-link:hover::after, .nav-link.active::after { transform: scaleX(1); transform-origin: left; }
+    .nav-link:hover, .nav-link.active { color: #fff !important; }
+    .nav-cta {
+      background: var(--gradient) !important;
+      border: none !important; color: #030508 !important;
+      font-weight: 700 !important; font-size: 0.85rem !important;
+      padding: 9px 22px !important; border-radius: 8px !important;
+      transition: all 0.3s ease !important;
+    }
+    .nav-cta:hover { transform: translateY(-2px); box-shadow: 0 8px 24px rgba(0,242,254,0.3) !important; }
+  /* ===== IMMERSIVE CLEAN MEGA MENU STYLES ===== */
+.custom-navbar .dropdown-toggle::after {
+  display: inline-block;
+  margin-left: 0.355em;
+  vertical-align: 0.255em;
+  content: "";
+  border-top: 0.3em solid;
+  border-right: 0.3em solid transparent;
+  border-bottom: 0;
+  border-left: 0.3em solid transparent;
+  transition: transform 0.3s ease;
+}
+.custom-navbar .show .dropdown-toggle::after {
+  transform: rotate(180deg);
+}
+.mega-menu {
+  background: rgba(4, 6, 13, 0.98) !important;
+  backdrop-filter: blur(30px);
+  -webkit-backdrop-filter: blur(30px);
+  border-bottom: 2px solid var(--cyan) !important;
+  box-shadow: 0 25px 50px rgba(0,0,0,0.8);
+  top: 100% !important;
+  left: 0 !important;
+}
+.mm-category-card {
+  padding: 16px;
+  background: rgba(255, 255, 255, 0.015);
+  border: 1px solid var(--glass-border);
+  border-radius: 12px;
+  transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.mm-category-card h5 {
+  font-family: 'Syne', sans-serif;
+  font-size: 0.92rem;
+  font-weight: 700;
+  color: #fff;
+  margin-bottom: 4px;
+  letter-spacing: 0.5px;
+  transition: color 0.3s ease;
+}
+.mm-card-img-wrap {
+  position: relative;
+  height: 120px;
+  background: radial-gradient(circle at 50% 50%, #0d1527 0%, #060914 100%);
+  border-radius: 8px;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid rgba(255, 255, 255, 0.03);
+}
+.mm-card-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, transparent 40%, rgba(4, 6, 13, 0.8) 100%);
+  z-index: 1;
+}
+.mm-card-icon {
+  font-size: 2.2rem;
+  background: var(--gradient);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  z-index: 2;
+  transition: transform 0.4s ease;
+}
+.mm-view-link {
+  font-size: 0.72rem;
+  color: var(--muted);
+  font-weight: 600;
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+  transition: color 0.3s ease;
+}
+/* Hover Effects */
+.mm-category-card:hover {
+  background: rgba(0, 242, 254, 0.02);
+  border-color: rgba(0, 242, 254, 0.3);
+  transform: translateY(-4px);
+}
+.mm-category-card:hover h5 {
+  color: var(--cyan);
+}
+.mm-category-card:hover .mm-card-icon {
+  transform: scale(1.15);
+}
+.mm-category-card:hover .mm-view-link {
+  color: #fff;
+}
+    /* ===== PARTICLE CANVAS ===== */
+    #particles { position: absolute; inset: 0; z-index: 0; }
+
+    /* ===== HERO ===== */
+    .hero-section {
+      min-height: 100vh;
+      background: radial-gradient(ellipse at 70% 30%, #0b1628 0%, var(--bg) 70%);
+      position: relative; overflow: hidden;
+      display: flex; align-items: center;
+    }
+
+    /* Orbs */
+    .orb {
+      position: absolute; border-radius: 50%;
+      filter: blur(130px); opacity: 0.22; pointer-events: none;
+    }
+    .orb-1 { width: 480px; height: 480px; background: #4facfe; top: -8%; right: 2%; animation: orbFloat 16s ease-in-out infinite alternate; }
+    .orb-2 { width: 360px; height: 360px; background: #00f2fe; bottom: 2%; left: 0%; animation: orbFloat 20s ease-in-out infinite alternate-reverse; }
+    .orb-3 { width: 250px; height: 250px; background: #a855f7; top: 40%; left: 30%; opacity: 0.1; animation: orbFloat 25s ease-in-out infinite; }
+    @keyframes orbFloat { 0% { transform: translate(0,0) scale(1); } 100% { transform: translate(30px,50px) scale(1.1); } }
+
+    /* Animated grid lines */
+    .grid-lines {
+      position: absolute; inset: 0; z-index: 0;
+      background-image:
+        linear-gradient(rgba(0,242,254,0.025) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(0,242,254,0.025) 1px, transparent 1px);
+      background-size: 60px 60px;
+      mask-image: radial-gradient(ellipse at center, black 20%, transparent 80%);
+    }
+
+    .hero-content { position: relative; z-index: 2; padding-top: 90px; }
+
+    .hero-eyebrow {
+      display: inline-flex; align-items: center; gap: 10px;
+      font-size: 0.72rem; font-weight: 700; letter-spacing: 3px;
+      text-transform: uppercase; color: var(--cyan);
+      background: rgba(0,242,254,0.05);
+      border: 1px solid rgba(0,242,254,0.15); padding: 8px 20px; border-radius: 50px;
+      animation: fadeInDown 0.8s 0.2s both;
+    }
+    .eyebrow-dot { width: 6px; height: 6px; background: var(--cyan); border-radius: 50%; animation: pulse 2s infinite; }
+    @keyframes pulse { 0%,100% { opacity:1; transform:scale(1); } 50% { opacity:0.4; transform:scale(0.7); } }
+
+    .hero-name {
+      font-family: 'Syne', sans-serif;
+      font-size: clamp(3rem, 7vw, 5.5rem);
+      font-weight: 800; line-height: 1; color: #fff;
+      animation: fadeInUp 1s 0.4s both;
+    }
+    .hero-name .line2 { display: block; }
+
+    .hero-title {
+      font-size: clamp(1rem, 2vw, 1.3rem);
+      font-weight: 500; letter-spacing: 1px;
+      animation: fadeInUp 1s 0.6s both;
+    }
+
+    .typed-wrap {
+      min-height: 2.2rem;
+      font-size: clamp(0.95rem, 1.5vw, 1.1rem);
+      color: var(--muted);
+      animation: fadeInUp 1s 0.8s both;
+    }
+    .typed-cursor { color: var(--cyan); animation: blink 1s infinite; }
+    @keyframes blink { 0%,100% { opacity:1; } 50% { opacity:0; } }
+
+    .hero-desc {
+      font-size: 1rem; line-height: 1.85; color: #94a3b8;
+      border-left: 2px solid var(--cyan); padding-left: 18px;
+      animation: fadeInUp 1s 1s both;
+    }
+
+    .hero-tags { animation: fadeInUp 1s 1.1s both; }
+    .htag {
+      display: inline-flex; align-items: center; gap: 8px;
+      background: var(--glass-bg); border: 1px solid var(--glass-border);
+      color: var(--text); padding: 8px 16px; border-radius: 50px; font-size: 0.82rem;
+      backdrop-filter: blur(12px); transition: all 0.3s ease;
+    }
+    .htag:hover { border-color: var(--cyan); transform: translateY(-3px); box-shadow: 0 6px 20px rgba(0,242,254,0.12); }
+    .htag i { color: var(--cyan); font-size: 0.85rem; }
+
+    .hero-btns { animation: fadeInUp 1s 1.2s both; }
+    .btn-primary-glow {
+      background: var(--gradient); border: none; color: #030508;
+      font-weight: 700; font-size: 0.92rem; padding: 14px 32px; border-radius: 10px;
+      transition: all 0.4s ease; display: inline-flex; align-items: center; gap: 10px;
+    }
+    .btn-primary-glow:hover { transform: translateY(-4px); box-shadow: 0 14px 36px rgba(0,242,254,0.35); color: #030508; }
+    .btn-ghost {
+      background: var(--glass-bg); border: 1px solid var(--glass-border); color: #fff;
+      font-weight: 600; font-size: 0.92rem; padding: 13px 30px; border-radius: 10px;
+      backdrop-filter: blur(10px); transition: all 0.4s ease;
+      display: inline-flex; align-items: center; gap: 10px;
+    }
+    .btn-ghost:hover { background: #fff; color: #030508; transform: translateY(-4px); }
+
+    /* Hero 3D card */
+    .hero-card-scene { animation: fadeInRight 1.2s 0.6s both; }
+    .glass-card-3d {
+      background: linear-gradient(135deg, rgba(255,255,255,0.05) 0%, rgba(255,255,255,0.01) 100%);
+      border: 1px solid rgba(255,255,255,0.1);
+      border-radius: 24px; padding: 48px 36px;
+      backdrop-filter: blur(30px);
+      box-shadow: 0 40px 80px rgba(0,0,0,0.5), inset 0 1px 0 rgba(255,255,255,0.06);
+      transform: perspective(1000px) rotateY(-12deg) rotateX(6deg);
+      transition: transform 0.6s cubic-bezier(0.16,1,0.3,1);
+      position: relative; overflow: hidden;
+    }
+    .glass-card-3d::before {
+      content: '';
+      position: absolute; top: -50%; left: -50%; width: 200%; height: 200%;
+      background: conic-gradient(from 0deg, transparent 0deg, rgba(0,242,254,0.04) 60deg, transparent 120deg);
+      animation: shimmer 6s linear infinite;
+    }
+    @keyframes shimmer { to { transform: rotate(360deg); } }
+    .card-badge {
+      display: inline-block; background: var(--gradient);
+      color: #030508; font-size: 0.7rem; font-weight: 800;
+      letter-spacing: 1.5px; text-transform: uppercase;
+      padding: 5px 14px; border-radius: 50px; margin-bottom: 20px;
+    }
+    .glass-card-3d h3 { font-family: 'Syne', sans-serif; font-size: 1.5rem; color: #fff; }
+    .glass-card-3d p { color: var(--muted); font-size: 0.88rem; line-height: 1.7; margin-top: 12px; }
+    .pulse-bar {
+      height: 2px; border-radius: 2px; background: var(--gradient);
+      margin-top: 24px; animation: pulseBar 2.5s ease-in-out infinite;
+    }
+    @keyframes pulseBar { 0%,100% { width:60px; opacity:0.6; } 50% { width:100%; opacity:1; } }
+
+    /* Orbit icons around card */
+    .orbit-wrap { position: relative; }
+    .orbit-icon {
+      position: absolute; width: 44px; height: 44px;
+      background: var(--glass-bg); border: 1px solid rgba(0,242,254,0.2);
+      border-radius: 12px; display: flex; align-items: center; justify-content: center;
+      color: var(--cyan); font-size: 1rem; backdrop-filter: blur(10px);
+    }
+    .orbit-icon:nth-child(1) { top: 10%; right: -20px; animation: floatIcon 4s ease-in-out infinite; }
+    .orbit-icon:nth-child(2) { bottom: 15%; left: -20px; animation: floatIcon 4s 1.5s ease-in-out infinite; }
+    .orbit-icon:nth-child(3) { top: 55%; right: -30px; animation: floatIcon 4s 0.8s ease-in-out infinite; }
+    @keyframes floatIcon { 0%,100% { transform: translateY(0); } 50% { transform: translateY(-10px); } }
+
+    /* Scroll indicator */
+    .scroll-cue {
+      position: absolute; bottom: 36px; left: 50%; transform: translateX(-50%);
+      display: flex; flex-direction: column; align-items: center; gap: 8px;
+      color: var(--muted); font-size: 0.72rem; letter-spacing: 2px; text-transform: uppercase;
+      z-index: 3; animation: fadeInUp 1s 1.5s both;
+    }
+    .scroll-arrow { animation: scrollBounce 2s infinite; }
+    @keyframes scrollBounce { 0%,100% { transform: translateY(0); } 50% { transform: translateY(8px); } }
+
+    /* ===== FADEINS ===== */
+    @keyframes fadeInUp { from { opacity:0; transform:translateY(28px); } to { opacity:1; transform:translateY(0); } }
+    @keyframes fadeInDown { from { opacity:0; transform:translateY(-20px); } to { opacity:1; transform:translateY(0); } }
+    @keyframes fadeInRight { from { opacity:0; transform:translateX(40px); } to { opacity:1; transform:translateX(0); } }
+
+    /* ===== SCROLL REVEAL ===== */
+    .reveal {
+      opacity: 0; transform: translateY(32px);
+      transition: opacity 0.7s cubic-bezier(0.16,1,0.3,1), transform 0.7s cubic-bezier(0.16,1,0.3,1);
+    }
+    .reveal.visible { opacity: 1; transform: translateY(0); }
+    .reveal-left { opacity:0; transform:translateX(-32px); transition: opacity 0.7s ease, transform 0.7s ease; }
+    .reveal-left.visible { opacity:1; transform:translateX(0); }
+    .reveal-right { opacity:0; transform:translateX(32px); transition: opacity 0.7s ease, transform 0.7s ease; }
+    .reveal-right.visible { opacity:1; transform:translateX(0); }
+    .delay-1 { transition-delay: 0.1s !important; }
+    .delay-2 { transition-delay: 0.2s !important; }
+    .delay-3 { transition-delay: 0.3s !important; }
+    .delay-4 { transition-delay: 0.4s !important; }
+    .delay-5 { transition-delay: 0.5s !important; }
+
+    /* ===== STATS SECTION ===== */
+    .stats-section {
+      padding: 60px 0;
+      background: linear-gradient(90deg, #060a18 0%, #0b1225 50%, #060a18 100%);
+      border-top: 1px solid var(--glass-border);
+      border-bottom: 1px solid var(--glass-border);
+      position: relative; overflow: hidden;
+    }
+    .stats-section::before {
+      content: '';
+      position: absolute; inset: 0;
+      background: radial-gradient(ellipse at 50% 50%, rgba(0,242,254,0.04), transparent 70%);
+    }
+    .stat-item { text-align: center; }
+    .stat-number {
+      font-family: 'Syne', sans-serif;
+      font-size: clamp(2.5rem, 5vw, 3.8rem);
+      font-weight: 800; line-height: 1;
+      background: var(--gradient); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
+    }
+    .stat-label {
+      font-size: 0.72rem; letter-spacing: 2px; text-transform: uppercase;
+      color: var(--muted); margin-top: 8px;
+    }
+    .stat-divider {
+      width: 1px; background: var(--glass-border);
+      height: 60px; align-self: center;
+    }
+
+    /* ===== FOUNDER SECTION ===== */
+    .founder-quote {
+      font-size: 1.5rem; font-style: italic; line-height: 1.7; color: #cbd5e1;
+      position: relative; padding: 0 32px;
+    }
+    .founder-quote::before {
+      content: '"';
+      position: absolute; left: 0; top: -12px;
+      font-size: 5rem; line-height: 1; color: var(--cyan); opacity: 0.3;
+      font-family: Georgia, serif;
+    }
+    .philosophy-card {
+      background: var(--glass-bg); border: 1px solid var(--glass-border);
+      border-radius: 16px; padding: 28px; height: 100%;
+      transition: all 0.4s ease;
+    }
+    .philosophy-card:hover {
+      background: rgba(0,242,254,0.03);
+      border-color: rgba(0,242,254,0.25);
+      transform: translateY(-6px);
+      box-shadow: 0 20px 40px rgba(0,0,0,0.3);
+    }
+    .phi-icon {
+      width: 52px; height: 52px; border-radius: 14px;
+      background: rgba(0,242,254,0.06); border: 1px solid rgba(0,242,254,0.15);
+      display: flex; align-items: center; justify-content: center;
+      color: var(--cyan); font-size: 1.2rem; margin-bottom: 16px;
+    }
+
+    /* ===== ECOSYSTEM ===== */
+    .eco-card {
+      background: var(--glass-bg); border: 1px solid var(--glass-border);
+      border-radius: 20px; padding: 36px 28px; height: 100%;
+      transition: all 0.5s cubic-bezier(0.16,1,0.3,1);
+      position: relative; overflow: hidden;
+    }
+    .eco-card::after {
+      content: '';
+      position: absolute; bottom: 0; left: 0; right: 0; height: 3px;
+      background: var(--gradient); transform: scaleX(0); transform-origin: left;
+      transition: transform 0.4s ease;
+    }
+    .eco-card:hover { transform: translateY(-8px); border-color: rgba(0,242,254,0.2); box-shadow: 0 24px 48px rgba(0,0,0,0.4); }
+    .eco-card:hover::after { transform: scaleX(1); }
+    .eco-icon {
+      width: 58px; height: 58px; border-radius: 16px;
+      background: rgba(0,242,254,0.06); border: 1px solid rgba(0,242,254,0.12);
+      display: flex; align-items: center; justify-content: center;
+      color: var(--cyan); font-size: 1.5rem; margin-bottom: 20px;
+      transition: all 0.3s ease;
+    }
+    .eco-card:hover .eco-icon { background: rgba(0,242,254,0.12); transform: scale(1.1) rotate(5deg); }
+    .eco-card h4 { font-size: 1.1rem; font-weight: 700; color: #fff; margin-bottom: 14px; }
+    .eco-card li { color: var(--muted); font-size: 0.84rem; line-height: 1.7; list-style: none; padding: 2px 0; position: relative; padding-left: 14px; }
+    .eco-card li::before { content: '→'; position: absolute; left: 0; color: var(--cyan); font-size: 0.75rem; }
+
+    /* ===== SERVICES ===== */
+    .service-card {
+      background: var(--glass-bg); border: 1px solid var(--glass-border);
+      border-radius: 16px; padding: 32px; height: 100%;
+      transition: all 0.4s ease; position: relative; overflow: hidden;
+    }
+    .service-card:hover { transform: translateY(-6px); border-color: rgba(0,242,254,0.2); box-shadow: 0 20px 40px rgba(0,0,0,0.3); }
+    .svc-num {
+      font-family: 'Syne', sans-serif; font-size: 3rem; font-weight: 800;
+      background: var(--gradient); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
+      opacity: 0.15; position: absolute; right: 20px; top: 16px; line-height: 1;
+    }
+    .service-card h5 { font-weight: 700; color: #fff; margin-bottom: 12px; }
+    .service-card p { color: var(--muted); font-size: 0.88rem; line-height: 1.7; }
+    .svc-icon { color: var(--cyan); font-size: 1.5rem; margin-bottom: 16px; }
+
+    /* ===== IMPACT TIMELINE ===== */
+    .impact-list { list-style: none; }
+    .impact-list li {
+      display: flex; gap: 20px; padding: 20px 0;
+      border-bottom: 1px solid var(--glass-border);
+    }
+    .impact-list li:last-child { border-bottom: none; }
+    .impact-num {
+      width: 40px; height: 40px; min-width: 40px;
+      background: var(--gradient); border-radius: 10px;
+      display: flex; align-items: center; justify-content: center;
+      font-weight: 800; font-size: 0.85rem; color: #030508;
+    }
+    .impact-card-box {
+      background: var(--glass-bg); border: 1px solid var(--glass-border);
+      border-radius: 20px; padding: 36px;
+    }
+    .impact-card-box h4 { font-weight: 700; color: #fff; margin-bottom: 20px; font-size: 1.1rem; }
+
+    /* ===== PARTNERSHIPS ===== */
+    .partner-card {
+      background: var(--glass-bg); border: 1px solid var(--glass-border);
+      border-radius: 20px; padding: 36px; height: 100%;
+      transition: all 0.4s ease;
+    }
+    .partner-card:hover { border-color: rgba(0,242,254,0.25); transform: translateY(-6px); box-shadow: 0 0 30px rgba(0,242,254,0.06); }
+    .partner-card.featured { border-color: rgba(0,242,254,0.2); box-shadow: 0 0 20px rgba(0,242,254,0.05); }
+    .partner-card h4 { color: #fff; font-weight: 700; margin-bottom: 14px; }
+    .text-link { color: var(--cyan); font-size: 0.85rem; font-weight: 600; text-decoration: none; transition: gap 0.3s ease; display: inline-flex; align-items: center; gap: 6px; }
+    .text-link:hover { gap: 10px; color: var(--blue); }
+
+    /* ===== KNOWLEDGE ===== */
+    .blog-card {
+      background: var(--glass-bg); border: 1px solid var(--glass-border);
+      border-radius: 16px; overflow: hidden; height: 100%;
+      transition: all 0.4s ease;
+    }
+    .blog-card:hover { transform: translateY(-6px); border-color: rgba(0,242,254,0.2); }
+    .blog-top { height: 4px; background: var(--gradient); }
+    .blog-body { padding: 28px; }
+    .blog-cat { font-size: 0.72rem; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; color: var(--cyan); }
+    .blog-card h5 { color: #fff; font-weight: 700; margin: 10px 0 10px; font-size: 1rem; }
+    .blog-card p { color: var(--muted); font-size: 0.85rem; line-height: 1.7; }
+
+    /* ===== CONTACT ===== */
+    .contact-item { display: flex; align-items: center; gap: 16px; }
+    .contact-icon {
+      width: 48px; height: 48px; min-width: 48px; border-radius: 12px;
+      background: var(--glass-bg); border: 1px solid var(--glass-border);
+      display: flex; align-items: center; justify-content: center;
+      color: var(--cyan); font-size: 1.1rem;
+    }
+    .contact-form { background: var(--glass-bg); border: 1px solid var(--glass-border); border-radius: 20px; padding: 40px; }
+    .form-control, .form-select {
+      background: rgba(255,255,255,0.03) !important; border: 1px solid var(--glass-border) !important;
+      color: #fff !important; border-radius: 10px !important;
+      padding: 12px 16px !important; font-size: 0.9rem !important;
+      transition: border-color 0.3s ease !important;
+    }
+    .form-control:focus, .form-select:focus {
+      border-color: rgba(0,242,254,0.4) !important;
+      box-shadow: 0 0 0 3px rgba(0,242,254,0.08) !important;
+      background: rgba(255,255,255,0.04) !important;
+    }
+    .form-control::placeholder { color: var(--muted) !important; }
+    .form-label { color: var(--muted); font-size: 0.82rem; margin-bottom: 6px; }
+    .form-select option { background: #0d1424; }
+    .btn-submit {
+      background: var(--gradient); border: none; color: #030508;
+      font-weight: 700; font-size: 0.95rem; padding: 14px;
+      border-radius: 10px; width: 100%; transition: all 0.4s ease;
+    }
+    .btn-submit:hover { transform: translateY(-3px); box-shadow: 0 12px 30px rgba(0,242,254,0.3); }
+
+    /* ===== FOOTER ===== */
+    .footer-wrap {
+      background: #030508;
+      border-top: 1px solid var(--glass-border);
+      padding: 70px 0 30px;
+    }
+    .footer-brand { font-family: 'Syne', sans-serif; font-size: 1.1rem; letter-spacing: 2px; color: #fff; }
+    .footer-link { color: var(--muted); font-size: 0.88rem; text-decoration: none; display: block; margin-bottom: 8px; transition: color 0.3s ease; }
+    .footer-link:hover { color: var(--cyan); }
+    .social-icon {
+      width: 40px; height: 40px; border-radius: 10px;
+      background: var(--glass-bg); border: 1px solid var(--glass-border);
+      display: inline-flex; align-items: center; justify-content: center;
+      color: var(--muted); font-size: 1rem; text-decoration: none;
+      transition: all 0.3s ease;
+    }
+    .social-icon:hover { background: rgba(0,242,254,0.1); border-color: rgba(0,242,254,0.3); color: var(--cyan); transform: translateY(-3px); }
+    .footer-copy { color: var(--muted); font-size: 0.8rem; text-align: center; padding-top: 30px; border-top: 1px solid var(--glass-border); margin-top: 40px; }
+
+    /* ===== WHATSAPP FLOAT ===== */
+    .wa-float {
+      position: fixed; bottom: 28px; right: 28px; z-index: 999;
+      width: 54px; height: 54px; border-radius: 50%;
+      background: #25d366; color: #fff; font-size: 1.5rem;
+      display: flex; align-items: center; justify-content: center;
+      text-decoration: none; box-shadow: 0 4px 20px rgba(37,211,102,0.4);
+      transition: all 0.3s ease;
+      animation: waPop 0.5s 2s both;
+    }
+    .wa-float:hover { transform: scale(1.1); color: #fff; box-shadow: 0 6px 30px rgba(37,211,102,0.6); }
+    @keyframes waPop { from { opacity:0; transform:scale(0); } to { opacity:1; transform:scale(1); } }
+
+    /* ===== SECTION HEADINGS ===== */
+    .section-title { font-family: 'Syne', sans-serif; font-size: clamp(2rem, 4vw, 3rem); font-weight: 800; color: #fff; line-height: 1.1; }
+
+    /* ===== PROGRESS BARS (skills) ===== */
+    .skill-bar-wrap { margin-bottom: 16px; }
+    .skill-label { display: flex; justify-content: space-between; margin-bottom: 6px; font-size: 0.82rem; color: var(--muted); }
+    .skill-track { height: 4px; background: var(--glass-border); border-radius: 2px; overflow: hidden; }
+    .skill-fill { height: 100%; background: var(--gradient); border-radius: 2px; width: 0; transition: width 1.2s cubic-bezier(0.16,1,0.3,1); }
+
+    @media (max-width: 991.98px) {
+      .hero-desc { border-left: none; border-bottom: 2px solid var(--cyan); padding-left: 0; padding-bottom: 16px; }
+      .stat-divider { display: none; }
+      .cursor, .cursor-ring { display: none; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- PRELOADER -->
+<div id="preloader"><div class="pre-ring"></div></div>
+
+<!-- CURSOR -->
+<div class="cursor" id="cursor"></div>
+<div class="cursor-ring" id="cursorRing"></div>
+
+<!-- WHATSAPP FLOAT -->
+<a href="https://wa.me/919876543210" target="_blank" class="wa-float" title="WhatsApp">
+  <i class="fa-brands fa-whatsapp"></i>
+</a>
+
+<!-- ===== NAVBAR ===== -->
+<nav class="navbar navbar-expand-xl fixed-top custom-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="#">SABKA GLOBAL CORP<span class="brand-dot">.</span></a>
+    <button class="navbar-toggler border-0" type="button" data-bs-toggle="collapse" data-bs-target="#mainNav">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="mainNav">
+      <ul class="navbar-nav ms-auto align-items-center gap-1">
+        <li class="nav-item"><a class="nav-link active" href="index.html">Home</a></li>
+        <li class="nav-item"><a class="nav-link" href="about.html">About</a></li>
+        
+        <!-- ADITYA BIRLA STYLE CLEAN MEGA DROPDOWN -->
+        <li class="nav-item dropdown position-static">
+          <a class="nav-link dropdown-toggle" href="#" id="groupCompaniesDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+            Group Companies
+          </a>
+          <div class="dropdown-menu mega-menu w-100 border-0 m-0 p-4" aria-labelledby="groupCompaniesDropdown">
+            <div class="container">
+              <div class="row g-3">
+                
+                <!-- Category 1 -->
+                <div class="col-xl-3 col-md-6">
+                  <a href="sk-consultants.html" class="mm-category-card d-block text-decoration-none">
+                    <div class="mm-card-img-wrap mb-3">
+                      <div class="mm-card-overlay"></div>
+                      <span class="mm-card-icon"><i class="fa-solid fa-scale-balanced"></i></span>
+                    </div>
+                    <h5>SK Universal Consultants</h5>
+                    <span class="mm-view-link">Explore Sector <i class="fa-solid fa-arrow-right ms-1"></i></span>
+                  </a>
+                </div>
+                
+                <!-- Category 2 -->
+                <div class="col-xl-3 col-md-6">
+                  <a href="golden-senrise.html" class="mm-category-card d-block text-decoration-none">
+                    <div class="mm-card-img-wrap mb-3">
+                      <div class="mm-card-overlay"></div>
+                      <span class="mm-card-icon"><i class="fa-solid fa-kit-medical"></i></span>
+                    </div>
+                    <h5>Golden SENrise</h5>
+                    <span class="mm-view-link">Explore Sector <i class="fa-solid fa-arrow-right ms-1"></i></span>
+                  </a>
+                </div>
+                
+                <!-- Category 3 -->
+                <div class="col-xl-3 col-md-6">
+                  <a href="ak-events.html" class="mm-category-card d-block text-decoration-none">
+                    <div class="mm-card-img-wrap mb-3">
+                      <div class="mm-card-overlay"></div>
+                      <span class="mm-card-icon"><i class="fa-solid fa-masks-theater"></i></span>
+                    </div>
+                    <h5>AK Events</h5>
+                    <span class="mm-view-link">Explore Sector <i class="fa-solid fa-arrow-right ms-1"></i></span>
+                  </a>
+                </div>
+                
+                <!-- Category 4 -->
+                <div class="col-xl-3 col-md-6">
+                  <a href="sabka-entertainment.html" class="mm-category-card d-block text-decoration-none">
+                    <div class="mm-card-img-wrap mb-3">
+                      <div class="mm-card-overlay"></div>
+                      <span class="mm-card-icon"><i class="fa-solid fa-icons"></i></span>
+                    </div>
+                    <h5>Sab Ka Entertainment</h5>
+                    <span class="mm-view-link">Explore Sector <i class="fa-solid fa-arrow-right ms-1"></i></span>
+                  </a>
+                </div>
+
+              </div>
+            </div>
+          </div>
+        </li>
+
+        <li class="nav-item"><a class="nav-link" href="service.html">Services</a></li>
+        <li class="nav-item"><a class="nav-link" href="contact.html">Contact</a></li>
+        <li class="nav-item ms-2">
+          <a href="contact.html" class="btn nav-cta">Book Consultation</a>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>
+<!-- ===== HERO ===== -->
+<section id="home" class="hero-section">
+  <canvas id="particles"></canvas>
+  <div class="grid-lines"></div>
+  <div class="orb orb-1"></div>
+  <div class="orb orb-2"></div>
+  <div class="orb orb-3"></div>
+
+  <div class="container hero-content py-5">
+    <div class="row align-items-center min-vh-100">
+      <div class="col-lg-7">
+        <div class="mb-4">
+          <span class="hero-eyebrow"><span class="eyebrow-dot"></span>Sabka Global Corp — Parent Brand</span>
+        </div>
+        <h1 class="hero-name mb-3">
+          Komal <span class="line2 text-gradient">Khandge</span>
+        </h1>
+        <h2 class="hero-title text-gradient mb-3">Founder &amp; Group CEO</h2>
+
+        <div class="typed-wrap mb-4">
+          <span id="typed-text"></span><span class="typed-cursor">|</span>
+        </div>
+
+        <p class="hero-desc mb-4">
+          Visionary entrepreneur, business strategist, and social impact leader with 20+ years across MSME development, mental wellness, leadership coaching, and community empowerment — integrating business excellence with human development.
+        </p>
+
+        <div class="hero-tags d-flex flex-wrap gap-2 mb-4">
+          <span class="htag"><i class="fa-solid fa-chart-line"></i>SME &amp; MSME Advisory</span>
+          <span class="htag"><i class="fa-solid fa-shield-halved"></i>Compliance &amp; Registration</span>
+          <span class="htag"><i class="fa-solid fa-heart-pulse"></i>Mental Wellness</span>
+          <span class="htag"><i class="fa-solid fa-graduation-cap"></i>Leadership Training</span>
+        </div>
+
+        <div class="hero-btns d-flex flex-wrap gap-3">
+          <a href="#ecosystem" class="btn-primary-glow">
+            Explore Ecosystem <i class="fa-solid fa-network-wired"></i>
+          </a>
+          <a href="#partnerships" class="btn-ghost">
+            Partner With Us <i class="fa-regular fa-handshake"></i>
+          </a>
+        </div>
+      </div>
+
+      <div class="col-lg-5 d-none d-lg-flex justify-content-center hero-card-scene mt-5 mt-lg-0">
+        <div class="orbit-wrap w-100" style="max-width:380px">
+          <div class="glass-card-3d" id="heroCard">
+            <span class="card-badge">Master Blueprint</span>
+            <h3>Sabka Global Corp</h3>
+            <p>Integrating industrial corporate infrastructure, mental health frameworks, premium entertainment, and sustainable grassroots social change.</p>
+            <div class="pulse-bar"></div>
+            <div class="mt-4 d-flex gap-3">
+              <div style="text-align:center">
+                <div style="font-family:'Syne',sans-serif;font-size:1.6rem;font-weight:800;color:var(--cyan)">4+</div>
+                <div style="font-size:0.7rem;color:var(--muted);letter-spacing:1px">Group Entities</div>
+              </div>
+              <div style="width:1px;background:var(--glass-border)"></div>
+              <div style="text-align:center">
+                <div style="font-family:'Syne',sans-serif;font-size:1.6rem;font-weight:800;color:var(--cyan)">20+</div>
+                <div style="font-size:0.7rem;color:var(--muted);letter-spacing:1px">Years Active</div>
+              </div>
+              <div style="width:1px;background:var(--glass-border)"></div>
+              <div style="text-align:center">
+                <div style="font-family:'Syne',sans-serif;font-size:1.6rem;font-weight:800;color:var(--cyan)">10k+</div>
+                <div style="font-size:0.7rem;color:var(--muted);letter-spacing:1px">Lives Impacted</div>
+              </div>
+            </div>
+          </div>
+          <div class="orbit-icon"><i class="fa-solid fa-scale-balanced"></i></div>
+          <div class="orbit-icon"><i class="fa-solid fa-brain"></i></div>
+          <div class="orbit-icon"><i class="fa-solid fa-music"></i></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="scroll-cue">
+    <span>Scroll</span>
+    <i class="fa-solid fa-chevron-down scroll-arrow"></i>
+  </div>
+</section>
+
+<!-- ===== STATS ===== -->
+<div class="stats-section">
+  <div class="container">
+    <div class="row justify-content-center align-items-center g-4">
+      <div class="col-6 col-md-3">
+        <div class="stat-item reveal">
+          <div class="stat-number" data-target="20" data-suffix="+">0</div>
+          <div class="stat-label">Years Experience</div>
+        </div>
+      </div>
+      <div class="d-none d-md-block col-md-auto"><div class="stat-divider"></div></div>
+      <div class="col-6 col-md-3">
+        <div class="stat-item reveal delay-1">
+          <div class="stat-number" data-target="500" data-suffix="+">0</div>
+          <div class="stat-label">Enterprises Scaled</div>
+        </div>
+      </div>
+      <div class="d-none d-md-block col-md-auto"><div class="stat-divider"></div></div>
+      <div class="col-6 col-md-3">
+        <div class="stat-item reveal delay-2">
+          <div class="stat-number" data-target="10" data-suffix="k+">0</div>
+          <div class="stat-label">Lives Impacted</div>
+        </div>
+      </div>
+      <div class="d-none d-md-block col-md-auto"><div class="stat-divider"></div></div>
+      <div class="col-6 col-md-2">
+        <div class="stat-item reveal delay-3">
+          <div class="stat-number" data-target="100" data-suffix="%">0</div>
+          <div class="stat-label">Ethical Compliance</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ===== FOUNDER ===== -->
+<section id="founder" class="py-section bg-alt">
+  <div class="container">
+    <div class="row align-items-center g-5">
+      <div class="col-lg-6 reveal-left">
+        <div class="label-tag">Corporate Framework</div>
+        <h2 class="section-title mb-4">The Founder Journey<br>&amp; Philosophy</h2>
+        <blockquote class="founder-quote mb-4">
+          True corporate scaling cannot exist in an economic vacuum.
+        </blockquote>
+        <p class="mb-3" style="color:var(--muted);line-height:1.8">
+          For over two decades, Komal Khandge has challenged traditional consulting boundaries. Her professional philosophy rejects siloed business processes, operating instead under a people-first, ethical, and entirely holistic methodology.
+        </p>
+        <p style="color:var(--muted);line-height:1.8">
+          Sabka Global Corp was built on the principle that industrial optimization, executive mental resilience, artistic cultural production, and senior welfare must progress together to generate generational wealth.
+        </p>
+
+        <div class="mt-4">
+          <div class="skill-bar-wrap">
+            <div class="skill-label"><span>MSME &amp; Business Consulting</span><span>95%</span></div>
+            <div class="skill-track"><div class="skill-fill" data-width="95"></div></div>
+          </div>
+          <div class="skill-bar-wrap">
+            <div class="skill-label"><span>Mental Wellness &amp; Coaching</span><span>90%</span></div>
+            <div class="skill-track"><div class="skill-fill" data-width="90"></div></div>
+          </div>
+          <div class="skill-bar-wrap">
+            <div class="skill-label"><span>Corporate Leadership Training</span><span>88%</span></div>
+            <div class="skill-track"><div class="skill-fill" data-width="88"></div></div>
+          </div>
+          <div class="skill-bar-wrap">
+            <div class="skill-label"><span>Event &amp; Cultural Production</span><span>82%</span></div>
+            <div class="skill-track"><div class="skill-fill" data-width="82"></div></div>
+          </div>
+        </div>
+      </div>
+      <div class="col-lg-6 reveal-right">
+        <div class="row g-3">
+          <div class="col-6">
+            <div class="philosophy-card">
+              <div class="phi-icon"><i class="fa-solid fa-gavel"></i></div>
+              <h6 style="color:#fff;font-weight:700;margin-bottom:8px">Ethical Directive</h6>
+              <p style="color:var(--muted);font-size:0.84rem;line-height:1.7;margin:0">Uncompromising compliance, procedural transparency, and legal excellence across state and national frameworks.</p>
+            </div>
+          </div>
+          <div class="col-6">
+            <div class="philosophy-card">
+              <div class="phi-icon"><i class="fa-solid fa-people-roof"></i></div>
+              <h6 style="color:#fff;font-weight:700;margin-bottom:8px">Holistic Strategy</h6>
+              <p style="color:var(--muted);font-size:0.84rem;line-height:1.7;margin:0">Synchronizing corporate capitalization directly with clinical-grade workplace psychological health.</p>
+            </div>
+          </div>
+          <div class="col-6">
+            <div class="philosophy-card">
+              <div class="phi-icon"><i class="fa-solid fa-seedling"></i></div>
+              <h6 style="color:#fff;font-weight:700;margin-bottom:8px">Social Rootedness</h6>
+              <p style="color:var(--muted);font-size:0.84rem;line-height:1.7;margin:0">Every enterprise initiative carries a measurable grassroots outcome tied to real community impact.</p>
+            </div>
+          </div>
+          <div class="col-6">
+            <div class="philosophy-card">
+              <div class="phi-icon"><i class="fa-solid fa-rocket"></i></div>
+              <h6 style="color:#fff;font-weight:700;margin-bottom:8px">Scale With Purpose</h6>
+              <p style="color:var(--muted);font-size:0.84rem;line-height:1.7;margin:0">Building holding group architectures that outlast founders and survive market disruptions.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== ECOSYSTEM ===== -->
+<section id="ecosystem" class="py-section">
+  <div class="container">
+    <div class="text-center mb-5 reveal">
+      <div class="label-tag">Group Capabilities</div>
+      <h2 class="section-title mb-3">The Sabka Global<br>Holding Ecosystem</h2>
+      <p style="color:var(--muted);max-width:540px;margin:0 auto">A unified framework driving market-disrupting execution across diverse industry verticals.</p>
+    </div>
+    <div class="row g-4">
+      <div class="col-lg-3 col-md-6 reveal delay-1">
+        <div class="eco-card">
+          <div class="eco-icon"><i class="fa-solid fa-scale-balanced"></i></div>
+          <h4>SK Universal Consultants</h4>
+          <ul>
+            <li>MSME Industrial Consultancy</li>
+            <li>Government Subsidy Capture</li>
+            <li>Corporate Compliance &amp; Filing</li>
+            <li>Branding, Marketing &amp; Scale</li>
+          </ul>
+        </div>
+      </div>
+      <div class="col-lg-3 col-md-6 reveal delay-2">
+        <div class="eco-card">
+          <div class="eco-icon"><i class="fa-solid fa-kit-medical"></i></div>
+          <h4>Golden SENrise</h4>
+          <ul>
+            <li>Senior Citizen Living Networks</li>
+            <li>Nutrition &amp; Health Management</li>
+            <li>Community Building Systems</li>
+            <li>Lifestyle Innovation Programs</li>
+          </ul>
+        </div>
+      </div>
+      <div class="col-lg-3 col-md-6 reveal delay-3">
+        <div class="eco-card">
+          <div class="eco-icon"><i class="fa-solid fa-masks-theater"></i></div>
+          <h4>AK Events</h4>
+          <ul>
+            <li>Premium Corporate Galas</li>
+            <li>Musical &amp; Live Productions</li>
+            <li>Sponsor Deck Architectures</li>
+            <li>End-to-End Brand Activations</li>
+          </ul>
+        </div>
+      </div>
+      <div class="col-lg-3 col-md-6 reveal delay-4">
+        <div class="eco-card">
+          <div class="eco-icon"><i class="fa-solid fa-icons"></i></div>
+          <h4>Sab Ka Entertainment</h4>
+          <ul>
+            <li>Cultural Event Engineering</li>
+            <li>Grassroots Talent Promotion</li>
+            <li>Community Welfare Festivals</li>
+            <li>Live Musical Media Production</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== SERVICES ===== -->
+<section id="services" class="py-section bg-alt">
+  <div class="container">
+    <div class="text-center mb-5 reveal">
+      <div class="label-tag">Enterprise Capabilities Matrix</div>
+      <h2 class="section-title">Unified Services Taxonomy</h2>
+    </div>
+    <div class="row g-4">
+      <div class="col-md-6 col-lg-3 reveal delay-1">
+        <div class="service-card">
+          <div class="svc-num">01</div>
+          <div class="svc-icon"><i class="fa-solid fa-building"></i></div>
+          <h5>Business Advisory</h5>
+          <p>MSME Registrations, Capital Government Subsidies, Corporate Strategy, Private Equity Funding, Expansion Operations, and Brand Scaling Protocols.</p>
+        </div>
+      </div>
+      <div class="col-md-6 col-lg-3 reveal delay-2">
+        <div class="service-card">
+          <div class="svc-num">02</div>
+          <div class="svc-icon"><i class="fa-solid fa-brain"></i></div>
+          <h5>Mental Wellness</h5>
+          <p>Clinical Executive Therapy, Trauma-informed Leadership Coaching, Corporate Stress Management, Relationship Guidance, and Mental Fitness Schemes.</p>
+        </div>
+      </div>
+      <div class="col-md-6 col-lg-3 reveal delay-3">
+        <div class="service-card">
+          <div class="svc-num">03</div>
+          <div class="svc-icon"><i class="fa-solid fa-user-shield"></i></div>
+          <h5>Corporate Training</h5>
+          <p>C-Suite Communication Architecture, Personality Mapping, Executive Confidence Upgrades, Women-Led Enterprise Incubation, and Operational Workshops.</p>
+        </div>
+      </div>
+      <div class="col-md-6 col-lg-3 reveal delay-4">
+        <div class="service-card">
+          <div class="svc-num">04</div>
+          <div class="svc-icon"><i class="fa-solid fa-guitar"></i></div>
+          <h5>Events &amp; Production</h5>
+          <p>Sponsor Deck Activations, High-Impact Musical Productions, Cultural Festivals, and Corporate Multi-City Event Curation.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== IMPACT / CSR ===== -->
+<section id="impact" class="py-section">
+  <div class="container">
+    <div class="row align-items-center g-5">
+      <div class="col-lg-6 reveal-right order-lg-2">
+        <div class="label-tag">Systemic Growth Metrics</div>
+        <h2 class="section-title mb-4">Corporate Social<br>Responsibility &amp; Impact</h2>
+        <p style="color:var(--muted);line-height:1.8;margin-bottom:14px">
+          Through structured public social infrastructure networks, Komal Khandge guides targeted community interventions that go far beyond basic charity work.
+        </p>
+        <p style="color:var(--muted);line-height:1.8">
+          Our work focuses on measurable impact — running deep-level women empowerment platforms, financial literacy drives for MSME operations, and senior lifestyle safety networks across geographical boundaries.
+        </p>
+      </div>
+      <div class="col-lg-6 order-lg-1 reveal-left">
+        <div class="impact-card-box">
+          <h4>Impact Horizons</h4>
+          <ul class="impact-list">
+            <li>
+              <div class="impact-num">01</div>
+              <div>
+                <strong style="color:#fff;font-size:0.92rem">Women's Empowerment Advocacy</strong>
+                <p style="color:var(--muted);font-size:0.84rem;margin:6px 0 0;line-height:1.7">Structural assistance helping women entrepreneurs break into traditional industries.</p>
+              </div>
+            </li>
+            <li>
+              <div class="impact-num">02</div>
+              <div>
+                <strong style="color:#fff;font-size:0.92rem">Senior Citizen Welfare</strong>
+                <p style="color:var(--muted);font-size:0.84rem;margin:6px 0 0;line-height:1.7">Specialized care systems built for mental stimulation, health access, and nutritional balance through Golden SENrise.</p>
+              </div>
+            </li>
+            <li>
+              <div class="impact-num">03</div>
+              <div>
+                <strong style="color:#fff;font-size:0.92rem">MSME Financial Literacy</strong>
+                <p style="color:var(--muted);font-size:0.84rem;margin:6px 0 0;line-height:1.7">Driving financial literacy and compliance knowledge deep into India's small enterprise ecosystem.</p>
+              </div>
+            </li>
+            <li>
+              <div class="impact-num">04</div>
+              <div>
+                <strong style="color:#fff;font-size:0.92rem">Cultural Preservation</strong>
+                <p style="color:var(--muted);font-size:0.84rem;margin:6px 0 0;line-height:1.7">Sponsoring grassroots arts and music programs that protect regional cultural heritage through AK Events.</p>
+              </div>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== PARTNERSHIPS ===== -->
+<section id="partnerships" class="py-section bg-alt">
+  <div class="container">
+    <div class="text-center mb-5 reveal">
+      <div class="label-tag">Universal Capital Integration</div>
+      <h2 class="section-title mb-3">Investor, Sponsor &amp;<br>Global Alliance Desk</h2>
+      <p style="color:var(--muted);max-width:540px;margin:0 auto">Unlocking institutional scaling through international collaboration and cross-market expansion.</p>
+    </div>
+    <div class="row g-4">
+      <div class="col-md-6 reveal delay-1">
+        <div class="partner-card featured">
+          <div style="color:var(--cyan);font-size:1.6rem;margin-bottom:16px"><i class="fa-solid fa-wallet"></i></div>
+          <h4>Sponsor &amp; Media Placement</h4>
+          <p style="color:var(--muted);font-size:0.88rem;line-height:1.75;margin-bottom:20px">Access premium placement opportunities across our entertainment, live cultural events, and music productions. Get verified reach analytics, high-value corporate targeting, and deep-level media penetration across the group.</p>
+          <a href="#contact" class="text-link">Request Event Sponsor Decks <i class="fa-solid fa-arrow-right"></i></a>
+        </div>
+      </div>
+      <div class="col-md-6 reveal delay-2">
+        <div class="partner-card">
+          <div style="color:var(--cyan);font-size:1.6rem;margin-bottom:16px"><i class="fa-solid fa-earth-americas"></i></div>
+          <h4>International Collaborations</h4>
+          <p style="color:var(--muted);font-size:0.88rem;line-height:1.75;margin-bottom:20px">Co-build solutions alongside global consultancies, public health institutes, international event companies, and foreign franchise groups ready to expand into Indian markets.</p>
+          <a href="#contact" class="text-link">Initiate Alliance Dialogue <i class="fa-solid fa-arrow-right"></i></a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== KNOWLEDGE ===== -->
+<section id="knowledge" class="py-section">
+  <div class="container">
+    <div class="text-center mb-5 reveal">
+      <div class="label-tag">Strategic Insights Hub</div>
+      <h2 class="section-title">The Knowledge Centre</h2>
+    </div>
+    <div class="row g-4">
+      <div class="col-md-4 reveal delay-1">
+        <div class="blog-card">
+          <div class="blog-top"></div>
+          <div class="blog-body">
+            <div class="blog-cat">Industrial Scale</div>
+            <h5>Unlocking State-Level MSME Grants Safely</h5>
+            <p>An unedited, detailed review helping modern manufacturing groups clear structural compliance checks smoothly.</p>
+            <a href="#" class="text-link mt-3 d-inline-flex">Read Article <i class="fa-solid fa-arrow-right"></i></a>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-4 reveal delay-2">
+        <div class="blog-card">
+          <div class="blog-top"></div>
+          <div class="blog-body">
+            <div class="blog-cat">Executive Health</div>
+            <h5>C-Suite Anxiety and Clinical Team Support</h5>
+            <p>Actionable mental health and resilience strategies designed for corporate leadership teams facing rapid expansion.</p>
+            <a href="#" class="text-link mt-3 d-inline-flex">Read Article <i class="fa-solid fa-arrow-right"></i></a>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-4 reveal delay-3">
+        <div class="blog-card">
+          <div class="blog-top"></div>
+          <div class="blog-body">
+            <div class="blog-cat">Ecosystem Logic</div>
+            <h5>Integrating Corporate Strategy with Social Action</h5>
+            <p>How to build a holding group where social impact works as a true structural asset rather than a charity expense.</p>
+            <a href="#" class="text-link mt-3 d-inline-flex">Read Article <i class="fa-solid fa-arrow-right"></i></a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== CONTACT ===== -->
+<section id="contact" class="py-section bg-alt">
+  <div class="container">
+    <div class="row g-5">
+      <div class="col-lg-5 reveal-left">
+        <div class="label-tag">Global Registry Intake</div>
+        <h2 class="section-title mb-3">Initiate Corporate<br>Engagement</h2>
+        <p style="color:var(--muted);line-height:1.8;margin-bottom:40px">Select your engagement objective. Your request will be securely routed to the respective holding group director's office.</p>
+
+        <div class="contact-item mb-4">
+          <div class="contact-icon"><i class="fa-solid fa-briefcase"></i></div>
+          <div>
+            <div style="color:var(--muted);font-size:0.78rem;letter-spacing:1px;text-transform:uppercase;margin-bottom:4px">Holding Corporate Registry</div>
+            <div style="color:#fff;font-weight:600">ceo@sabkaglobal.com</div>
+          </div>
+        </div>
+        <div class="contact-item mb-4">
+          <div class="contact-icon"><i class="fa-solid fa-phone"></i></div>
+          <div>
+            <div style="color:var(--muted);font-size:0.78rem;letter-spacing:1px;text-transform:uppercase;margin-bottom:4px">Ecosystem Communications</div>
+            <div style="color:#fff;font-weight:600">+91 98765 43210</div>
+          </div>
+        </div>
+        <div class="contact-item mb-5">
+          <div class="contact-icon"><i class="fa-brands fa-whatsapp"></i></div>
+          <div>
+            <div style="color:var(--muted);font-size:0.78rem;letter-spacing:1px;text-transform:uppercase;margin-bottom:4px">WhatsApp Routing Desk</div>
+            <a href="https://wa.me/919876543210" style="color:#25d366;font-weight:600;text-decoration:none">Message on WhatsApp</a>
+          </div>
+        </div>
+        <div class="d-flex gap-3">
+          <a href="#" class="social-icon"><i class="fa-brands fa-linkedin-in"></i></a>
+          <a href="#" class="social-icon"><i class="fa-brands fa-instagram"></i></a>
+          <a href="#" class="social-icon"><i class="fa-brands fa-facebook-f"></i></a>
+          <a href="#" class="social-icon"><i class="fa-brands fa-youtube"></i></a>
+        </div>
+      </div>
+
+      <div class="col-lg-7 reveal-right">
+        <div class="contact-form">
+          <form onsubmit="handleFormSubmit(event)">
+            <div class="row g-3">
+              <div class="col-md-6">
+                <label class="form-label">Corporate Entity Name</label>
+                <input type="text" class="form-control" placeholder="Your Company Ltd." required />
+              </div>
+              <div class="col-md-6">
+                <label class="form-label">Principal Contact Name</label>
+                <input type="text" class="form-control" placeholder="Full Name" required />
+              </div>
+              <div class="col-md-6">
+                <label class="form-label">Email Address</label>
+                <input type="email" class="form-control" placeholder="you@company.com" required />
+              </div>
+              <div class="col-md-6">
+                <label class="form-label">Phone Number</label>
+                <input type="tel" class="form-control" placeholder="+91 00000 00000" />
+              </div>
+              <div class="col-12">
+                <label class="form-label">Strategic Intent / Channel</label>
+                <select class="form-select">
+                  <option>SME / MSME Business Consultation</option>
+                  <option>Sponsor &amp; Media Placement Integration</option>
+                  <option>International Collaboration Blueprint</option>
+                  <option>Clinical Mental Health / Executive Therapy</option>
+                  <option>Events &amp; Production Partnership</option>
+                </select>
+              </div>
+              <div class="col-12">
+                <label class="form-label">Operational Deliverables / Overview of Needs</label>
+                <textarea class="form-control" rows="4" placeholder="Describe your objective..." required></textarea>
+              </div>
+              <div class="col-12">
+                <button type="submit" class="btn-submit" id="submitBtn">Dispatch Strategic Request</button>
+              </div>
+            </div>
+          </form>
+          <div id="formSuccess" style="display:none;margin-top:20px;padding:18px;background:rgba(0,242,254,0.06);border:1px solid rgba(0,242,254,0.2);border-radius:12px;color:var(--cyan);font-size:0.9rem;text-align:center">
+            <i class="fa-solid fa-circle-check me-2"></i>Your request has been dispatched. We'll be in touch within 24 hours.
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== FOOTER ===== -->
+<footer class="footer-wrap">
+  <div class="container">
+    <div class="row g-5 mb-5">
+      <div class="col-lg-4">
+        <div class="footer-brand mb-3">SABKA GLOBAL CORP<span style="color:var(--cyan)">.</span></div>
+        <p style="color:var(--muted);font-size:0.88rem;line-height:1.8">Building high-impact corporate infrastructure, running clinical health programs, and driving intentional community empowerment systems across markets.</p>
+      </div>
+      <div class="col-lg-4">
+        <h6 style="color:#fff;font-weight:700;margin-bottom:20px;letter-spacing:1px;text-transform:uppercase;font-size:0.8rem">Ecosystem Links</h6>
+        <div class="row">
+          <div class="col-6">
+            <a href="#founder" class="footer-link">The Founder</a>
+            <a href="#ecosystem" class="footer-link">Group Entities</a>
+            <a href="#impact" class="footer-link">CSR &amp; Impact</a>
+          </div>
+          <div class="col-6">
+            <a href="#partnerships" class="footer-link">Investor Desk</a>
+            <a href="#knowledge" class="footer-link">Knowledge Hub</a>
+            <a href="#contact" class="footer-link">Contact</a>
+          </div>
+        </div>
+      </div>
+      <div class="col-lg-4">
+        <h6 style="color:#fff;font-weight:700;margin-bottom:20px;letter-spacing:1px;text-transform:uppercase;font-size:0.8rem">Connect</h6>
+        <div class="d-flex gap-2 mb-4">
+          <a href="#" class="social-icon"><i class="fa-brands fa-linkedin-in"></i></a>
+          <a href="#" class="social-icon"><i class="fa-brands fa-instagram"></i></a>
+          <a href="#" class="social-icon"><i class="fa-brands fa-facebook-f"></i></a>
+          <a href="#" class="social-icon"><i class="fa-brands fa-youtube"></i></a>
+        </div>
+        <p style="color:var(--muted);font-size:0.84rem;line-height:1.7">Managed under the Global Vision of Komal Khandge.<br>India-headquartered | Global Reach.</p>
+      </div>
+    </div>
+    <div class="footer-copy">
+      &copy; 2026 Sabka Global Corp. All Rights Reserved. Founder &amp; Group CEO: Komal Khandge.
+    </div>
+  </div>
+</footer>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+<script>
+  // ===== PRELOADER =====
+  window.addEventListener('load', () => {
+    setTimeout(() => document.getElementById('preloader').classList.add('hidden'), 400);
+  });
+
+  // ===== CUSTOM CURSOR =====
+  const cursor = document.getElementById('cursor');
+  const ring = document.getElementById('cursorRing');
+  let mx = 0, my = 0, rx = 0, ry = 0;
+  document.addEventListener('mousemove', e => { mx = e.clientX; my = e.clientY; });
+  function animCursor() {
+    rx += (mx - rx) * 0.15; ry += (my - ry) * 0.15;
+    if (cursor) { cursor.style.left = mx + 'px'; cursor.style.top = my + 'px'; }
+    if (ring) { ring.style.left = rx + 'px'; ring.style.top = ry + 'px'; }
+    requestAnimationFrame(animCursor);
+  }
+  animCursor();
+  document.querySelectorAll('a,button,.eco-card,.service-card,.philosophy-card').forEach(el => {
+    el.addEventListener('mouseenter', () => { if(ring) ring.style.transform = 'translate(-50%,-50%) scale(2)'; });
+    el.addEventListener('mouseleave', () => { if(ring) ring.style.transform = 'translate(-50%,-50%) scale(1)'; });
+  });
+
+  // ===== NAVBAR SCROLL =====
+  const navbar = document.querySelector('.custom-navbar');
+  window.addEventListener('scroll', () => {
+    navbar.classList.toggle('scrolled', window.scrollY > 60);
+  });
+
+  // ===== TYPED TEXT =====
+  const roles = [
+    'Business Strategist & Entrepreneur',
+    'MSME Development Expert',
+    'Mental Wellness Leader',
+    'Corporate Leadership Coach',
+    'Social Impact Architect'
+  ];
+  let ri = 0, ci = 0, deleting = false;
+  const typedEl = document.getElementById('typed-text');
+  function type() {
+    const current = roles[ri];
+    if (!deleting) {
+      typedEl.textContent = current.slice(0, ++ci);
+      if (ci === current.length) { deleting = true; setTimeout(type, 1800); return; }
+    } else {
+      typedEl.textContent = current.slice(0, --ci);
+      if (ci === 0) { deleting = false; ri = (ri + 1) % roles.length; }
+    }
+    setTimeout(type, deleting ? 40 : 70);
+  }
+  type();
+
+  // ===== PARTICLES =====
+  const canvas = document.getElementById('particles');
+  const ctx = canvas.getContext('2d');
+  let W, H, pts = [];
+  function resizeCanvas() {
+    W = canvas.width = canvas.offsetWidth;
+    H = canvas.height = canvas.offsetHeight;
+  }
+  resizeCanvas();
+  window.addEventListener('resize', resizeCanvas);
+  for (let i = 0; i < 70; i++) pts.push({
+    x: Math.random() * 2000, y: Math.random() * 1000,
+    vx: (Math.random() - 0.5) * 0.3, vy: (Math.random() - 0.5) * 0.3,
+    r: Math.random() * 1.5 + 0.4, a: Math.random()
+  });
+  function drawParticles() {
+    ctx.clearRect(0, 0, W, H);
+    pts.forEach(p => {
+      p.x += p.vx; p.y += p.vy;
+      if (p.x < 0) p.x = W; if (p.x > W) p.x = 0;
+      if (p.y < 0) p.y = H; if (p.y > H) p.y = 0;
+      ctx.beginPath();
+      ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
+      ctx.fillStyle = `rgba(0,242,254,${p.a * 0.4})`;
+      ctx.fill();
+    });
+    pts.forEach((p, i) => {
+      for (let j = i + 1; j < pts.length; j++) {
+        const d = Math.hypot(p.x - pts[j].x, p.y - pts[j].y);
+        if (d < 120) {
+          ctx.beginPath();
+          ctx.moveTo(p.x, p.y); ctx.lineTo(pts[j].x, pts[j].y);
+          ctx.strokeStyle = `rgba(0,242,254,${0.06 * (1 - d/120)})`;
+          ctx.lineWidth = 0.5;
+          ctx.stroke();
+        }
+      }
+    });
+    requestAnimationFrame(drawParticles);
+  }
+  drawParticles();
+
+  // ===== 3D CARD PARALLAX =====
+  const heroSection = document.querySelector('.hero-section');
+  const heroCard = document.getElementById('heroCard');
+  if (heroSection && heroCard) {
+    heroSection.addEventListener('mousemove', e => {
+      const r = heroSection.getBoundingClientRect();
+      const xN = (e.clientX - r.left) / r.width - 0.5;
+      const yN = (e.clientY - r.top) / r.height - 0.5;
+      heroCard.style.transform = `perspective(1000px) rotateX(${(yN*14).toFixed(2)}deg) rotateY(${(xN*-14).toFixed(2)}deg) scale(1.02)`;
+    });
+    heroSection.addEventListener('mouseleave', () => {
+      heroCard.style.transform = 'perspective(1000px) rotateY(-12deg) rotateX(6deg) scale(1)';
+    });
+  }
+
+  // ===== SCROLL REVEAL =====
+  const obs = new IntersectionObserver((entries) => {
+    entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); } });
+  }, { threshold: 0.12 });
+  document.querySelectorAll('.reveal, .reveal-left, .reveal-right').forEach(el => obs.observe(el));
+
+  // ===== COUNTER ANIMATION =====
+  const counterObs = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        const el = e.target;
+        const target = +el.dataset.target;
+        const suffix = el.dataset.suffix || '';
+        let current = 0;
+        const step = target / 60;
+        const timer = setInterval(() => {
+          current = Math.min(current + step, target);
+          el.textContent = Math.floor(current) + suffix;
+          if (current >= target) clearInterval(timer);
+        }, 25);
+        counterObs.unobserve(el);
+      }
+    });
+  }, { threshold: 0.5 });
+  document.querySelectorAll('.stat-number').forEach(el => counterObs.observe(el));
+
+  // ===== SKILL BARS =====
+  const barObs = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        e.target.querySelectorAll('.skill-fill').forEach(bar => {
+          setTimeout(() => { bar.style.width = bar.dataset.width + '%'; }, 200);
+        });
+        barObs.unobserve(e.target);
+      }
+    });
+  }, { threshold: 0.3 });
+  const skillSection = document.querySelector('.skill-bar-wrap') ? document.querySelector('.skill-bar-wrap').closest('.col-lg-6') : null;
+  if (skillSection) barObs.observe(skillSection);
+
+  // ===== FORM SUBMIT =====
+  function handleFormSubmit(e) {
+    e.preventDefault();
+    const btn = document.getElementById('submitBtn');
+    btn.textContent = 'Dispatching…'; btn.disabled = true;
+    setTimeout(() => {
+      document.getElementById('formSuccess').style.display = 'block';
+      btn.textContent = 'Request Dispatched ✓'; btn.style.background = 'rgba(0,242,254,0.15)'; btn.style.color = 'var(--cyan)';
+    }, 1200);
+  }
+</script>
+</body>
+</html>
